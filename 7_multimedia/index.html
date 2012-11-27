@@ -2,14 +2,14 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Introduction</title>
-		<meta name="description" content="Introduction, Titanium Certified Development (TCD) Training">
+		<title>LESSON TITLE</title>
+		<meta name="description" content="Titanium Certified Developer Training">
     	<meta name="author" content="Appcelerator, Inc." />
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="../../presentation-engine/reveal.js/css/reset.css">
 		<link rel="stylesheet" href="../../presentation-engine/reveal.js/css/main.css">
-		<link rel="stylesheet" href="../../presentation-engine/reveal.js/lib/zenburn.css">
+		<link rel="stylesheet" href="../css/magula.css">
 		<link rel="stylesheet" href="../css/presentation.css">
 		<script type="text/javascript" src="../../presentation-engine/js/l10n.js"></script>
 		<script type="text/javascript" src="i18n/localizations.js"></script>
@@ -61,153 +61,99 @@
 			<div class="slides">
 				
 				<section>
-					<h1 style="margin-top:100px;" class="l_lessontitle">Introduction</h1>
-					<h5 class="l_subtitle">Titanium Certified Development (TCD) Training</h5>
+					<h1 style="margin-top:100px;" class="l_lessontitle">LESSON TITLE</h1>
+					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
 					<script>
 						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
 						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
-				<div class="slidenote"><p class="l_slidenote_titleslide"><b>This PPT is to introduce the whole course and take care of housekeeping tasks </b> (agendas, etc.)
-</p></div>
+				<div class="slidenote"><p class="l_slidenote_titleslide"></p></div>
 				</section>
 				
-				<section>
-					<h2 class="l_introduce_yourself">Introduce Yourself</h2>
-					<p class="l_briefly">Briefly please:</p>
-					<ul>
-						<li class="l_name">Name</li>
-						<li class="l_background">What's your background?</li>
-						<li class="l_experience">What's your Titanium experience?</li>
-					</ul>
-					<div class="slidenote"><p class="l_slidenote_introduce_yourself">Try to keep the introductions to 10 mins, total for the whole class</p></div>
+<!-- EVERY LESSON MUST HAVE AN AGENDA SLIDE, WHICH LISTIS THE OBJECTIVES THAT WILL BE LEARNED BY THE STUDENT. USE PERFORMANCE-BASED OBJECTIVE STATEMENTS (IN OTHER WORDS, DESCRIBE WHAT THEY WILL DO) -->
+				<section id="agenda">
+					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
+			    	<ul>
+			    		<li class="l_agenda1">performance-based learning objective</li>
+			    		<li class="l_agenda2">e.g.</li>
+			    		<li class="l_agenda3">Create your app's UI with Views</li>
+			    		<li class="l_agenda4">Apply styles using TSS files</li>
+			    		<li class="l_agenda5">agenda item</li>
+			    	</ul>
+					<div class="slidenote">
+						<div class="l_slidenote_agenda"></div>
+					</div>
 				</section>
 
-				
 				<section>
-					<h2 class="l_housekeeping">Housekeeping</h2>
-					<ul>
-						<li class="l_class_hours">Class Hours</li>
-						<li class="l_parking">Parking</li>
-						<li class="l_restrooms">Restrooms</li>
-						<li class="l_meals">Meals</li>
-						<li class="l_network">Network Connectivity</li>
-						<li class="l_phone">Phones/ Pagers</li>
-						<li class="l_smoking">Smoking</li>
-						<li class="l_emergencies">Local Emergencies</li>
-						<li class="l_fire_exits">Fire Exits</li>
-					</ul>
-					<div class="slidenote"><p class="l_slidenote_housekeeping"></p></div>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;">Alloy</h5>
+
+					<div class="slidenote"><div class="l_slidenote_classname"></div></div>
 				</section>
 				
+
+<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
-					<h2 class="l_course_objectives">Course Objectives</h2>
+					<h2 style="" class="l_demo">Demo</h2>
 					<ul style="width:80%;">
-						<li class="l_objective1">Objective</li>
-						<li class="l_objective2">Objective</li>
-						<li class="l_objective3">Objective</li>
-						<li class="l_objective4">Objective</li>
-						<li class="l_objective5">Objective</li>
+						<li class="l_demo1">What you will demo</li>
+						<li class="l_demo2"></li>
+						<li class="l_demo3"></li>
+						<li class="l_demo4"></li>
 					</ul>
-					<div class="slidenote"><p class="l_slidenote_course_objectives"></p></div>
+					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
 				</section>
 
 				
-				<section>
-					<h2 class="l_daily_schedule">Daily Schedule</h2>
-					<table border="0" style="margin: 0 auto;">
-					<tr>
-						<th class="l_dayone" width="30%"><b>Day 1</b></th>
-						<th></th>
-						<th class="l_daytwo" width="30%"><b>Day 2</b></th>
-						<th></th>
-						<th class="l_daythree" width="30%"><b>Day 3</b></th>
-					</tr>
-					<tr>
-						<td class="l_lesson1">Titanium Overview</td>
-						<td></td>
-						<td class="l_lesson6">Cross-platform Development</td>
-						<td></td>
-						<td class="l_lesson11">Networking</td>
-					</tr>
-					<tr>
-						<td class="l_lesson2">Getting Started</td>
-						<td></td>
-						<td class="l_lesson7">Multimedia</td>
-						<td></td>
-						<td class="l_lesson12">Web Content</td>
-					</tr>
-					<tr>
-						<td class="l_lesson3">Alloy Overview</td>
-						<td></td>
-						<td class="l_lesson8">Local Data Storage</td>
-						<td></td>
-						<td class="l_lesson13">Debugging &amp; Tools</td>
-					</tr>
-					<tr>
-						<td class="l_lesson4">Deploying for Testing</td>
-						<td></td>
-						<td class="l_lesson9">Filesystem</td>
-						<td></td>
-						<td class="l_lesson14">Publishing Apps</td>
-					</tr>
-					<tr>
-						<td class="l_lesson5">User Interface</td>
-						<td></td>
-						<td class="l_lesson10">Geolocation &amp; Mapping</td>
-						<td></td>
-						<td class="l_lesson9999">&nbsp;</td>
-					</tr>
-					<tr>
-					<td colspan="5"> &nbsp; </td>
-					</tr>
-					<tr>
-						<td class="l_qa">Q&amp;A, Hacking</td>
-						<td>&nbsp;</td>
-						<td class="l_qa">Q&amp;A, Hacking</td>
-						<td>&nbsp;</td>
-						<td class="l_qaexam">Q&amp;A, Exam</td>
-					</tr>
-				</table>
-
-					
-					<div class="slidenote"><p class="l_slidenote_daily_schedule"></p></div>
+<!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
+				<section id="summary">
+					<h1 style="" class="l_summary">Summary</h1>
+					<p class="l_summarypara">In this lesson, you:</p>
+			    	<ul>
+			    		<li class="l_summary1">learning objective as past tense</li>
+			    		<li class="l_summary2">e.g.</li>
+			    		<li class="l_summary3">Created your app's UI with Views</li>
+			    		<li class="l_summary4">Applied styles using TSS files</li>
+			    		<li class="l_summary5">agenda item</li>
+			    	</ul>
+					<div class="slidenote">
+						<div class="l_slidenote_summary"></div>
+					</div>
 				</section>
 
+<!-- EVERY LESSON MUST HAVE A Q&A SLIDE -->
 				<section>
-					<h1 style="" class="l_coursefiles">Course Files</h1>
-					<p class="l_coursefiles_explanationv2" style="margin-bottom:20px;">github.com/appcelerator-training</p>
-					<ul style="width:80%;">
-						<li class="l_coursefiles1" style="margin-bottom:20px;">Slides: Download both the presentation-engine and tcd_training repos</li>
-						<li class="l_coursefiles2">Labs: Download tcd-code repo</li>
+					<h1 class="l_qa">Q&amp;A</h1>
+					<div class="slidenote"><div class="l_slidenote_qa"></div></div>
+				</section>
+
+<!-- EVERY LESSON SHOULD HAVE A LAB TO GIVE STUDENTS HANDS-ON PRACTICE WITH THE MATERIALS. NOT REQUIRED IF THE MATERIALS DON'T LEND THEMSELVES TO A HANDS-ON LAB -->
+				<section>
+					<h1 style="" class="l_lab">Lab Objectives</h1>
+					<p class="l_labintro">In this lab, you will:</p>
+
+					<ul style="margin-bottom:40px;">
+						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
+						<li class="l_labobjective2">e.g.</li>
+						<li class="l_labobjective3">Display a list of fugitives in a table</li>
+						<li class="l_labobjective4">etc.</li>
 					</ul>
-
-					<div class="slidenote"><div class="l_slidenote_coursefiles">Slides and lab code are free to download from GitHub<br/><br/>Make sure directories are named to match their repo names on GitHub. Put presentation-engine and tcd_training into same folder. Lab code, you'll import the starting files into Studio. (Optional step is to copy to workspace directory; leaving in the Downloads directory is not recommended.)</div></div>
+					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
+					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
 				</section>
-				
+
+<!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->
 				<section>
-					<h2 class="l_qa_slide">Q&amp;A</h2>
-					<div class="slidenote"><p class="l_slidenote_qa"></p></div>
-				</section>
-				
-				<!--section>
-					<h1 style="margin-top:200px;" class="l_qa">Q&amp;A</h1>
-					<div class="slidenote"></div>
+					<h2 class="l_solution">Solution Walkthrough</h2>
+					<div class="slidenote"><div class="l_slidenote_solution"></div></div>
 				</section>
 
-				<section>
-					<h1 style="margin-top:200px;" class="l_lab">Lab Objectives</h1>
-					<ul>
-						<li class="l_labobjective1">Lab objective 1</li>
-						<li class="l_labobjective2">Lab objective 2</li>
-						<li class="l_labobjective3">Lab objective 3</li>
-					</ul>
-					<div class="slidenote"></div>
-				</section-->
 
-			</div>
 
 			<!-- MAKE NO CHANGES BELOW THIS LINE -->
+		</div>
 
 			<!-- Appc logo and presenter notes -->
 			<div id="appclogo"><a href="../index.html"><img src="../images/appu_thumb.png"/></a></div>

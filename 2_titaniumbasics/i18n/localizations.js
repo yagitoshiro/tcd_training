@@ -5,9 +5,10 @@
 */
 String.toLocaleString({
 	"en-US": {
-		"%l_welcome": "Welcome To",
-		"%l_coursename": "Titanium Certified Developer (TCD) Training",
-		"%l_agenda_title": "AGENDA",
+		"%l_filetitle": "Titanium Basics",
+		"%l_lessontitle": "Titanium Basics",
+		"%l_subtitle": "Titanium Certified Developer (TCD) Training",
+		"%l_qa_slide": "Q&amp;A",
+		"%l_slidenote_qa": ""
 	},
-
 });

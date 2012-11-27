@@ -18,7 +18,7 @@
 	/* ICON/BUTTON IN SLIDESHOW */
 	position: absolute;
 	bottom: 20px;
-	left: 110px;
+	left: 158px;
 	width: 48px;
 	height: 48px;
 }
@@ -26,6 +26,20 @@
 	width: 48px;
 	height: 48px;
 }
+#firstslide {
+	/* ICON/BUTTON IN SLIDESHOW */
+	position: absolute;
+	bottom: 20px;
+	left: 95px;
+	width: 48px;
+	height: 48px;
+}
+#firstslide img {
+	width: 48px;
+	height: 48px;
+}
+
+
 .slidenote {
 	/* HIDES PRESENTER NOTES IN THE SLIDESHOW ITSELF */
 	display:none;
@@ -152,6 +166,32 @@ li { padding-bottom: 5px;  }
 	margin-right:50px;
 	vertical-align:-15%;
 }
+#reveal img.noborder {
+	border:none !important; 
+	box-shadow: none !important; 
+	background: rgba(255,255,255,0);
+}
+
+section table {
+	width: 90%;
+	margin: 5px auto;
+	border: 1px solid #ababab;
+}
+section table th {
+	border-bottom: 2px solid #444;
+	text-align: left !important;
+	padding: 10px;
+	font-size: 0.8em;
+	background-color: #888;
+	color: #fff;
+}
+section table td {
+	border-bottom: 1px solid #ababab;
+	text-align: left !important;
+	padding: 10px;
+	font-size: 0.8em;
+}
+
 /* FOR THE LAB SLIDES */
 #labwrapper a:not(.image) {
 	text-decoration:underline;
