@@ -184,24 +184,86 @@
 				</section>
 
 				<section>
+					<h2 style="" class="l_creatingproject">Creating a Project</h2>
+				    <img src="images/studionewproject.png" style="height:500px;"/>
+					<div class="slidenote"><div class="l_slidenote_creatingproject">Starting in Titanium Studio 3.0, you can select an Alloy or "Classic" template as the basis for a new project. Then, you must fill in the required details. We'll cover them on the next slide.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_tiapp">Tiapp.xml Editor - GUI mode</h2>
+				    <img src="images/tiappgui.png" style="width:500px;float:right;"/>
+					<ul style="width:40%;">
+						<li class="l_tiapp1">Set App ID, version, and more</li>
+						<li class="l_tiapp2">Select Titanium SDK and platform support</li>
+						<li class="l_tiapp3">Specify modules used</li>
+						<li class="l_tiapp4">Cloud enable</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_tiapp">Most of your configuration can be done in the GUI mode of the tiapp.xml editor. </div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_tiappxml">Tiapp.xml Editor - XML mode</h2>
+				    <img src="images/tiappxml.png" style="width:500px;float:right;"/>
+					<ul style="width:40%;">
+						<li class="l_tiappxml1">Configure orientation support</li>
+					<li class="l_tiappxml2">Platform-specific:<br/><ul style="margin:5px 0 10px 60px;"><li>iOS: Info.plist keys, hardware requirements, etc.</li><li>Android: tooling, theme, custom versioning, etc.</li></ul></li>
+						<li class="l_tiappxml3">See Guides: Building Native Applications &gt; Appendices &gt; Tiapp.xml and timodule.xml Reference</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_tiappxml">Some configurations must be done in XML view. We'll see later how to perform some of these tasks. But in general, settings like orientation support, hardware configurations, and tooling options are set in the XML view. See the referenced Guide for information about the various supported keys you can set in the tiapp.xml.</div></div>
+				</section>
+
+				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
 					<h5 style="clear:both;" class="l_buildrun">Building &amp; Running Projects</h5>
 					<div class="slidenote"><div class="l_slidenote_buildrun"></div></div>
 				</section>
 
+				<section>
+					<h2 style="" class="l_building">Building a Project</h2>
+				    <img src="images/buildstudio.png" style="width:400px;float:right;"/>
+					<ul style="width:40%;">
+						<li class="l_building1">Debug, Run, and Publish menus</li>
+						<li class="l_building2">Options based on targets configured in Tiapp.xml</li>
+						<li class="l_building3">Studio does a "preflight" check</li>
+						<li class="l_building4">For iOS installations, need to configure provisioning profiles</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_building">Simple build options are provided in Studio on the Debug, Run, and Publish menus. Which choices are available on those menus depends on the target platforms you've specified in the tiapp.xml file. Studio does a quick syntax check on your files and will prompt you if it detects errors. It won't catch logic or API errors, and it's not foolproof. But it saves you from wasting time when you've made a silly typo. We'll talk later about installing to iOS devices. Just know at this point you will need to set up your certificates and provisioning profiles to install to an iOS device.</div></div>
+				</section>
 
-				
+				<section>
+					<h2 style="" class="l_cmdline">Building at the Command Line</h2>
+				    <img src="images/cli.png" style="width:550px;float:right;"/>
+					<ul style="width:40%;">
+						<li class="l_cmdline1">NodeJS-based command line interface</li>
+						<li class="l_cmdline2">Integrate with custom code repositories, CI configurations, more</li>
+						<li class="l_cmdline3">Integrate with editors other than Studio</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_cmdline">The CLI provides full access to the Titanium tooling options. YOu can use it to build and run projects, manage your SDK versions, configure your Titanium environment, and more. It's great for integration with other systems and editors.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_buildoptions">Build Options</h2>
+				    <img src="images/runconfigurations.png" style="width:450px;float:right;"/>
+					<ol style="width:50%;">
+						<li class="l_buildoptions1">Build once</li>
+						<li class="l_buildoptions2">Choose Run &gt; Run Configurations</li>
+						<li class="l_buildoptions3">Locate by platform &amp; project</li>
+						<li class="l_buildoptions4"><em>Or use the CLI!</em></li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_buildoptions"></div></div>
+				</section>
+
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
 					<h2 style="" class="l_demo">Demo</h2>
 					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
+						<li class="l_demo1">Create a default "classic" project</li>
+						<li class="l_demo2">Configure tiapp.xml options</li>
+						<li class="l_demo3">Run it in the simulator/emulator</li>
+						<li class="l_demo4">Configure run configuration settings</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
+					<div class="slidenote"><div class="l_slidenote_demo">Notes: Create a simple Hello World type project using the "Classic" default app template. Set a version number or make a similar change in the tiapp.xml then run the app. Use both Studio and the CLI to run the app. Set run config options, such as changing the Android target, and run again.</div></div>
 				</section>
 
 				
@@ -231,10 +293,9 @@
 					<p class="l_labintro">In this lab, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
-						<li class="l_labobjective2">e.g.</li>
-						<li class="l_labobjective3">Display a list of fugitives in a table</li>
-						<li class="l_labobjective4">etc.</li>
+						<li class="l_labobjective1">Create a  default project</li>
+						<li class="l_labobjective2">Run it in the simulator/emulator using both Studio and the CLI</li>
+						<li class="l_labobjective3">Configure app and run-time options</li>
 					</ul>
 					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
 					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
