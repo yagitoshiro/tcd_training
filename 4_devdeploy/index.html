@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>LESSON TITLE</title>
+		<title>Deploying for Testing</title>
 		<meta name="description" content="Titanium Certified Developer Training">
     	<meta name="author" content="Appcelerator, Inc." />
 		
@@ -61,7 +61,7 @@
 			<div class="slides">
 				
 				<section>
-					<h1 style="margin-top:100px;" class="l_lessontitle">LESSON TITLE</h1>
+					<h1 style="margin-top:100px;" class="l_lessontitle">Deploying for Testing</h1>
 					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
 					<script>
 						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
@@ -75,11 +75,9 @@
 				<section id="agenda">
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
-			    		<li class="l_agenda1">performance-based learning objective</li>
-			    		<li class="l_agenda2">e.g.</li>
-			    		<li class="l_agenda3">Create your app's UI with Views</li>
-			    		<li class="l_agenda4">Apply styles using TSS files</li>
-			    		<li class="l_agenda5">agenda item</li>
+			    		<li class="l_agenda1">Deploy an Android app to a device for testing</li>
+			    		<li class="l_agenda2">Deploy an iOS app to a device for testing</li>
+			    		<li class="l_agenda3">Determine your options for deploying to remote testers</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
@@ -88,10 +86,124 @@
 
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
-					<h5 style="clear:both;">Alloy</h5>
-
-					<div class="slidenote"><div class="l_slidenote_classname"></div></div>
+					<h5 style="clear:both;" class="l_androiddeployment">Android Deployment</h5>
+					<div class="slidenote"><div class="l_slidenote_androiddeployment"></div></div>
 				</section>
+
+				<section>
+					<h2 class="l_configure_device">Configure device for testing</h2>
+					<p class="l_configure_device_image"><img src="images/configure-device.png" style="margin-top:60px;height:450px;align:center"></p>
+					<div class="slidenote"><div class="l_slidenote_configure_device">First, configure device for testing<br>Windows users: need to install drivers specific to your device<br>Linux users: need to create USB config<br>See the wiki</div>
+				</section>
+
+				<section>
+					<h2 class="l_local_android">Local Android deployment</h2>
+					<p style="float:right;width:280px;margin-top:-20px;" class="l_local_android_image"><img src="images/buildforandroid.png" style="margin-top:60px;height:350px;align:center"></p>
+					<ol style="width:60%;margin-top:20px;">
+					<li class="l_connect_device">Connect device to USB port</li>
+					<li class="l_run_menu">From Run menu, choose Android Device</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_local_android">Android deployment for testing is pretty simple<br>Can also manually install the APK via ADB<br>Or by transferring apk to device and opening with a file manager<br>Ti Studio signs APK with a debug compatible certificate. You could go through the signing steps but that's unnecessary</div>
+				</section>
+
+
+				<section>
+					<h2 class="l_remote_android">Remote Android deployment</h2>
+					<p align="left" class="l_get_apk">Get the APK to the user's device</p><br>
+					<p align="left" class="l_email">Email</p><br>
+					<p align="left" class="l_post">Post on a web site</p><br>
+					<p align="left" class="l_distribution">Distribution framework</p><br>
+					<div class="slidenote"><div class="l_slidenote_remote_android">Just get the APK onto the user's device<br>Use the apk-debug version to skip code signing steps<br>Email, post on a web site, share through Dropbox<br>Over-the-air system like HockeyKit can automate deployment and updates</div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_iosdeploy">iOS Deployment for Testing</h5>
+					<div class="slidenote"><div class="l_slidenote_iosdeploy"></div></div>
+				</section>
+
+
+				<section>
+					<h2 class="l_ios_deployment_testing">iOS deployment steps:</h2>
+					<ol style="width:80%;">
+						<li class="l_iosdeployment1"></li>
+						<li class="l_iosdeployment2"></li>
+						<li class="l_iosdeployment3"></li>
+						<li class="l_iosdeployment4"></li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_ios_deployment_testing">Six step of Apple's process &mdash; don't go in-depth here</div>
+				</section>
+				
+				<section>
+					<h2 class="l_apple_dev">Apple Developer Program</h2>
+					<p align="left" class="l_free_to">Free to register, download SDK</p><br>
+					<p align="left" class="l_annual">Annual fee for iOS Developer program</p><br>
+					<p align="left" class="l_individual">Individual, Company, Enterprise, &amp; University programs</p><br>
+					<div class="slidenote"><div class="l_slidenote_apple_dev">You can register for free<br>Need to pay to publish and distribute apps<br>Various levels with varying documentation requirements and fees</div>
+				</section>
+
+				<section>
+					<h2 class="l_ios_dev_certificate">Developer's certificate</h2>
+					<p class="l_dev_certificate_image"><img src="images/dev-certificate.png" style="margin-top:60px;width:800px;align:center"></p>
+					<div class="slidenote"><div class="l_slidenote_ios_dev_certificate">Certificate identifies you as the developer<br>Create with Keychain Access<br>Upload CSR file to provisioning portal<br>Download and install the resulting certificate into login keychain<br>Also need Apple's WWDR certificate</div>
+				</section>
+				
+				<section>
+					<h2 class="l_register_devices">Register devices</h2>
+					<p class="l_register_devices_image"><img src="images/register-devices.png" style="margin-top:60px;width:800px;align:center"></p>
+					<div class="slidenote"><div class="l_slidenote_register_devices">Register devices used for testing<br>Need the UDID<br>Get that from Xcode or iTunes<br>Enter at Provisioning Portal</div>
+				</section>
+
+				<section>
+					<h2 class="l_create_appid">Create an AppID</h2>
+					<p align="left" class="l_unique">Unique identifier for your app</p><br>
+					<p align="left" class="l_bundle">Bundle Seed ID - 10 character universally unique</p><br>
+					<p align="left" class="l_cf">CF Bundle Identifier - app name or wildcard</p><br>
+					<p align="left" class="l_bundle_id">Bundle Identifier must be unique for Push, In-App purchases, Game Center</p><br>
+					<div class="slidenote"><div class="l_slidenote_create_appid">Bundle Seed ID generated by the Provisioning Portal<br>CF Bundle Identifier you specify<br>Could name a specific app<br>Could be asterisk (wildcard)<br>Need specific name, not wildcard for Push Notification, In-App purchases, and Game center</div>
+				</section>
+
+				<section>
+					<h2 class="l_prov_profile">Provisioning profile</h2>
+					<p class="l_prov_profile_image"><img src="images/prov-profile.png" style="margin-top:60px;width:800px;align:center"></p>
+					<div class="slidenote"><div class="l_slidenote_prov_profile">Provisioning profile = collection of your certificate, app ID, and device IDs<br>Install to device to enable testing<br>You'll create a similar provisioning profile for final distribution</div>
+				</section>
+
+				<section>
+					<h2 class="l_install_prov_profile">Install the provisioning profile</h2><br><br>
+					<p align="center" class="l_option_1">Option 1: Drag &amp; Drop to Xcode</p><br>
+					<p class="l_install_profile_image"><img src="images/drag-and-drop.png" style="margin-top:40px;height:275px;align:center"></p>
+					<div class="slidenote"><div class="l_slidenote_install_prov_profile">Ultimately, you need to install to Xcode<br>You can drag &amp; drop<br>or install via Ti Studio (next slide)</div>
+				</section>
+				
+				<section>
+					<h2 class="l_install_prov_profile">Install the provisioning profile</h2><br><br>
+					<p align="center" class="l_install_ti_studio">Option 2: Install via Titanium Studio</p><br>
+					<p class="l_install_profile2_image"><img src="images/iosdeploy.png" style="margin-top:20px;height:450px;align:center"></p>
+					<div class="slidenote"><div class="l_slidenote_install_prov_profile_ti">If not installed via Xcode, click Upload and Ti Studio will install for you<br>Ti Studio should recognize certificates in your keychain</div>
+				</section>
+
+				<section>
+					<h2 class="l_install_local">Installing to local test device</h2>
+					<p align="left" class="l_connect_usb">Connect via USB</p><br>
+					<p align="left" class="l_choose_ios">Choose iOS Device from Run menu</p><br>
+					<p align="left" class="l_install_ipa">Install IPA using Xcode or iTunes sync</p><br>
+					<div class="slidenote"><div class="l_slidenote_install_local">Finally, install to your locally connected device</div>
+				</section>
+
+				<section>
+					<h2 class="l_distr_remote">Distributing to remote testers</h2>
+					<p align="left" class="l_email_prov">Email mobileprovision file and IPA</p><br>
+					<p align="left" class="l_ota">Over-the-air distribution systems:</p>
+					<ul style="width:100%;">
+						<li class="l_testflight">TestFlightApp</li>
+						<li class="l_diawi">Diawi</li>
+						<li class="l_appsendr">AppSendr</li>
+						<li class="l_hockey">HockeyKit</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_distr_remote">Distribution systems: basically you upload to a web server<br>Users are notified on their devices to install or upgrade<br>Fee or free services<br>HockeyKit is an open source, DIY system you install on your web server, supports both iOS and Android distribution</div>
+				</section>
+
 				
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
