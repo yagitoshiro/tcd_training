@@ -78,6 +78,7 @@
 			    		<li class="l_agenda1">Learn the roles of UX and UI design</li>
 			    		<li class="l_agenda2">Explore the components used to create your UI</li>
 			    		<li class="l_agenda3">Learn your options for UI layout and component positioning</li>
+						<li class="l_agenda4">Learn how to set your app's icon &amp; splash screens, and internationalize your app</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
@@ -190,14 +191,20 @@
 					<ul style="width:40%;float:left;margin-top:50px;">
 						<li class="l_layout4">Tabs or Single Window</li>
 						<li class="l_layout1">App has at least one window</li>
-						<li class="l_layout2">Views inside window</li>
-						<li class="l_layout3">Views inside other views</li>
+						<li class="l_layout2">Views inside window or other views</li>
 					</ul>
 				    <img src="images/basic-app-structure.png" style="width:500px;float:right;"/>
 					<pre style="width:430px;float:left;clear:left;"><code contenteditable>
 var win = Ti.UI.createWindow();
 var view = Ti.UI.createView();
 win.add(view);
+					</code></pre>
+					<pre style="width:430px;float:left;clear:left;"><code contenteditable>
+&lt;Alloy>
+  &lt;Window>
+     &lt;View>&lt;/View>
+  &lt;/Window>
+&lt;/Alloy>
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_layout"></div></div>
 				</section>
@@ -284,17 +291,123 @@ var view = Ti.UI.createView({
 				</section>
 				
 				<section>
-					<h2 class="l_absolute_layout">Absolute Layout</h2>
-					<p><img src="images/absolute-layout-snippet-2.png" style="margin-top:0px;height:220px;align:left"></p>
-					<p><img src="images/window-layout-2.png" style="margin-top:0px;height:220px;align:right"></p>
-					<div class="slidenote"><div class="l_slidenote_absolute_layout_2">Absolute, left 30 points from left edge</div></div>
-				</section>
-
-				<section>
 					<h2 class="l_vertical_layout">Vertical Layout</h2>
 					<p><img src="images/vertical-layout.png" style="margin-top:0px;height:420px;align:left"></p>
 					<div class="slidenote"><div class="l_slidenote_vertical_layout">Parent object has the Vertical layout<br>Child object's positions are then in relation to each other within the parent</div></div>
 				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_appextras">Icons, Splash screens, i18n</h5>
+					<div class="slidenote"><div class="l_slidenote_appextras"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_appiconsios">App icons - iOS</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th colspan="2" style="border-right:1px solid #666;text-align:center !important;">iOS</th><th colspan="2" style="text-align:center !important;">Android</th></tr>
+	<tr>
+		<td width="24%">appicon.png</td><td width="24%" style="border-right:1px solid #000;">Non-retina iPhone/iPod</td>
+		<td width="24%">ldpi (120 dpi, 36x36 px)</td><td width="24%">/platform/android/res/drawable-ldpi/appicon.png</td>
+	</tr>
+	<tr>
+		<td>appicon@2x.png</td><td style="border-right:1px solid #000;">Retina iPhone/iPod</td>
+		<td width="24%">mdpi (160 dpi, 48x48 px)</td><td width="24%">/platform/android/res/drawable-mdpi/appicon.png</td>
+	</tr>
+	<tr>
+		<td>appicon-72.png</td><td style="border-right:1px solid #000;">Non-retina iPad</td>
+		<td width="24%">hdpi (240 dpi, 72x72 px)</td><td width="24%">/platform/android/res/drawable-hdpi/appicon.png</td>
+	</tr>
+	<tr>
+		<td>appicon-72@2x.png</td><td style="border-right:1px solid #000;">Retina iPad</td>
+		<td width="24%">xdpi (320 dpi, 96x96 px)</td><td width="24%">/platform/android/res/drawable-xdpi/appicon.png</td>
+	</tr>
+	<tr>
+		<td>iTunesArtwork</td><td style="border-right:1px solid #000;">iTunes (no extension)</td>
+		<td></td><td></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="border-right:1px solid #000;font-size:0.75em;font-style:italic;">Place in Resources, Resources/iphone or  app/assets, app/assets/iphone</td>
+		<td></td><td></td>
+	</tr>
+</table>
+					<div class="slidenote"><div class="l_slidenote_appicon"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_appiconsandroid">App icons - Android</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th colspan="2" style="border-right:1px solid #666;text-align:center !important;">iOS</th><th colspan="2" style="text-align:center !important;">Android</th></tr>
+	<tr>
+		<td width="24%">appicon.png</td><td width="24%" style="border-right:1px solid #000;">Non-retina iPhone/iPod</td>
+		<td width="24%">ldpi (120 dpi, 36x36 px)</td><td width="24%">/platform/android/res/drawable-ldpi/appicon.png</td>
+	</tr>
+	<tr>
+		<td>appicon@2x.png</td><td style="border-right:1px solid #000;">Retina iPhone/iPod</td>
+		<td width="24%">mdpi (160 dpi, 48x48 px)</td><td width="24%">/platform/android/res/drawable-mdpi/appicon.png</td>
+	</tr>
+	<tr>
+		<td>appicon-72.png</td><td style="border-right:1px solid #000;">Non-retina iPad</td>
+		<td width="24%">hdpi (240 dpi, 72x72 px)</td><td width="24%">/platform/android/res/drawable-hdpi/appicon.png</td>
+	</tr>
+	<tr>
+		<td>appicon-72@2x.png</td><td style="border-right:1px solid #000;">Retina iPad</td>
+		<td width="24%">xdpi (320 dpi, 96x96 px)</td><td width="24%">/platform/android/res/drawable-xdpi/appicon.png</td>
+	</tr>
+	<tr>
+		<td>iTunesArtwork</td><td style="border-right:1px solid #000;">iTunes (no extension)</td>
+		<td></td><td></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="border-right:1px solid #000;font-size:0.75em;font-style:italic;">Place in Resources, Resources/iphone or  app/assets, app/assets/iphone</td>
+		<td></td><td></td>
+	</tr>
+</table>
+					<div class="slidenote"><div class="l_slidenote_appicon"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_splashscreensios">Splash Screens - iOS</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th colspan="2" style="text-align:center !important;">iOS</th></tr>
+	<tr>
+		<td>Default.png</td><td>Non-retina iPhone/iPod</td>
+	</tr>
+	<tr>
+		<td>Default@2x.png</td><td>Retina iPhone/iPod</td>
+	</tr>
+	<tr>
+		<td>Default-568h@2x.png</td><td>iPhone 5/iPod 5</td>
+	</tr>
+	<tr>
+		<td>Default-Landscape.png &amp; Default-Portrait.png</td><td>Non-retina iPad</td>
+	</tr>
+	<tr>
+		<td>Default-Landscape@2x.png &amp; Default-Portrait@2x.png</td><td>Retina iPad</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="font-size:0.75em;font-style:italic;">No landscape/portrait options with iPhone &amp; iPod; apps launch in only portrait on those.</td>
+	</tr>
+</table>
+					<p class="l_iconfolders" style="margin-top:20px;">Place in Resources or Resources/iphone.<br/>With Alloy, in app/assets or app/assets/iphone</p>
+					<div class="slidenote"><div class="l_slidenote_splashscreensios"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_splashscreensandroid">Splash Screens - Android</h2>
+					<ul style="width:80%;">
+						<li class="l_splashscreensandroid1">default.png in Resources, Resources/android, app/assets, or app/assets/android</li>
+						<li class="l_splashscreensandroid2">Will be stretched to fit screen size and proportions</li>
+						<li class="l_splashscreenandroid3">Options<br/><ul style="margin:5px 0 10px 60px;"><li>Use res directories</li><li>Use a 9-patch image</li></ul></li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_splashscreensandroid"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_i18n">Internationalization</h2>
+					<div class="slidenote"><div class="l_slidenote_i18n"></div></div>
+				</section>
+
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
