@@ -305,30 +305,24 @@ var view = Ti.UI.createView({
 				<section>
 					<h2 style="" class="l_appiconsios">App icons - iOS</h2>
 <table border="0" cellspacing="5" cellpadding="5">
-	<tr><th colspan="2" style="border-right:1px solid #666;text-align:center !important;">iOS</th><th colspan="2" style="text-align:center !important;">Android</th></tr>
+	<tr><th>File name</th><th>Applies To</th></tr>
 	<tr>
-		<td width="24%">appicon.png</td><td width="24%" style="border-right:1px solid #000;">Non-retina iPhone/iPod</td>
-		<td width="24%">ldpi (120 dpi, 36x36 px)</td><td width="24%">/platform/android/res/drawable-ldpi/appicon.png</td>
+		<td>appicon.png</td><td>Non-retina iPhone/iPod</td>
 	</tr>
 	<tr>
-		<td>appicon@2x.png</td><td style="border-right:1px solid #000;">Retina iPhone/iPod</td>
-		<td width="24%">mdpi (160 dpi, 48x48 px)</td><td width="24%">/platform/android/res/drawable-mdpi/appicon.png</td>
+		<td>appicon@2x.png</td><td>Retina iPhone/iPod</td>
 	</tr>
 	<tr>
-		<td>appicon-72.png</td><td style="border-right:1px solid #000;">Non-retina iPad</td>
-		<td width="24%">hdpi (240 dpi, 72x72 px)</td><td width="24%">/platform/android/res/drawable-hdpi/appicon.png</td>
+		<td>appicon-72.png</td><td>Non-retina iPad</td>
 	</tr>
 	<tr>
-		<td>appicon-72@2x.png</td><td style="border-right:1px solid #000;">Retina iPad</td>
-		<td width="24%">xdpi (320 dpi, 96x96 px)</td><td width="24%">/platform/android/res/drawable-xdpi/appicon.png</td>
+		<td>appicon-72@2x.png</td><td>Retina iPad</td>
 	</tr>
 	<tr>
-		<td>iTunesArtwork</td><td style="border-right:1px solid #000;">iTunes (no extension)</td>
-		<td></td><td></td>
+		<td>iTunesArtwork (no extension)</td><td>iTunes</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="border-right:1px solid #000;font-size:0.75em;font-style:italic;">Place in Resources, Resources/iphone or  app/assets, app/assets/iphone</td>
-		<td></td><td></td>
+		<td colspan="2" style="font-size:0.75em;font-style:italic;">Place in Resources, Resources/iphone or  app/assets, app/assets/iphone</td>
 	</tr>
 </table>
 					<div class="slidenote"><div class="l_slidenote_appicon"></div></div>
@@ -336,31 +330,29 @@ var view = Ti.UI.createView({
 
 				<section>
 					<h2 style="" class="l_appiconsandroid">App icons - Android</h2>
+					<p class="l_androidicon">Place appicon.png in Resources, Resources/android, app/assets, or app/assets/android.<br/>Or:<br/>&nbsp;</p>
+
 <table border="0" cellspacing="5" cellpadding="5">
-	<tr><th colspan="2" style="border-right:1px solid #666;text-align:center !important;">iOS</th><th colspan="2" style="text-align:center !important;">Android</th></tr>
+	<tr><th>Class</th><th>Dimensions and DPI</th><th>File name and path</th></tr>
 	<tr>
-		<td width="24%">appicon.png</td><td width="24%" style="border-right:1px solid #000;">Non-retina iPhone/iPod</td>
-		<td width="24%">ldpi (120 dpi, 36x36 px)</td><td width="24%">/platform/android/res/drawable-ldpi/appicon.png</td>
+		<td>ldpi</td>
+		<td>120 dpi, 36x36 px</td>
+		<td>/platform/android/res/drawable-ldpi/appicon.png</td>
 	</tr>
 	<tr>
-		<td>appicon@2x.png</td><td style="border-right:1px solid #000;">Retina iPhone/iPod</td>
-		<td width="24%">mdpi (160 dpi, 48x48 px)</td><td width="24%">/platform/android/res/drawable-mdpi/appicon.png</td>
+		<td>mdpi</td>
+		<td>160 dpi, 48x48 px</td>
+		<td>/platform/android/res/drawable-mdpi/appicon.png</td>
 	</tr>
 	<tr>
-		<td>appicon-72.png</td><td style="border-right:1px solid #000;">Non-retina iPad</td>
-		<td width="24%">hdpi (240 dpi, 72x72 px)</td><td width="24%">/platform/android/res/drawable-hdpi/appicon.png</td>
+		<td>hdpi</td>
+		<td>240 dpi, 72x72 px</td>
+		<td>/platform/android/res/drawable-hdpi/appicon.png</td>
 	</tr>
 	<tr>
-		<td>appicon-72@2x.png</td><td style="border-right:1px solid #000;">Retina iPad</td>
-		<td width="24%">xdpi (320 dpi, 96x96 px)</td><td width="24%">/platform/android/res/drawable-xdpi/appicon.png</td>
-	</tr>
-	<tr>
-		<td>iTunesArtwork</td><td style="border-right:1px solid #000;">iTunes (no extension)</td>
-		<td></td><td></td>
-	</tr>
-	<tr>
-		<td colspan="2" style="border-right:1px solid #000;font-size:0.75em;font-style:italic;">Place in Resources, Resources/iphone or  app/assets, app/assets/iphone</td>
-		<td></td><td></td>
+		<td>xdpi</td>
+		<td>320 dpi, 96x96 px</td>
+		<td>/platform/android/res/drawable-xdpi/appicon.png</td>
 	</tr>
 </table>
 					<div class="slidenote"><div class="l_slidenote_appicon"></div></div>
@@ -395,43 +387,38 @@ var view = Ti.UI.createView({
 
 				<section>
 					<h2 style="" class="l_splashscreensandroid">Splash Screens - Android</h2>
-					<ul style="width:80%;">
+					<ul style="width:60%;float:left;">
 						<li class="l_splashscreensandroid1">default.png in Resources, Resources/android, app/assets, or app/assets/android</li>
 						<li class="l_splashscreensandroid2">Will be stretched to fit screen size and proportions</li>
-						<li class="l_splashscreenandroid3">Options<br/><ul style="margin:5px 0 10px 60px;"><li>Use res directories</li><li>Use a 9-patch image</li></ul></li>
+						<li class="l_splashscreenandroid3">Options<br/><ul style="margin:5px 0 10px 60px;"><li>Use res directories</li><li>Use a 9-patch image<br/>(See http://goo.gl/P950R)</li></ul></li>
 					</ul>
+				    <img src="images/androidsplashscreens.png" style="width:400px;float:right;margin-top:170px;"/>
 					<div class="slidenote"><div class="l_slidenote_splashscreensandroid"></div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_i18n">Internationalization</h2>
+				    <img src="images/i18n.png" style="width:680px;margin-top:-5px;" class="noborder"/>
+					<ul style="width:400px; margin: 0 auto;">
+						<li class="l_i18n1">Ti.Locale.getString('fugitives')</li>
+						<li class="l_i18n2">L('fugitives')</li>
+						<li class="l_i18n3"><i>component</i>.titleid='fugitives'</li>
+					</ul>
+
 					<div class="slidenote"><div class="l_slidenote_i18n"></div></div>
 				</section>
 
 
-<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
-				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
-				</section>
-
-				
+			
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
 					<h1 style="" class="l_summary">Summary</h1>
 					<p class="l_summarypara">In this lesson, you:</p>
 			    	<ul>
-			    		<li class="l_summary1">learning objective as past tense</li>
-			    		<li class="l_summary2">e.g.</li>
-			    		<li class="l_summary3">Created your app's UI with Views</li>
-			    		<li class="l_summary4">Applied styles using TSS files</li>
-			    		<li class="l_summary5">agenda item</li>
+			    		<li class="l_summary1">Learned the roles of UX and UI design</li>
+			    		<li class="l_summary2">Explored the components used to create your UI</li>
+			    		<li class="l_summary3">Learned your options for UI layout and component positioning</li>
+						<li class="l_summary4">Learned how to set your app's icon &amp; splash screens, and internationalize your app</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_summary"></div>
