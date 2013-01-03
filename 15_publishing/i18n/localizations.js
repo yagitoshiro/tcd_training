@@ -5,9 +5,9 @@
 */
 String.toLocaleString({
 	"en-US": {
-		"%l_filetitle": "User Interface",
-		"%l_lessontitle": "User Interface",
-		"%l_subtitle": "Titanium Certified Developer (TCD) Training",
+		"%l_filetitle": "Introduction",
+		"%l_lessontitle": "Introduction",
+		"%l_subtitle": "see i18n/localizations.js to change",
 		"%l_slidenote_titleslide": "",
 		"%l_qa_slide": "Q&amp;A",
 		"%l_slidenote_qa": ""

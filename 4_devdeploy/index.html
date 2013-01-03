@@ -91,13 +91,22 @@
 				</section>
 
 				<section>
-					<h2 class="l_configure_device">Configure device for testing</h2>
-					<p class="l_configure_device_image"><img src="images/configure-device.png" style="margin-top:60px;height:450px;align:center"></p>
-					<div class="slidenote"><div class="l_slidenote_configure_device">First, configure device for testing<br>Windows users: need to install drivers specific to your device<br>Linux users: need to create USB config<br>See the wiki</div>
+					<h2 style="" class="l_androidsteps">Android Deployment Steps:</h2>
+					<ul style="width:80%;">
+						<li class="l_androidsteps1">Configure your device for testing</li>
+						<li class="l_androidsteps2">Build &amp; deploy</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_androidsteps"></div></div>
 				</section>
 
 				<section>
-					<h2 class="l_local_android">Local Android deployment</h2>
+					<h2 class="l_configure_device">1. Configure device for testing</h2>
+					<p class="l_configure_device_image"><img src="images/configure-device.png" style="margin-top:100px;margin-right: 10px;height:330px;float:left;"><img src="images/configure-device-android4.png" style="margin-top:60px;height:450px;float:left;"></p>
+					<div class="slidenote"><div class="l_slidenote_configure_device">To configure your device for testing, you must enable USB debugging and permit non-Market apps. How you do so varies by Android version. Version 2.x is shown on the left; Version 4.x on the right. <br><br>Windows users: you will need need to install drivers specific to your device. See the Android developer site for info.<br>Linux users: you need to create a USB config, see the Appcelerator docs site.</div>
+				</section>
+
+				<section>
+					<h2 class="l_local_android">2. Local Android deployment</h2>
 					<p style="float:right;width:280px;margin-top:-20px;" class="l_local_android_image"><img src="images/buildforandroid.png" style="margin-top:60px;height:350px;align:center"></p>
 					<ol style="width:60%;margin-top:20px;">
 					<li class="l_connect_device">Connect device to USB port</li>
@@ -108,12 +117,14 @@
 
 
 				<section>
-					<h2 class="l_remote_android">Remote Android deployment</h2>
-					<p align="left" class="l_get_apk">Get the APK to the user's device</p><br>
-					<p align="left" class="l_email">Email</p><br>
-					<p align="left" class="l_post">Post on a web site</p><br>
-					<p align="left" class="l_distribution">Distribution framework</p><br>
-					<div class="slidenote"><div class="l_slidenote_remote_android">Just get the APK onto the user's device<br>Use the apk-debug version to skip code signing steps<br>Email, post on a web site, share through Dropbox<br>Over-the-air system like HockeyKit can automate deployment and updates</div>
+					<h2 class="l_remote_android">2. Remote Android deployment</h2>
+					<p align="left" class="l_get_apk">Simple: Get the APK to the user's device</p><br>
+					<ul style="width:80%;">
+						<li class="l_remoteandroid1">Email</li>
+						<li class="l_remoteandroid2">Post on a web site (e.g. Dropbox)</li>
+						<li class="l_remoteandroid3">Distribution framework</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_remote_android">Your goal is simple: Just get the APK onto the user's device. Android will install it from there. <br><br>You can build a final/published version or use the apk-debug version to skip the code signing steps.<br><br>Options include email, post to a web site, or publish to an over-the-air system like HockeyKit. As of this writing, TestFlightApp is working on adding Android support but the feature is not yet publicly available.</div>
 				</section>
 
 				<section>
@@ -126,36 +137,40 @@
 				<section>
 					<h2 class="l_ios_deployment_testing">iOS deployment steps:</h2>
 					<ol style="width:80%;">
-						<li class="l_iosdeployment1"></li>
-						<li class="l_iosdeployment2"></li>
-						<li class="l_iosdeployment3"></li>
-						<li class="l_iosdeployment4"></li>
+						<li class="l_iosdeployment1">Register for Apple's Developer program</li>
+						<li class="l_iosdeployment2">Create a developer certificate</li>
+						<li class="l_iosdeployment3">Register your devices</li>
+						<li class="l_iosdeployment4">Create an app ID</li>
+						<li class="l_iosdeployment5">Create a provisioning profile</li>
+						<li class="l_iosdeployment6">Install the provisioning profile</li>
+						<li class="l_iosdeployment7">Build &amp; install</li>
 					</ol>
-					<div class="slidenote"><div class="l_slidenote_ios_deployment_testing">Six step of Apple's process &mdash; don't go in-depth here</div>
+					<div class="slidenote"><div class="l_slidenote_ios_deployment_testing">Seven step of Apple's process &mdash; don't go in-depth here</div>
 				</section>
 				
 				<section>
-					<h2 class="l_apple_dev">Apple Developer Program</h2>
-					<p align="left" class="l_free_to">Free to register, download SDK</p><br>
-					<p align="left" class="l_annual">Annual fee for iOS Developer program</p><br>
-					<p align="left" class="l_individual">Individual, Company, Enterprise, &amp; University programs</p><br>
-					<div class="slidenote"><div class="l_slidenote_apple_dev">You can register for free<br>Need to pay to publish and distribute apps<br>Various levels with varying documentation requirements and fees</div>
+					<h2 class="l_apple_dev">1. Apple Developer Program</h2>
+					<p align="left" class="l_xcode">Download &amp; install Xcode from the App Store</p><br>
+					<p align="left" class="l_appleregister">Register for Apple Developer program</p><br>
+					<p align="left" class="l_annual">Pay Apple's annual fee</p><br>
+					<p align="left" class="l_individual">Apple offers Individual, Company, Enterprise, &amp; University programs</p><br>
+					<div class="slidenote"><div class="l_slidenote_apple_dev">Xcode is free. But Apple requires you to enroll in their developer program and pay their fees in order to deploy an app to your own devices, even a test-build of an app.</div>
 				</section>
 
 				<section>
-					<h2 class="l_ios_dev_certificate">Developer's certificate</h2>
+					<h2 class="l_ios_dev_certificate">2. Developer's certificate</h2>
 					<p class="l_dev_certificate_image"><img src="images/dev-certificate.png" style="margin-top:60px;width:800px;align:center"></p>
 					<div class="slidenote"><div class="l_slidenote_ios_dev_certificate">Certificate identifies you as the developer<br>Create with Keychain Access<br>Upload CSR file to provisioning portal<br>Download and install the resulting certificate into login keychain<br>Also need Apple's WWDR certificate</div>
 				</section>
 				
 				<section>
-					<h2 class="l_register_devices">Register devices</h2>
+					<h2 class="l_register_devices">3. Register devices</h2>
 					<p class="l_register_devices_image"><img src="images/register-devices.png" style="margin-top:60px;width:800px;align:center"></p>
 					<div class="slidenote"><div class="l_slidenote_register_devices">Register devices used for testing<br>Need the UDID<br>Get that from Xcode or iTunes<br>Enter at Provisioning Portal</div>
 				</section>
 
 				<section>
-					<h2 class="l_create_appid">Create an AppID</h2>
+					<h2 class="l_create_appid">4. Create an AppID</h2>
 					<p align="left" class="l_unique">Unique identifier for your app</p><br>
 					<p align="left" class="l_bundle">Bundle Seed ID - 10 character universally unique</p><br>
 					<p align="left" class="l_cf">CF Bundle Identifier - app name or wildcard</p><br>
@@ -164,27 +179,27 @@
 				</section>
 
 				<section>
-					<h2 class="l_prov_profile">Provisioning profile</h2>
+					<h2 class="l_prov_profile">5. Provisioning profile</h2>
 					<p class="l_prov_profile_image"><img src="images/prov-profile.png" style="margin-top:60px;width:800px;align:center"></p>
 					<div class="slidenote"><div class="l_slidenote_prov_profile">Provisioning profile = collection of your certificate, app ID, and device IDs<br>Install to device to enable testing<br>You'll create a similar provisioning profile for final distribution</div>
 				</section>
 
 				<section>
-					<h2 class="l_install_prov_profile">Install the provisioning profile</h2><br><br>
+					<h2 class="l_install_prov_profile">6. Install the provisioning profile</h2><br><br>
 					<p align="center" class="l_option_1">Option 1: Drag &amp; Drop to Xcode</p><br>
 					<p class="l_install_profile_image"><img src="images/drag-and-drop.png" style="margin-top:40px;height:275px;align:center"></p>
 					<div class="slidenote"><div class="l_slidenote_install_prov_profile">Ultimately, you need to install to Xcode<br>You can drag &amp; drop<br>or install via Ti Studio (next slide)</div>
 				</section>
 				
 				<section>
-					<h2 class="l_install_prov_profile">Install the provisioning profile</h2><br><br>
+					<h2 class="l_install_prov_profile">6. Install the provisioning profile</h2><br><br>
 					<p align="center" class="l_install_ti_studio">Option 2: Install via Titanium Studio</p><br>
 					<p class="l_install_profile2_image"><img src="images/iosdeploy.png" style="margin-top:20px;height:450px;align:center"></p>
 					<div class="slidenote"><div class="l_slidenote_install_prov_profile_ti">If not installed via Xcode, click Upload and Ti Studio will install for you<br>Ti Studio should recognize certificates in your keychain</div>
 				</section>
 
 				<section>
-					<h2 class="l_install_local">Installing to local test device</h2>
+					<h2 class="l_install_local">7. Installing to local test device</h2>
 					<p align="left" class="l_connect_usb">Connect via USB</p><br>
 					<p align="left" class="l_choose_ios">Choose iOS Device from Run menu</p><br>
 					<p align="left" class="l_install_ipa">Install IPA using Xcode or iTunes sync</p><br>
@@ -192,7 +207,7 @@
 				</section>
 
 				<section>
-					<h2 class="l_distr_remote">Distributing to remote testers</h2>
+					<h2 class="l_distr_remote">7. Distributing to remote testers</h2>
 					<p align="left" class="l_email_prov">Email mobileprovision file and IPA</p><br>
 					<p align="left" class="l_ota">Over-the-air distribution systems:</p>
 					<ul style="width:100%;">
@@ -205,30 +220,14 @@
 				</section>
 
 				
-
-<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
-				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
-				</section>
-
-				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
 					<h1 style="" class="l_summary">Summary</h1>
 					<p class="l_summarypara">In this lesson, you:</p>
 			    	<ul>
-			    		<li class="l_summary1">learning objective as past tense</li>
-			    		<li class="l_summary2">e.g.</li>
-			    		<li class="l_summary3">Created your app's UI with Views</li>
-			    		<li class="l_summary4">Applied styles using TSS files</li>
-			    		<li class="l_summary5">agenda item</li>
+			    		<li class="l_summary1">Learned how to deploy an Android app to a device for testing</li>
+			    		<li class="l_summary2">Learned how to deploy an iOS app to a device for testing</li>
+			    		<li class="l_summary3">Explored options for deploying to remote testers</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_summary"></div>
@@ -244,15 +243,14 @@
 <!-- EVERY LESSON SHOULD HAVE A LAB TO GIVE STUDENTS HANDS-ON PRACTICE WITH THE MATERIALS. NOT REQUIRED IF THE MATERIALS DON'T LEND THEMSELVES TO A HANDS-ON LAB -->
 				<section>
 					<h1 style="" class="l_lab">Lab Objectives</h1>
-					<p class="l_labintro">In this lab, you will:</p>
+					<p class="l_labintro">In this optional lab*, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
-						<li class="l_labobjective2">e.g.</li>
-						<li class="l_labobjective3">Display a list of fugitives in a table</li>
-						<li class="l_labobjective4">etc.</li>
+						<li class="l_labobjective1">Deploy an app to a local Android device for testing</li>
+						<li class="l_labobjective2">Deploy an app to a local iOS device for testing</li>
 					</ul>
 					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
+					<p class="l_optionalinfo" style="margin:30px auto;font-size:0.65em;width:80%;">* You will need an Android or iOS device to do this lab. For iOS, you will also need an Apple developer account and permissions to create the various required profile components.</p>
 					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
 				</section>
 

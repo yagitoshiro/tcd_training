@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>LESSON TITLE</title>
-		<meta name="description" content="Titanium Certified Developer Training">
+		<title>User Interface</title>
+		<meta name="description" content="Titanium Certified Developer Training, User Interface">
     	<meta name="author" content="Appcelerator, Inc." />
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -61,7 +61,7 @@
 			<div class="slides">
 				
 				<section>
-					<h1 style="margin-top:100px;" class="l_lessontitle">LESSON TITLE</h1>
+					<h1 style="margin-top:100px;" class="l_lessontitle">User Interface</h1>
 					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
 					<script>
 						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
@@ -75,11 +75,9 @@
 				<section id="agenda">
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
-			    		<li class="l_agenda1">performance-based learning objective</li>
-			    		<li class="l_agenda2">e.g.</li>
-			    		<li class="l_agenda3">Create your app's UI with Views</li>
-			    		<li class="l_agenda4">Apply styles using TSS files</li>
-			    		<li class="l_agenda5">agenda item</li>
+			    		<li class="l_agenda1">Learn the roles of UX and UI design</li>
+			    		<li class="l_agenda2">Explore the components used to create your UI</li>
+			    		<li class="l_agenda3">Learn your options for UI layout and component positioning</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
@@ -88,11 +86,215 @@
 
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
-					<h5 style="clear:both;">Alloy</h5>
+					<h5 style="clear:both;" class="l_uxui">User Experience / User Interface</h5>
+					<div class="slidenote"><div class="l_slidenote_uxui"></div></div>
+				</section>
 
-					<div class="slidenote"><div class="l_slidenote_classname"></div></div>
+				<section>
+					<h2 class="l_ux_basics">What is UX?</h2>
+					<p class="l_ux_image"><img src='images/basics-ux.png' style='margin-top:40px;height:550px;'/></p>				
+					<div class="slidenote"><div class="l_slidenote_ux_basics">UX, or user experience, is all about how your app works. Not what it looks like. Think about your user and the way they'll use your app. How do screens flow from one to another? Are buttons in the right place? Are you showing too much or too little information?<br><br>The 3 examples<br><ul><li>Tweet: confusing options and actions</li><li>App on left: too much info, too much in app, controls poorly laid out -- there's no flow or logical indication of what comes first</li><li>Dialog: not a mobile app, but still poor UX &mdash; It asks users to select command-line switches. If user knows what those switches would be used for, they'd be typing at console. If they don't, then the dialog doesn't give appropriate info.</li></ul></div>
+				</div></section>
+
+				<section>
+					<h2 class="l_critial_questions">Critical Questions</h2>
+					<p align="center" class="l_can_you">You need to answer the following:</p><br>
+					<p align="center" class="l_what_problem">What problem(s) am I solving?</p><br>
+					<p align="center" class="l_who">Who are my key users?</p><br>
+					<p align="center" class="l_what_needs">What are their needs?</p>
+					<div class="slidenote"><div class="l_slidenote_critial_questions">When developing any application you need to ask these fundamental questions. These questions form the foundation atop which you build your application. If a feature doesn't address a user's need, or will serve only a few users, leave it out! </div>
+				</div></section>
+
+				<section>
+					<h2 class="l_window_nav">Sketch it!</h2>
+					<p class="l_windownav_image"><img src="images/sketchit.png" style="margin-top:50px;height:440px;padding:20px;"/></p>
+					<div class="slidenote"><div class="l_slidenote_window_nav">When designing your app, sketch it out. You can use a simple notepad. Index (3 by 5) cards are pretty close to the size of a mobile phone. You can sketch each screen on a card. Then, flip through the deck to get a general sense of how your app will flow. You can even share the cards with others to see what they think of the design and flow.</div>
+				</div></section>
+
+				<section>
+					<h2 style="" class="l_ui">UI</h2>
+				    <img src="images/googlefinance.png" style="width:800px;"/>
+					<div class="slidenote"><div class="l_slidenote_ui">User interface is how something looks -- colors, size, texture, along with concepts of harmony, balance, symmetry, and so forth. UI complements UI and often the two are nearly inseparable. In this screen, you can see a before &amp; after version of an app. Largely, just the UI of the app has changed making for a significantly different looking app.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_whatisui">What goes into UI?</h2>
+					<ul style="width:80%;">
+						<li class="l_whatisui1">UI Components</li>
+						<li class="l_whatisui2">Colors</li>
+						<li class="l_whatisui3">Fonts</li>
+						<li class="l_whatisui4">Textures and patterns</li>
+						<li class="l_whatisui5">Balance, harmony, symmetry</li>
+					</ul>
+
+					<div class="slidenote"><div class="l_slidenote_whatisui">We won't spend very much time covering UI design principles or artistic concepts like balance and symmetry. </div></div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_uictitle">UI Components</h5>
+					<div class="slidenote"><div class="l_slidenote_uictitle">Let's take a look at the controls and components you can use in an app.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_controls">Controls</h2>
+					<ul style="width:80%;">
+						<li class="l_controls1">Windows and Views</li>
+						<li class="l_controls2">Labels</li>
+						<li class="l_controls3">ImageViews</li>
+						<li class="l_controls4">Buttons, Text Fields, Text Areas</li>
+						<li class="l_controls5">Navigation controls -- tabs, split windows, etc.</li>
+						<li class="l_controls6">Media-related (video or audio players)</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_controls">These are the controls available to you. We won't go deep with these now, but we will cover them in more detail in the next lesson.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_winview">Windows &amp; Views</h2>
+					<ul style="width:80%;">
+						<li class="l_winview1">'Containers' to hold other components</li>
+						<li class="l_winview2">Windows = full screen (usually)</li>
+						<li class="l_winview3">Views = portion of the screen</li>
+						<li class="l_winview4">Every app has at least one window</li>
+					</ul>
+
+					<div class="slidenote"><div class="l_slidenote_winview"></div></div>
+				</section>
+
+				<section>
+					<h2 class="l_iOS_components">iOS User Interface Components</h2>
+					<p><img src="images/ios-components.png" style="margin-top:0px;height:420px;align:right"></p>
+					<div class="slidenote"><div class="l_slidenote_iOS_components">Briefly introduce the key iOS user interface components especially for the Android users in the class</div></div>
 				</section>
 				
+				<section>
+					<h2 class="l_android_components">Android 2.x User Interface Components</h2>
+					<p><img src="images/android-components.png" style="margin-top:0px;height:420px;align:right"></p>
+					<div class="slidenote"><div class="l_slidenote_android_components">Briefly introduce the key Android user interface components especially for the iOS users in the class</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_android4_components">Android 4.x User Interface Components</h2>
+					<p style="text-align:center;"><img src="images/android4-components.png" style="margin-top:0px;height:420px;margin-right:10px"><img src="images/android4-components2.png" style="margin-top:0px;height:420px;"></p>
+					<div class="slidenote"><div class="l_slidenote_android_components">Android 4 introduces and renames many of the UI components. Go over each of these, as they might not be familiar to even Android users.</div></div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_units">Units, Positioning, and More</h5>
+					<div class="slidenote"><div class="l_slidenote_units"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_layout">View Hierarchy</h2>
+					<ul style="width:40%;float:left;margin-top:50px;">
+						<li class="l_layout4">Tabs or Single Window</li>
+						<li class="l_layout1">App has at least one window</li>
+						<li class="l_layout2">Views inside window</li>
+						<li class="l_layout3">Views inside other views</li>
+					</ul>
+				    <img src="images/basic-app-structure.png" style="width:500px;float:right;"/>
+					<pre style="width:430px;float:left;clear:left;"><code contenteditable>
+var win = Ti.UI.createWindow();
+var view = Ti.UI.createView();
+win.add(view);
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_layout"></div></div>
+				</section>
+
+				<section>
+					<h2 class="l_positioning">Positioning</h2>
+					<img src="images/layout.png" style="float:right;height:400px;">
+					<ul style="text-align:left;width:70%;float:left;">
+						<li class="l_position1"><code>top</code> and <code>left</code></li>
+						<li class="l_position2"><code>bottom</code> and <code>right</code></li>
+						<li class="l_position3"><code>center</code></li>
+					</ul>
+					<pre style="width:550px;float:left;"><code contenteditable>
+var red = Ti.UI.createView({
+  top: 10, left: 10,
+  width: 10, height: 10
+});
+var blue = Ti.UI.createView({
+  center: {x: '50%', y: '50%'},
+  width: 50, height: 50
+});
+var blue = Ti.UI.createView({
+  bottom:70, right: 70,
+  width: 10, height: 10
+});
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_positioning"></div></div>
+				</section>
+
+
+				<section>
+					<h2 class="l_units">Units</h2>
+					<p align="left" class="l_absmeasures">Absolute measurements: px (pixels), dp/dip, mm, cm, in</p>
+					<p align="left" class="l_relmeasures">Relative measurements: % = percent of the parent's height or width</p>
+<pre><code contenteditable class="l_unitcode">
+var view = Ti.UI.createView({
+  /* You would not normally mix units like this */
+  top: '10mm',
+  left: '5px',
+  width: '30%',
+  height: 50 /* default system units are used here */
+});
+
+</code></pre>
+					<p align="left" class="l_defaultunits" style="font-style:italic;">Default units - on Android = pixels; on iOS = dip</p>
+					<p class="l_setdefaultunits"><img src="images/defaultunits.png" style="width:450px;"/></p>
+
+					<div class="slidenote"><div class="l_slidenote_units">Can set a default unit in tiapp.xml -- add tag as shown and set to unit you want to use.</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_auto">'Auto' Behaviors</h2>
+					<ul style="text-align:left;width:90%;">
+						<li class="l_auto1">You can use Ti.UI.SIZE or Ti.UI.FILL instead of actual height/width value<br/><ul style="margin:5px 0 10px 60px;"><li>SIZE: fits to contents</li><li>FILL: fills parent</li></ul></li>
+						<li class="l_auto2">Defaults (if you don't set a height/width)<br/><ul style="margin:5px 0 10px 60px;"><li>Buttons, labels, images, text fields and areas = Ti.UI.SIZE</li><li>Windows, views, tables, webviews = Ti.UI.FILL</li><li>Table rows = FILL for width and SIZE for height</li></ul></li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_auto"></div>Used to set 'auto' as value for height or width and Ti would 'figure it out'<br/>But that was inconsistent across platforms and view components<br/>You can now be more explicity by specifying FILL (fills parent) or SIZE (sized to fit its contents)</div>
+				</section>
+
+				<section>
+					<h2 class="l_coordinates">Coordinates Grid</h2>
+					<p align="left" class="l_coords1">iPhone 3/4 - 320 by 480 point grid</p>
+					<p align="left" class="l_coords2">iPhone 5 - 320 by 568 point grid</p>
+					<p align="left" class="l_coords3">iPad 1/2/3 - 1024 by 768 grid</p>
+					<div align="left" class="l_coords4">Android sizes vary:<br/><ul style="align:left;margin-left:70px;"><li>HVGA = 320 by 480 px</li><li>WVGA800 = 480 by 800 px</li><li>WVGA854 = 480 by 854 px</li></ul></div>
+					<div class="slidenote"><div class="l_slidenote_coordinates">You can use dp/dip units on Android to achieve the same density independent grid as is default on iOS.</div></div>
+				</section>
+				
+				<section>
+					<h2 class="l_view_hierarchy">Layout modes</h2>
+					<ul style="text-align:left;width:90%;">
+						<li class="l_absolute">Absolute</li>
+						<li class="l_vertical">Vertical</li>
+						<li class="l_horizontal">Horizontal</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_view_hierarchy">Absolute &mdash; relative to parent not screen Vertical &amp; horizontal &mdash; apply to parent object &mdash; we'll see examples in upcoming slides</div></div>
+				</section>
+				
+				<section>
+					<h2 class="l_absolute_layout">Absolute Layout</h2>
+					<p><img src="images/absolute-layout-snippet.png" style="margin-top:0px;height:220px;align:left"></p>
+					<p><img src="images/window-layout.png" style="margin-top:0px;height:220px;align:right"></p>
+					<div class="slidenote"><div class="l_slidenote_absolute_layout">We have here a window with a couple UI elements<br>The button is positioned 170 points from the parent's top edge</div></div>
+				</section>
+				
+				<section>
+					<h2 class="l_absolute_layout">Absolute Layout</h2>
+					<p><img src="images/absolute-layout-snippet-2.png" style="margin-top:0px;height:220px;align:left"></p>
+					<p><img src="images/window-layout-2.png" style="margin-top:0px;height:220px;align:right"></p>
+					<div class="slidenote"><div class="l_slidenote_absolute_layout_2">Absolute, left 30 points from left edge</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_vertical_layout">Vertical Layout</h2>
+					<p><img src="images/vertical-layout.png" style="margin-top:0px;height:420px;align:left"></p>
+					<div class="slidenote"><div class="l_slidenote_vertical_layout">Parent object has the Vertical layout<br>Child object's positions are then in relation to each other within the parent</div></div>
+				</section>
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
