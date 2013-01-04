@@ -1,0 +1,687 @@
+<!doctype html>  
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JavaScript</title>
+		<meta name="description" content="JavaScript, Titanium Certified Developer Training">
+    	<meta name="author" content="Appcelerator, Inc." />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="../../presentation-engine/reveal.js/css/reset.css">
+		<link rel="stylesheet" href="../../presentation-engine/reveal.js/css/main.css">
+		<link rel="stylesheet" href="../css/magula.css">
+		<link rel="stylesheet" href="../css/presentation.css">
+		<script type="text/javascript" src="../../presentation-engine/js/l10n.js"></script>
+		<script type="text/javascript" src="i18n/localizations.js"></script>
+		<script>
+		function loadStyleSheet(url){
+		    if(document.createStyleSheet) {
+		        try {document.createStyleSheet(url);} catch (e) { }
+		    }
+		    else{
+		        var css;
+		        css         = document.createElement('link');
+		        css.rel     = 'stylesheet';
+		        css.type    = 'text/css';
+		        css.media   = "all";
+		        css.href    = url;
+		        document.getElementsByTagName("head")[0].appendChild(css);
+		    }
+		}
+		var browserlang = document.documentElement.lang || String.locale || 'en-US';
+		loadStyleSheet('../css/'+browserlang+'.css');
+		</script>
+		<link rel="stylesheet" href="../../presentation-engine/reveal.js/css/print.css" media="print">
+	</head>
+	
+	<body>
+		<div id="reveal">	
+			<!-- Any section element inside of this container is displayed as a slide -->
+
+			<!--
+				SLIDE INSTRUCTIONS:
+					- Set the <title> tag to this lesson's US English title
+					- Set the <meta description tag to the US English course & lesson title
+					- Add one <section></section> for each slide. Slides can contain most any valid HTML
+					- Each text tag (<p> or <li> or <h1> etc.) must have a class name that begins with
+						"l_" and is unique. Each of those class names must be added to the i18n/localizations.js
+						file and their values must be set equal to the US English version of the strings. That 
+						file is used for translation and its contents OVERRIDES the text in this file.
+					- Each slide must have a <div class="slidenote"></div> container, which can be empty. These
+						are used for presenter notes. They also must be given unique "l_" classnames and strings
+						provided in the localizations.js file.
+					- Please use inline CSS on the slides to size & arrange contents.
+					- Graphics should be placed in the images folder and cropped/sized appropriately.
+					- Assume a 1024 x 768 display resolution
+					- A link to the index.html for each lesson must be added in order to the coursename/index.html
+						title slide.
+			-->
+			
+			
+			<div class="slides">
+				
+				<section>
+					<h1 style="margin-top:100px;" class="l_lessontitle">JavaScript</h1>
+					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
+					<script>
+						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				<div class="slidenote"><p class="l_slidenote_titleslide"></p></div>
+				</section>
+				
+<!-- EVERY LESSON MUST HAVE AN AGENDA SLIDE, WHICH LISTIS THE OBJECTIVES THAT WILL BE LEARNED BY THE STUDENT. USE PERFORMANCE-BASED OBJECTIVE STATEMENTS (IN OTHER WORDS, DESCRIBE WHAT THEY WILL DO) -->
+				<section id="agenda">
+					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
+			    	<ul>
+			    		<li class="l_agenda1">Examine JavaScript language basics</li>
+			    		<li class="l_agenda2">Understand variables and scope</li>
+			    		<li class="l_agenda3">Create and use functions</li>
+			    		<li class="l_agenda4">Create and use objects and manage inheritance</li>
+			    		<li class="l_agenda5">Write CommonJS modules</li>
+			    		<li class="l_agenda6">Write code that implements JavaScript best practices</li>
+			    	</ul>
+					<div class="slidenote">
+						<div class="l_slidenote_agenda"></div>
+					</div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_core">JavaScript Basics</h5>
+					<div class="slidenote"><div class="l_slidenote_core"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_bldblocks">JavaScript building blocks</h2>
+					<ul style="width:80%;">
+						<li class="l_bldblocks0">Data</li>
+						<li class="l_bldblocks1">Variables</li>
+						<li class="l_bldblocks2">Statements ("commands")</li>
+						<li class="l_bldblocks3">Conditionals &amp; Control Statements</li>
+						<li class="l_bldblocks4">Functions</li>
+						<li class="l_bldblocks5">Objects</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_bldblocks">Most students are probably familiar with the basic language features of JavaScript. We'll go through them quickly as review and to make sure everyone has at least a basic understanding. Later we'll dig deeper into JavaScript features.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_datatypes">Data Types</h2>
+					<pre><code contenteditable>
+1 // integer (whole numbers)
+1.23456 // float (fractions)
+true // or false == boolean
+['one', 'two', 'three'] // array
+{ color: 'blue', size: 10 } // object
+null, undefined, NaN, Infinity // special types
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_datatypes">Because JavaScript is type-flexible, our biggest concern here is learning the terminology and understanding the complex data types: arrays and objects, plus the special types.</div></div>
+				</section>
+
+
+				<section>
+					<h2 style="" class="l_variables">Variables</h2>
+					<pre><code contenteditable>
+var x = 1;
+var y = 'foo'; // enclose strings in quotes
+var i = 0, j = 1, k = true; // declare multiple w/single statement
+y = 4; // reassigns y's value
+x = y; // put y's value into x, so x = ?
+ </code></pre>
+					<ul style="width:80%;">
+						<li class="l_var1">Always declare using <code>var</code> keyword</li>
+						<li class="l_var2">JavaScript doesn't care about data types (but you should)</li>
+					</ul>
+
+					<div class="slidenote"><div class="l_slidenote_variables">Explain each of the examples. Save a discussion about how omitting <code>var</code> creates a variable in the global scope till the variable hoisting slide later.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_statements">Statements</h2>
+					<pre><code contenteditable>
+var x = 100 * 2;
+var y = Math.round(22/7);
+// this is a comment
+/*
+  This is a
+  multi-line comment
+*/
+ </code></pre>
+					<ul style="width:80%;">
+						<li class="l_statements1">Expressions that create a result</li>
+						<li class="l_statements2">End with a semi-colon</li>
+					</ul>
+
+					<div class="slidenote"><div class="l_slidenote_statements">While semi-colons are technically not required, omitting them can cause errors in some cases. Our recommendation is that you strongly encourage students to always end statements with a semi-colon.</div></div>
+				</section>
+
+				<section>
+				<section>
+					<h2 style="" class="l_controlstatement">Conditionals &amp; Control Statements</h2>
+					<ul style="width:80%;">
+						<li class="l_cstatments1">if/else</li>
+						<li class="l_cstatments2">For loops</li>
+						<li class="l_cstatments3">While loops</li>
+						<li class="l_cstatments4">Switch statements</li>
+					</ul>
+					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+					<div class="slidenote"><div class="l_slidenote_controlstatement"></div></div>
+				</section>
+
+				<section>
+					<h2 class="l_CLASSNAME">if/else</h2>
+					<div class="slidenote"><div class="l_slidenote_CLASSNAME"></div></div>
+					<pre><code contenteditable>
+if(somecondition) {
+  // do something
+} else if(someOtherCondition) {
+  // do stuff if someOtherCondition is met
+} else {
+  // do this if others aren't true
+}
+/* Comparison operators:
+  == vs ===  and != vs !==
+  < or > or <= or >=
+*/
+					</code></pre>
+					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+				</section>
+
+				<section>
+					<h2 class="l_forloops">For Loops</h2>
+					<div class="slidenote"><div class="l_slidenote_forloops"></div></div>
+					<pre><code contenteditable>
+for(var i=0; i < 100; i++) {
+  // do something 100 times
+}
+					</code></pre>
+					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+				</section>
+
+				<section>
+					<h2 class="l_whileloops">While Loops</h2>
+					<div class="slidenote"><div class="l_slidenote_whileloops"></div></div>
+					<pre><code contenteditable>
+while(somecondition) {
+  // do something till somecondition is no longer met
+}
+					</code></pre>
+					<ul style="width:80%;">
+						<li class="l_whileloop1">Make sure 'somecondition' will change and eventually be met or loop will run forever</li>
+					</ul>
+					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+				</section>
+
+				<section>
+					<h2 class="l_switch">Switch</h2>
+					<pre><code contenteditable>
+switch(myVar) {
+  case 'foo':
+     // do something if myVar == 'foo'
+  break;
+  case 'bar':
+     // do something if myVar == 'bar'
+  break;
+  default:
+     // do something if neither of the above are met
+  break;
+}
+					</code></pre>
+					<ul style="width:80%;">
+						<li class="l_switch1">Compact if/else statement</li>
+					</ul>
+
+					<div class="slidenote"><div class="l_slidenote_switch"></div></div>
+					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png" style="-webkit-transform: rotate(180deg);"/></div>
+				</section>
+
+				</section>
+
+				<section>
+				<section>
+					<h2 style="" class="l_functions">Functions</h2>
+					<pre><code contenteditable>
+function sum(a, b) {
+  // do as many statements as needed
+  return a + b;
+}
+// then use like this:
+var total = sum(100, 200);
+					</code></pre>
+					<ul style="width:80%;">
+						<li class="l_functions1">Reusable chunks of code</li>
+						<li class="l_functions2">Arguments pass data to the function</li>
+						<li class="l_functions3"><code>return</code> a value at the end</li>
+					</ul>
+					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+
+					<div class="slidenote"><div class="l_slidenote_functions"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_functionsc">Function Statements</h2>
+					<pre><code contenteditable>
+var sum = function(a, b) {
+  return a + b;
+}
+// then use like this:
+var total = sum(100, 200);
+					</code></pre>
+					<ul style="width:80%;">
+						<li class="l_functionsc0">Equivalent to other format</li>
+						<li class="l_functionsc1">You're defining a variable that will hold a function</li>
+						<li class="l_functionsc2">Highlights that functions are 'first class citizens' in JavaScript</li>
+						<li class="l_functionsc3">You can pass a function as an argument to another function</li>
+					</ul>
+					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+
+					<div class="slidenote"><div class="l_slidenote_functionsc"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_functioncallbacks">Function Callbacks</h2>
+					<pre><code contenteditable>
+var doCoolness = function(a, b, fn) {
+  // something here that takes a long time to finish, such
+  // as getting data from the network
+  return fn(a, b);
+}
+var sum = function(a, b) {
+  return a + b;
+}
+// then use like this:
+var total = doCoolness(100, 200, sum);
+					</code></pre>
+					<ul style="width:80%;">
+						<li class="l_functioncallbacks1">Great when doCoolness() might take a long time to run (like when accessing the network).</li>
+					</ul>
+					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png" style="-webkit-transform: rotate(180deg);"/></div>
+
+					<div class="slidenote"><div class="l_slidenote_functioncallbacks">Callbacks are a critical part of modern JavaScript programming. They are the primary pattern for dealing with asynchronous operations, such as network access, geolocation lookups, even database operations.</div></div>
+				</section>
+				</section>
+
+				<section>
+					<h2 style="" class="l_objects">Objects</h2>
+					<pre><code contenteditable>
+var cat = {
+  breed: 'tiger',
+  color: 'orange',
+  hasStripes: true,
+  growl: function() {
+     // make scary noise!
+  }
+}
+if(cat.hasStripes == true) {
+  cat.growl();
+}
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_objects"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_hostcore">Core vs. Host</h2>
+					<ul style="width:80%;">
+						<li class="l_corevshost1">Core JavaScript
+							<ul style="margin-left:50px;width:75%;">
+								<li>Overall language rules &amp; syntax</li>
+								<li>Core operators</li>
+								<li>Objects like Date and Math</li>
+							</ul></li>
+						<li class="l_corevshost2">Host environment adds its own objects
+							<ul style="margin-left:50px;width:75%;">
+								<li>Web browser (DOM)</li>
+								<li>Node.js (server-side functionality)</li>
+								<li>Titanium (Ti object for mobile components)</li>
+							</ul></li>
+						<li class="l_corevshost3">Libraries you import (APIs)</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_corevshost">JavaScript is implemented in various environments. And the features and functionality it offers vary depending on the environment. The core JavaScript features are the same everywhere. This includes core operators, statements, and syntax, plus the core objects like Date and Math. The host environment adds new objects. For example, JavaScript in the browser has access to objects that represent the web page and web browser. Titanium adds the Ti object to core JavaScript, giving you access to mobile features. But in Titanium, you don't have access to the DOM objects.</div></div>
+					<div class="slidenote"><div class="l_slidenote_hostcore"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_ecma">ECMA &amp; JavaScript Evolution</h2>
+					<div class="slidenote"><div class="l_slidenote_ecma"></div></div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_variables">Variables</h5>
+					<div class="slidenote"><div class="l_slidenote_variables">In this section, we'll cover some of the particulars and peculiarities of variables in JavaScript.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_vtypes">Variable Types</h2>
+					<ul style="width:80%;">
+						<li class="l_vtypes1">Primitives</li>
+						<li class="l_vtypes2">Complex</li>
+						<li class="l_vtypes3">Special</li>
+						<li class="l_vtypes4">Loosely typed</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_vtypes"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_scope">Variable Scope</h2>
+					<div class="slidenote"><div class="l_slidenote_scope"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_hoisting">Variable Hoisting</h2>
+					<div class="slidenote"><div class="l_slidenote_hoisting"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_passbyref">Pass by Reference or Value?</h2>
+					<div class="slidenote"><div class="l_slidenote_passbyref"></div></div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_functions">Functions</h5>
+					<div class="slidenote"><div class="l_slidenote_functions"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_returnvalues">Explicit vs. Implicit Return Values</h2>
+					<div class="slidenote"><div class="l_slidenote_returnvalues"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_closures">Closures</h2>
+					<div class="slidenote"><div class="l_slidenote_closures"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_args">Arguments, caller &amp; callee</h2>
+					<div class="slidenote"><div class="l_slidenote_args"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_this">What is "this"?</h2>
+					<div class="slidenote"><div class="l_slidenote_this"></div></div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_objects">Objects</h5>
+					<div class="slidenote"><div class="l_slidenote_objects"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_constructors">Functions as Constructors</h2>
+					<div class="slidenote"><div class="l_slidenote_constructors"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_prototypes">Prototypes</h2>
+					<div class="slidenote"><div class="l_slidenote_prototypes"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_inheritance">Inheritance</h2>
+					<div class="slidenote"><div class="l_slidenote_inheritance"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_private">Private Members</h2>
+					<div class="slidenote"><div class="l_slidenote_private"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_equivalents">Testing Equivalence</h2>
+					<!-- thinking of typeof and instanceof operators -->
+					<div class="slidenote"><div class="l_slidenote_equivalents"></div></div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_modules">Modules</h5>
+					<div class="slidenote"><div class="l_slidenote_modules"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_commonjs">CommonJS</h2>
+					<ul style="width:80%;">
+						<li class="l_commonjs1"></li>
+						<li class="l_commonjs2"></li>
+						<li class="l_commonjs3"></li>
+						<li class="l_commonjs4">Not part of JavaScript Core, added by Host environment &mdash; Titanium supports CommonJS</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_commonjs"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_helpers">Helper / Library Pattern</h2>
+<pre><code contenteditable class="l_helpercode">
+// file is network.js
+
+exports.getData = function() {
+	// get data from the network
+};
+exports.postData = function() {
+	// post data to the network
+};
+
+</code></pre>
+<br/>
+<pre><code contenteditable class="l_helpercode2">
+// how to use it
+
+var net = require('network.js');
+
+var someData = net.getData();
+button.addEventListener('click', function() {
+	net.postData(someData);
+});
+
+</code></pre>
+					<div class="slidenote"><div class="l_slidenote_helpers">This pattern is useful for libraries of helper functions, such as network or database code.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_factory">Factory Pattern</h2>
+<pre><code contenteditable class="l_modfactorycode">
+// file is Button.js
+
+// creates a UI component we'll need many copies of
+var Button = function(title) {
+	return Ti.UI.createButton({ title: title });
+};
+
+module.exports = Button; // return the constructor
+
+</code></pre>
+<br/>
+<pre><code contenteditable class="l_modfactorycode2">
+// how to use it
+
+var Button = require('ui/Button');
+
+// now make some instances
+var button1 = new Button('foo');
+var button2 = new Button('bar');
+
+</code></pre>
+					<div class="slidenote"><div class="l_slidenote_factory">By assigning a function to the module.exports variable, you can use the returned object as a constructor. Great for UI components.</div></div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_bestpractices">Best Practices</h5>
+					<div class="slidenote"><div class="l_slidenote_bestpractices"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_maintain">Code for Maintainability</h2>
+					<ul style="width:80%;">
+						<li class="l_maintain1">Naming variables and objects</li>
+						<li class="l_maintain2">Spacing and indentation</li>
+						<li class="l_maintain3">Comments</li>
+						<li class="l_maintain4">Pass {} rather than a list of arguments</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_maintain"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_garbagecollection">Garbage Collection</h2>
+					<div class="slidenote"><div class="l_slidenote_garbagecollection"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_avoidingleaks">Avoiding Memory Leaks</h2>
+					<div class="slidenote"><div class="l_slidenote_avoidingleaks"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_performance">Performant Coding</h2>
+					<div class="slidenote"><div class="l_slidenote_performance"></div></div>
+				</section>
+
+
+				
+
+<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
+				<section>
+					<h2 style="" class="l_demo">Demo</h2>
+					<ul style="width:80%;">
+						<li class="l_demo1">What you will demo</li>
+						<li class="l_demo2"></li>
+						<li class="l_demo3"></li>
+						<li class="l_demo4"></li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
+				</section>
+
+				
+<!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
+				<section id="summary">
+					<h1 style="" class="l_summary">Summary</h1>
+					<p class="l_summarypara">In this lesson, you:</p>
+			    	<ul>
+			    		<li class="l_summary1">learning objective as past tense</li>
+			    		<li class="l_summary2">e.g.</li>
+			    		<li class="l_summary3">Created your app's UI with Views</li>
+			    		<li class="l_summary4">Applied styles using TSS files</li>
+			    		<li class="l_summary5">agenda item</li>
+			    	</ul>
+					<div class="slidenote">
+						<div class="l_slidenote_summary"></div>
+					</div>
+				</section>
+
+<!-- EVERY LESSON MUST HAVE A Q&A SLIDE -->
+				<section>
+					<h1 class="l_qa">Q&amp;A</h1>
+					<div class="slidenote"><div class="l_slidenote_qa"></div></div>
+				</section>
+
+<!-- EVERY LESSON SHOULD HAVE A LAB TO GIVE STUDENTS HANDS-ON PRACTICE WITH THE MATERIALS. NOT REQUIRED IF THE MATERIALS DON'T LEND THEMSELVES TO A HANDS-ON LAB -->
+				<section>
+					<h1 style="" class="l_lab">Lab Objectives</h1>
+					<p class="l_labintro">In this lab, you will:</p>
+
+					<ul style="margin-bottom:40px;">
+						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
+						<li class="l_labobjective2">e.g.</li>
+						<li class="l_labobjective3">Display a list of fugitives in a table</li>
+						<li class="l_labobjective4">etc.</li>
+					</ul>
+					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
+					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
+				</section>
+
+<!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->
+				<section>
+					<h2 class="l_solution">Solution Walkthrough</h2>
+					<div class="slidenote"><div class="l_slidenote_solution"></div></div>
+				</section>
+
+
+
+			<!-- MAKE NO CHANGES BELOW THIS LINE -->
+		</div>
+
+			<!-- Appc logo and presenter notes -->
+			<div id="appclogo"><a href="../index.html"><img src="../images/appu_thumb.png"/></a></div>
+			<a id="firstslide" onClick="Reveal.navigateTo(0,0);"><img src="../images/agt_desktop_enhancements.png" title='First slide' alt='First'/></a>
+			<a id="presenternotes" onClick="openPresenterNotes()"><img src="../images/presenternotes.png" title='Open Presenter Notes Window' alt='Presenter notes'/></a>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="../../presentation-engine/reveal.js/js/reveal.js"></script>
+		<script src="../../presentation-engine/reveal.js/lib/highlight.js"></script>
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'default', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+		<script src="../../presentation-engine/js/localize.js"></script>
+		<script>
+			var presenterNotesWindow = null;
+			function openPresenterNotes() {
+				presenterNotesWindow = window.open('presenternotes.html', presenterNotesWindow, "location=0,menubar=no,toolbar=no,height=600,width=800");
+			}
+		</script>
+		<script>
+		var s = (function load(){
+			var s = {};
+			if(window.outerHeight){
+				s = { w: window.outerWidth, h: window.outerHeight};
+			}
+			else {
+				s = { w: document.body.clientWidth, h: document.body.clientHeight};
+			}
+			return s;
+		})();
+		if(s.w < 1000 || s.h < 800) {
+			var slides = document.querySelectorAll( '#reveal .slides' );
+			for( var i = 0, len = slides.length; i < len; i++ ) {
+				slides[i].classList.add( 'smallscreen' );
+		    }
+		}
+		</script>
+	</body>
+</html>
