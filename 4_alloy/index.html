@@ -1,0 +1,740 @@
+<!doctype html>  
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Alloy Overview</title>
+		<meta name="description" content="Titanium Certified Developer Training">
+    	<meta name="author" content="Appcelerator, Inc." />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="../../presentation-engine/reveal.js/css/reset.css">
+		<link rel="stylesheet" href="../../presentation-engine/reveal.js/css/main.css">
+		<link rel="stylesheet" href="../css/magula.css">
+		<link rel="stylesheet" href="../css/presentation.css">
+		<script type="text/javascript" src="../../presentation-engine/js/l10n.js"></script>
+		<script type="text/javascript" src="i18n/localizations.js"></script>
+		<script>
+		function loadStyleSheet(url){
+		    if(document.createStyleSheet) {
+		        try {document.createStyleSheet(url);} catch (e) { }
+		    }
+		    else{
+		        var css;
+		        css         = document.createElement('link');
+		        css.rel     = 'stylesheet';
+		        css.type    = 'text/css';
+		        css.media   = "all";
+		        css.href    = url;
+		        document.getElementsByTagName("head")[0].appendChild(css);
+		    }
+		}
+		var browserlang = document.documentElement.lang || String.locale || 'en-US';
+		loadStyleSheet('../css/'+browserlang+'.css');
+		</script>
+		<link rel="stylesheet" href="../../presentation-engine/reveal.js/css/print.css" media="print">
+	</head>
+	
+	<body>
+		<div id="reveal">	
+			<!-- Any section element inside of this container is displayed as a slide -->
+
+			<!--
+				SLIDE INSTRUCTIONS:
+					- Set the <title> tag to this lesson's US English title
+					- Set the <meta description tag to the US English course & lesson title
+					- Add one <section></section> for each slide. Slides can contain most any valid HTML
+					- Each text tag (<p> or <li> or <h1> etc.) must have a class name that begins with
+						"l_" and is unique. Each of those class names must be added to the i18n/localizations.js
+						file and their values must be set equal to the US English version of the strings. That 
+						file is used for translation and its contents OVERRIDES the text in this file.
+					- Each slide must have a <div class="slidenote"></div> container, which can be empty. These
+						are used for presenter notes. They also must be given unique "l_" classnames and strings
+						provided in the localizations.js file.
+					- Please use inline CSS on the slides to size & arrange contents.
+					- Graphics should be placed in the images folder and cropped/sized appropriately.
+					- Assume a 1024 x 768 display resolution
+					- A link to the index.html for each lesson must be added in order to the coursename/index.html
+						title slide.
+			-->
+			
+			
+			<div class="slides">
+				
+				<section>
+					<h1 style="margin-top:100px;" class="l_lessontitle">Alloy Overview</h1>
+					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
+					<script>
+						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				<div class="slidenote"><p class="l_slidenote_titleslide"></p></div>
+				</section>
+				
+<!-- EVERY LESSON MUST HAVE AN AGENDA SLIDE, WHICH LISTIS THE OBJECTIVES THAT WILL BE LEARNED BY THE STUDENT. USE PERFORMANCE-BASED OBJECTIVE STATEMENTS (IN OTHER WORDS, DESCRIBE WHAT THEY WILL DO) -->
+				<section id="agenda">
+					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
+			    	<ul>
+			    		<li class="l_agenda1">Identify the role of the Alloy MVC components</li>
+			    		<li class="l_agenda2">Implement a UI control using Views and Styles</li>
+			    		<li class="l_agenda3">Enable interactivity with a Controller</li>
+			    		<li class="l_agenda4">Identify the purpose and capabilities of Models</li>
+			    	</ul>
+					<div class="slidenote">
+						<div class="l_slidenote_agenda">Alloy is the structure or framework of how we'll build our apps in Titanium. We'll introduce Alloy over the next few slides, but we'll work with it throughout the rest of the course.</div>
+					</div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;">Alloy Overview</h5>
+
+					<div class="slidenote"><div class="l_slidenote_classname"></div></div>
+				</section>
+				<section>
+					<h2 style="" class="l_overview">Overview &amp; Goals</h2>
+					<p class="l_overviewpara"></p>
+					<ul style="width:80%;">
+						<li class="l_goals1">MVC separates form and function
+							<ul style="margin-left: 50px; width:90%;">
+								<li>Speed and simplify development</li>
+								<li>Improve maintainability</li>
+							</ul></li>
+						<li class="l_goals2">Alloy is Appcelerator's MVC-like framework for Titanium</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_overview">Alloy separates form and function.<br/><br/>Productivity: write less code, the framework takes are of many things for you<br/><br/>Maintainability: clear separation of form and function makes it easier to find and update code<br/><br/>Best Practices: framework enforces a clean separation of concerns, which enforces best-practice app design</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_alloymvc">Alloy MVC</h2>
+					<ul>
+						<li class="l_alloymvc1">Views</li>
+						<li class="l_alloymvc2">Styles</li>
+						<li class="l_alloymvc3">Controllers</li>
+						<li class="l_alloymvc4">Models</li>
+						<li class="l_alloymvc5">Extras</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_alloymvc">Alloy implements a variation of the model-view-controller pattern as follows: <ul style="width:80%;"><li class="l_alloymvcslidenote1">Views - XML files that describe the UI components</li><li class="l_alloymvcslidenote2">Styles - CSS-like files that describe how they look</li><li class="l_alloymvcslidenote3">Controllers - JS files that contain your app's logic</li><li class="l_alloymvcslidenote4">Models - JS files that describe and manipulate your app's persistent data</li><li class="l_alloymvcslidenote5">Extras - features that enable platform-specifics, compile-time configuration, and more</li></ul></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_view">View - index.xml</h2>
+					<pre><code contenteditable>
+&lt;Alloy>
+  &lt;Window class="container">
+    &lt;Label id="label" onClick="doClick">Hello, World&lt;/Label>
+  &lt;/Window>
+&lt;/Alloy>
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_view"><ul style="width:80%;"><li class="l_viewslidenote1">Point out how everything is wrapped in an &lt;Alloy> container</li><li class="l_viewslidenote2">UI elements are added via XML based on their Ti.UI object name, e.g.  &lt;Window></li><li class="l_viewslidenote3">You will use the id to access the element from within the controller file.</li><li class="l_viewslidenote4">You can add various attributes, even event handlers as shown here, in the XML.</li></ul></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_styles">Styles -- fugitives.tss</h2>
+					<pre><code contenteditable>
+".container": {
+   backgroundColor: "white"
+},
+"Tab" : {
+   icon: '/images/fugitives.png',
+},
+"Window": {
+      backgroundColor:'transparent',
+      backgroundImage: 'images/grain.png',
+      title: 'Fugitives',
+      barColor: '#6d0a0c',
+},
+'#table' : {
+      backgroundColor: 'transparent'
+}					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_styles">
+<ul style="width:80%;">
+<li class="l_styles1">Uses CSS-like syntax</li>
+<li class="l_styles2">Selectors by ID (can go back a slide to show tab group's ID), class, or component type</li>
+<li class="l_styles3">One style file per xml file</li>
+<li class="l_styles4">There's a cascade order, which we'll cover later</li>
+</ul>
+
+</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_controllers">Controllers</h2>
+					<pre><code contenteditable>
+function doClick(e) {
+    alert($.label.text);
+}
+
+$.index.open();
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_controllers">
+					<ul style="width:80%;"><li class="l_controllers1">Where the logic of your app resides</li><li class="l_controllers2">Access UI objects via their id</li><li class="l_controllers3">You open your main UI component, defined in index.xml, via the $.index.open() call as shown here.</li><li class="l_controllers4">You still have access to all the usual Ti programming techniques you're familiar with</li></ul></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_modesl">Models</h2>
+					<pre><code contenteditable>
+exports.definition = {
+    config : {
+        "columns" : {
+            "name" : "string",
+            "captured" : "integer",
+            "url" : "string",
+            "capturedLat" : "real",
+            "capturedLong" : "real"
+        },
+        "adapter" : {
+            "type" : "sql",
+            "collection_name" : "fugitives"
+        }
+    },
+...
+}
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_modesl">
+<ul style="width:80%;">
+<li class="l_models1">Defines your data structure</li>
+<li class="l_models2">Extends the Backbone.js Model, giving you access to methods like fetch() and ability to watch events so that you can update views when your data changes</li>
+<li class="l_models3">Adapters are the interface to a persistent storage location -- the database, file system, ACS, properties, etc.</li>
+<li class="l_models4">In the case of SQL, "collection_name" defines your database table. Different for other adapters.</li>
+</ul>
+
+</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_convention">Convention over Configuration</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th>File/Directory</th><th>Contents &amp; Purpose</th></tr>
+	<tr>
+		<td>/app/config.json</td>
+		<td>Specify global values, conditional environment and operating system values, and widget dependencies.</td>
+	</tr>
+	<tr>
+		<td>/app/views</td>
+		<td>XML View files</td>
+	</tr>
+	<tr>
+		<td>/app/styles</td>
+		<td>TSS Style files</td>
+	</tr>
+	<tr>
+		<td>/app/controllers</td>
+		<td>JavaScript Controller files</td>
+	</tr>
+	<tr>
+		<td>/app/models</td>
+		<td>JavaScript Model files </td>
+	</tr>
+	<tr>
+		<td>/app/migrations</td>
+		<td>JSON files that describe incremental changes in your database; in the format <i>DATETIME</i>_<i>modelname</i>.json</td>
+	</tr>
+	<tr>
+		<td>/app/assets</td>
+		<td>Graphic, data file, and other app assets; not created by default.</td>
+	</tr>
+	<tr>
+		<td>/app/lib</td>
+		<td>App-specific library files; not created by default.</td>
+	</tr>
+	<tr>
+		<td>/app/themes</td>
+		<td>Theme files and assets to customize your UI; not created by default.</td>
+	</tr>
+	<tr>
+		<td>/app/widgets</td>
+		<td>Files and assets associated with widgets (self-contained app components)</td>
+	</tr>
+</table>					<div class="slidenote"><div class="l_slidenote_convention"></div></div>
+				</section>
+
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_alloyviewstyles">Alloy Views &amp; Styles</h5>
+					<div class="slidenote"><div class="l_slidenote_alloyviewstyles"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_namespaces">Namespaces</h2>
+					<p class="l_nspara">Create elements not in the Ti.UI namespace:</p>
+					<pre style=""><code contenteditable>
+// for objects not in Ti.UI namespace, such as Ti.Map.View:
+&lt;View ns="Ti.Map" id="map"/>
+
+// for objects in sub-namespaces, such as Ti.UI.iOS.NavigationGroup:
+&lt;NavigationGroup platform="ios,mobileweb"/>
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_namespaces">By default, the XML tags are named after their Ti.UI object equivalent. For those objects not in Ti.UI, you have to use one of these special notation forms so that Alloy can properly create the component.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_required">Require</h2>
+
+					<p class="l_requirepara">Break up views into multiple files</p>
+					<pre><code contenteditable>
+&lt;Alloy>
+  &lt;TabGroup id='tabGroup'>
+    &lt;!-- Tab included via &lt;Require> tag -->
+    &lt;Require type="view" src="fugitives" id="fugitivetab"/>
+    &lt;!-- Tab included via &lt;Require> tag -->
+    &lt;Require type="view" src="captured" id="capturedtab" customVar="foo"/>
+  &lt;/TabGroup>
+&lt;/Alloy>
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_required">Specify the type attribute as 'view' for a Titanium view or 'widget' for a Widget. Set the src attribute to the name of the view file minus the '.xml' extension. Assign a unique value to the id attribute to reference the UI objects in the controller code. You can pass custom variables as shown. We'll cover arguments further in the controllers section that follows.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_tss">Style Files</h2>
+					<ul style="width:350px;float:left;">
+						<li class="l_tss1">Component, class, and ID</li>
+						<li class="l_tss2">Global app.tss</li>
+						<li class="l_tss3">Constants</li>
+						<li class="l_tss4">i18n functions</li>
+						<li class="l_tss5">expr()</li>
+					</ul>
+					<pre style="width:670px;float:right;"><code contenteditable>
+".activeButton": {
+  backgroundColor:"blue"
+},
+"Button": {
+  width: Ti.UI.SIZE,
+  height: Ti.UI.SIZE,
+  color: "#000"
+}, 
+"#iosBtn": {
+  color: "#999",
+  systemButton: Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+  title: L('iosbutton'),
+  left: expr(Ti.Platform.displayCaps.platformWidth-200)
+}
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_tss"><ul><li>Cascade order: component &lt; class &lt; ID</li><li>Set app-level styles with app.tss file. View-specific TSS overrides app.tss.</li><li>You can use any of the Ti constants, such as Ti.UI.SIZE</li><li>You can use the i18n functions, such as L()</li><li>Valid JavaScript within expr() will be evaluated at runtime.</li></ul></div></div>
+				</section>
+
+
+				<section>
+					<h2 style="" class="l_themes">Themes</h2>
+					<ul style="width:100%;">
+						<li class="l_themes1">Named collection of styles and assets</li>
+						<li class="l_themes2">Applied via setting in the config.json file (can be platform-specific)</li>
+						<li class="l_themes3">Theme settings override base styles and assets</li>
+						<li class="l_themes4">Overrides are made on an attribute by attribute basis, not whole files</li>
+					</ul>
+					<pre style="width:450px;float:left;"><code contenteditable>
+app/
+  assets/
+    appicon.png
+    background.png
+styles/
+  app.tss
+  index.tss
+themes/
+  mytheme/
+    assets/
+      background.png
+    styles/
+      app.tss
+  green/
+    ...
+					</code></pre>
+					<pre style="width:450px;float:right;"><code contenteditable>
+{
+  "global": {
+     "theme":"mytheme"
+  }, 
+  "env:development": {}, 
+  "env:test": {}, 
+  "env:production": {}, 
+  "os:ios": {
+     "theme":"green"
+  }, 
+  "os:android": {
+     "theme":"blue"
+  }, 
+  "dependencies": {}
+}
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_themes"></div></div>
+				</section>
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_controllerdetails">Controllers</h5>
+					<div class="slidenote"><div class="l_slidenote_controllerdetails"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_ctrllrs">Controllers</h2>
+					<ul style="width:80%;">
+						<li class="l_ctrllrs1">Contain the application logic</li>
+						<li class="l_ctrllrs2">Communicate between Views and Models</li>
+						<li class="l_ctrllrs3">Handle user interaction and dynamic UI updates</li>
+						<li class="l_ctrllrs4">Access components via their id attribute: <code>$.idstring</code></li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_ctrllrs"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_events">Event Handling</h2>
+					<pre><code contenteditable>
+/* The traditional Titanium way */
+var listener = function() { Ti.API.info("Event listener called."); }
+$.win.addEventListener('click', listener);
+$.win.removeEventListener('click', listener);
+
+
+/* Or, use the Backbone style */
+var listener = function() { Ti.API.info("Event listener called."); }
+$.win.on('click', listener);
+$.win.off('click', listener);
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_events"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_events2">Events, Continued</h2>
+					<pre><code contenteditable>
+/* firing an event on a view component */
+$.button.on('click', function(e){
+   // do something
+});
+$.button.trigger('click', null);
+
+
+/* firing a custom event and passing data */
+$.fooObject.on('customEvent', function(e) {
+    if (foo) {
+        var message = msg || 'Hello!';
+        alert(message);
+    }
+});
+$.trigger('customEvent', {foo: true, msg:'Hi!'});
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_events2"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_createview">Dynamically Creating Views</h2>
+					<p class="l_createcontroller"><code>Alloy.createController</code> -- factory method for instantiating a controller</p>
+					<p class="l_getview"><code>Controller.getView</code> -- return the view associated with this controller</p>
+					<pre><code contenteditable>
+var foo = Alloy.createController('foo').getView();
+foo.open();
+
+var rows = [];
+// loop throu collection and add them to table
+for (var i = 0; i < arr.length; i++) {
+  var row = Alloy.createController('CustomRow', arr[i].toJSON()).getView();
+  rows.push(row);
+}
+
+// set the table
+$.table.setData(rows);
+
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_createview">Code shows a contrived example of loading a series of custom table rows (the CustomRow) as data into a table.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_arguments">Passing Arguments</h2>
+					<p class="l_argpara">Pass arguments when initializing a controller</p>
+					<pre style="margin-bottom:10px;"><code contenteditable>
+var data[];
+for (var i=0; i < source.length; i++) {    
+  var arg = {
+      title: source[i].postTitle,
+      url: source[i].postLink
+  };
+  var row = Alloy.createController('row', arg).getView();
+  data.push(row);
+}
+$.tableView.setData(data);
+					</code></pre>
+					<pre style="width:500px;float:left;margin-right:10px;"><code contenteditable>
+&lt;Alloy>
+  &lt;TableViewRow id="rowView">
+&lt;Alloy>
+					</code></pre>
+					<pre style="width:500px;float:left;"><code contenteditable>
+var args = arguments[0] || {};
+$.rowView.title = args.title || '';
+$.rowView.url = args.url || '';
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_arguments"></div></div>
+				</section>
+
+
+				<section>
+					<h2 class="l_conditionalcode">Conditional Code</h2>
+				<ul style="width:80%;">
+					<li class="l_conditionalcode1">OS_IOS, OS_ANDROID, OS_MOBILEWEB</li>
+					<li class="l_conditionalcode2">ENV_DEV, ENV_TEST, ENV_PRODUCTION</li>
+				</ul>
+				<pre><code contenteditable>
+if (ENV_DEV && OS_IOS) {
+  alert("You are running iOS in the simulator");
+}
+				</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_conditionalcode">These compiler directives are used to optimize your code at build time. Code that is not applicable to your build target is removed. For example, if you use an if-block to encapsulate iOS-specific code, but are building for Android, that code will not be included in your final APK file.<br/><ul>
+<li>OS_IOS : true if the current compiler target is iOS</li>
+<li>OS_ANDROID: true if the current compiler target is Android</li>
+<li>OS_MOBILEWEB: true if the current compiler target is Mobile Web</li>
+<li>ENV_DEV: true if the current compiler target is build for development (running in simulator/emulator)</li>
+<li>ENV_TEST: true if the current compiler target is build for test (run on device)</li>
+<li>ENV_PRODUCTION: true if the current compiler target is build for product (run after packaged for install)</li></ul>
+					</div></div>
+				</section>
+
+
+
+
+
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_platformspecifics">Platform Handling</h5>
+					<div class="slidenote"><div class="l_slidenote_platformspecifics"></div></div>
+				</section>
+
+
+				<section>
+					<h1 class="l_platform">Platform &amp; Form Factor</h1>
+				<ul style="width:80%;">
+					<li class="l_platform3">App assets</li>
+					<li class="l_platform4">Platform Build-time Folders</li>
+					<li class="l_platform1">Markup-based Techniques</li>
+					<li class="l_platform1">Media / Device Queries</li>
+				</ul>
+
+					<div class="slidenote"><div class="l_slidenote_platform"></div></div>
+				</section>
+
+				<section>
+					<h2 class="l_assetfolders">Asset Folders</h2>
+					<p class="l_assetimg"><img src="images/platformassets.png"/></p>
+					<div class="slidenote"><div class="l_slidenote_assetfolders">
+<ul style="width:80%;">
+<li class="l_fassets1">Put in app/assets; they're copied to the Resources directory when you build</li>
+<li class="l_fassets2">Same subdirectories as without Alloy</li>
+<li class="l_fassets3">Put your libraries and "includes" in the lib folder</li>
+</ul>
+</div></div>
+				</section>
+				<section>
+					<h2 class="l_platformoverrides">Platform Overrides</h2>
+					<p class="l_poverridesimg"><img src="images/platformfolders.png"/></p>
+					<div class="slidenote"><div class="l_slidenote_platformoverrides">You can create platform-specific versions of views, controllers, and models to override base behavior. Simple create platform directories within the /app/controllers, etc. folders and put your override files there.</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_platformmarkup">Platform and Device Markup</h2>
+				<pre><code contenteditable style="font-size:1.1em !important;">
+&lt;Alloy>
+ &lt;Window class="container">
+    &lt;View formFactor="handheld">
+       &lt;Label>I'm a handheld!&lt;/Label>
+    &lt;/View>
+
+    &lt;View formFactor="tablet">
+       &lt;Label>I'm a tablet!&lt;/Label>
+    &lt;/View>
+
+    &lt;View height="50" width="200" bottom="10" backgroundColor="#cdcdcd">
+       &lt;Label class="platformLbl" platform="android" formFactor="tablet">android tablet&lt;/Label>
+       &lt;Label class="platformLbl" platform="android" formFactor="handheld">android handset&lt;/Label>
+       &lt;Label class="platformLbl" platform="ios" formFactor="tablet">ios tablet&lt;/Label>
+       &lt;Label class="platformLbl" platform="ios" formFactor="handheld">ios handset&lt;/Label>
+    &lt;/View>
+ &lt;/Window>
+&lt;/Alloy>
+				</code></pre>
+					<div class="slidenote"><div class="l_slidenote_platformmarkup">Platform mark-up lets you specify components to be used on one platform, but not another. For example, you might use a NavigationGroup on iOS but a series of Windows on Android. At build time, your code will be optimized so that only the platform-appropriate code is included in your binary.</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_pselectors">Media / Device Queries</h2>
+				<pre><code contenteditable>
+"#mybutton[platform=android]" : {
+	height:'40dp',
+},
+"#mybutton[platform=ios]" : {
+	height:50,
+},
+"#osLabel[platform=ios size=tablet]": {
+text: "iPad"
+},
+"#osLabel[platform=ios size=handheld]": {
+text: "iPhone"
+},
+
+				</code></pre>
+					<div class="slidenote"><div class="l_slidenote_pselectors">You can use device queries in your Styles files to apply styles in very narrow cases, such as for iPads only.</div></div>
+				</section>
+
+			<section>
+				<h2 style="" class="l_configs">Configurations</h2>
+				<pre><code contenteditable>
+// config.json file
+{
+  "global": { "foo": 1}, 
+  "env:development": {}, 
+  "env:test": {}, 
+  "env:production": {}, 
+  "os:ios": { "foo": 2 }, 
+  "os:android": {}, 
+  "dependencies": {}
+}
+// in your code
+alert(Alloy.CFG.foo); // value is 1 or 2 depending on OS
+				</code></pre>
+
+				<div class="slidenote"><div class="l_slidenote_configs">Specify globals for various runtime environments and require in dependencies, such as widgets (like modules) that your app uses</div></div>
+			</section>
+				
+
+<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
+				<section>
+					<h2 style="" class="l_demo">Demo</h2>
+					<ul style="width:80%;">
+						<li class="l_demo1">Examine the components of an Alloy based app</li>
+						<li class="l_demo2">View the contents of a View, Style, and Controller</li>
+						<li class="l_demo3">Briefly explore a Model</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_demo">Demo is alloy_fugitive: run the project to show what app does. Then, walk through contents of views, styles, and controllers. Show the contents of the model, but don't spend much time explaining it. We'll cover models in more details in a subsequent lesson.</div></div>
+				</section>
+
+				
+<!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
+				<section id="summary">
+					<h1 style="" class="l_summary">Summary</h1>
+					<p class="l_summarypara">In this lesson, you:</p>
+			    	<ul>
+			    		<li class="l_summary1">Identified the role of the Alloy MVC components</li>
+			    		<li class="l_summary2">Implemented a UI control using Views and Styles</li>
+			    		<li class="l_summary3">Enabled interactivity with a Controller</li>
+			    		<li class="l_summary4">Identified the purpose and capabilities of Models</li>
+			    	</ul>
+					<div class="slidenote">
+						<div class="l_slidenote_summary"></div>
+					</div>
+				</section>
+
+<!-- EVERY LESSON MUST HAVE A Q&A SLIDE -->
+				<section>
+					<h1 class="l_qa">Q&amp;A</h1>
+					<div class="slidenote"><div class="l_slidenote_qa"></div></div>
+				</section>
+
+<!-- EVERY LESSON SHOULD HAVE A LAB TO GIVE STUDENTS HANDS-ON PRACTICE WITH THE MATERIALS. NOT REQUIRED IF THE MATERIALS DON'T LEND THEMSELVES TO A HANDS-ON LAB -->
+				<section>
+					<h1 style="" class="l_lab">Lab Objectives</h1>
+					<p class="l_labintro">In this lab, you will discover the Alloy components and their roles in an app by:</p>
+
+					<ul style="margin-bottom:40px;">
+						<li class="l_labobjective1">Exploring a sample Alloy-based app</li>
+						<li class="l_labobjective2">Creating a simple Alloy-based app</li>
+					</ul>
+					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
+					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
+				</section>
+
+<!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->
+				<section>
+					<h2 class="l_solution">Solution Walkthrough</h2>
+					<div class="slidenote"><div class="l_slidenote_solution"></div></div>
+				</section>
+
+
+
+			<!-- MAKE NO CHANGES BELOW THIS LINE -->
+		</div>
+
+			<!-- Appc logo and presenter notes -->
+			<div id="appclogo"><a href="../index.html"><img src="../images/appu_thumb.png"/></a></div>
+			<a id="firstslide" onClick="Reveal.navigateTo(0,0);"><img src="../images/agt_desktop_enhancements.png" title='First slide' alt='First'/></a>
+			<a id="presenternotes" onClick="openPresenterNotes()"><img src="../images/presenternotes.png" title='Open Presenter Notes Window' alt='Presenter notes'/></a>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="../../presentation-engine/reveal.js/js/reveal.js"></script>
+		<script src="../../presentation-engine/reveal.js/lib/highlight.js"></script>
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'default', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+		<script src="../../presentation-engine/js/localize.js"></script>
+		<script>
+			var presenterNotesWindow = null;
+			function openPresenterNotes() {
+				presenterNotesWindow = window.open('presenternotes.html', presenterNotesWindow, "location=0,menubar=no,toolbar=no,height=600,width=800");
+			}
+		</script>
+		<script>
+		var s = (function load(){
+			var s = {};
+			if(window.outerHeight){
+				s = { w: window.outerWidth, h: window.outerHeight};
+			}
+			else {
+				s = { w: document.body.clientWidth, h: document.body.clientHeight};
+			}
+			return s;
+		})();
+		if(s.w < 1000 || s.h < 800) {
+			var slides = document.querySelectorAll( '#reveal .slides' );
+			for( var i = 0, len = slides.length; i < len; i++ ) {
+				slides[i].classList.add( 'smallscreen' );
+		    }
+		}
+		</script>
+	</body>
+</html>
