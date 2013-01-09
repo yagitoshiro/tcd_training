@@ -68,7 +68,7 @@
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
 						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
-				<div class="slidenote"><p class="l_slidenote_titleslide"></p></div>
+				<div class="slidenote"><div class="l_slidenote_titleslide">&nbsp;</div></div>
 				</section>
 				
 <!-- EVERY LESSON MUST HAVE AN AGENDA SLIDE, WHICH LISTIS THE OBJECTIVES THAT WILL BE LEARNED BY THE STUDENT. USE PERFORMANCE-BASED OBJECTIVE STATEMENTS (IN OTHER WORDS, DESCRIBE WHAT THEY WILL DO) -->
@@ -85,12 +85,13 @@
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
 					</div>
+					<div class="slidenote"><div class="l_slidenote_agenda">&nbsp;</div></div>
 				</section>
 
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
 					<h5 style="clear:both;" class="l_core">JavaScript Basics</h5>
-					<div class="slidenote"><div class="l_slidenote_core"></div></div>
+					<div class="slidenote"><div class="l_slidenote_core">&nbsp;</div></div>
 				</section>
 
 				<section>
@@ -158,7 +159,6 @@ var y = Math.round(22/7);
 				</section>
 
 				<section>
-				<section>
 					<h2 style="" class="l_controlstatement">Conditionals &amp; Control Statements</h2>
 					<ul style="width:80%;">
 						<li class="l_cstatments1">if/else</li>
@@ -166,13 +166,11 @@ var y = Math.round(22/7);
 						<li class="l_cstatments3">While loops</li>
 						<li class="l_cstatments4">Switch statements</li>
 					</ul>
-					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
-					<div class="slidenote"><div class="l_slidenote_controlstatement"></div></div>
+					<div class="slidenote"><div class="l_slidenote_controlstatement">&nbsp;</div></div>
 				</section>
 
 				<section>
-					<h2 class="l_CLASSNAME">if/else</h2>
-					<div class="slidenote"><div class="l_slidenote_CLASSNAME"></div></div>
+					<h2 class="l_ifelse">if/else</h2>
 					<pre><code contenteditable>
 if(somecondition) {
   // do something
@@ -183,26 +181,24 @@ if(somecondition) {
 }
 /* Comparison operators:
   == vs ===  and != vs !==
-  < or > or <= or >=
+  &lt; or > or &lt;= or >=
 */
 					</code></pre>
-					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+					<div class="slidenote"><div class="l_slidenote_ifelse">&nbsp;</div></div>
 				</section>
 
 				<section>
 					<h2 class="l_forloops">For Loops</h2>
-					<div class="slidenote"><div class="l_slidenote_forloops"></div></div>
 					<pre><code contenteditable>
 for(var i=0; i < 100; i++) {
   // do something 100 times
 }
 					</code></pre>
-					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+					<div class="slidenote"><div class="l_slidenote_forloops">&nbsp;</div></div>
 				</section>
 
 				<section>
 					<h2 class="l_whileloops">While Loops</h2>
-					<div class="slidenote"><div class="l_slidenote_whileloops"></div></div>
 					<pre><code contenteditable>
 while(somecondition) {
   // do something till somecondition is no longer met
@@ -211,7 +207,7 @@ while(somecondition) {
 					<ul style="width:80%;">
 						<li class="l_whileloop1">Make sure 'somecondition' will change and eventually be met or loop will run forever</li>
 					</ul>
-					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
+					<div class="slidenote"><div class="l_slidenote_whileloops">&nbsp;</div></div>
 				</section>
 
 				<section>
@@ -233,13 +229,9 @@ switch(myVar) {
 						<li class="l_switch1">Compact if/else statement</li>
 					</ul>
 
-					<div class="slidenote"><div class="l_slidenote_switch"></div></div>
-					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png" style="-webkit-transform: rotate(180deg);"/></div>
+					<div class="slidenote"><div class="l_slidenote_switch">&nbsp;</div></div>
 				</section>
 
-				</section>
-
-				<section>
 				<section>
 					<h2 style="" class="l_functions">Functions</h2>
 					<pre><code contenteditable>
@@ -255,9 +247,8 @@ var total = sum(100, 200);
 						<li class="l_functions2">Arguments pass data to the function</li>
 						<li class="l_functions3"><code>return</code> a value at the end</li>
 					</ul>
-					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
 
-					<div class="slidenote"><div class="l_slidenote_functions"></div></div>
+					<div class="slidenote"><div class="l_slidenote_functions">&nbsp;</div></div>
 				</section>
 
 				<section>
@@ -275,9 +266,8 @@ var total = sum(100, 200);
 						<li class="l_functionsc2">Highlights that functions are 'first class citizens' in JavaScript</li>
 						<li class="l_functionsc3">You can pass a function as an argument to another function</li>
 					</ul>
-					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png"/></div>
 
-					<div class="slidenote"><div class="l_slidenote_functionsc"></div></div>
+					<div class="slidenote"><div class="l_slidenote_functionsc">&nbsp;</div></div>
 				</section>
 
 				<section>
@@ -297,10 +287,8 @@ var total = doCoolness(100, 200, sum);
 					<ul style="width:80%;">
 						<li class="l_functioncallbacks1">Great when doCoolness() might take a long time to run (like when accessing the network).</li>
 					</ul>
-					<div class="nestedarrow"><img width="178" height="238" src="../images/arrow.png" style="-webkit-transform: rotate(180deg);"/></div>
 
 					<div class="slidenote"><div class="l_slidenote_functioncallbacks">Callbacks are a critical part of modern JavaScript programming. They are the primary pattern for dealing with asynchronous operations, such as network access, geolocation lookups, even database operations.</div></div>
-				</section>
 				</section>
 
 				<section>
@@ -319,7 +307,7 @@ if(cat.hasStripes == true) {
 }
 					</code></pre>
 
-					<div class="slidenote"><div class="l_slidenote_objects"></div></div>
+					<div class="slidenote"><div class="l_slidenote_objects">&nbsp;</div></div>
 				</section>
 
 				<section>
@@ -340,7 +328,6 @@ if(cat.hasStripes == true) {
 						<li class="l_corevshost3">Libraries you import (APIs)</li>
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_corevshost">JavaScript is implemented in various environments. And the features and functionality it offers vary depending on the environment. The core JavaScript features are the same everywhere. This includes core operators, statements, and syntax, plus the core objects like Date and Math. The host environment adds new objects. For example, JavaScript in the browser has access to objects that represent the web page and web browser. Titanium adds the Ti object to core JavaScript, giving you access to mobile features. But in Titanium, you don't have access to the DOM objects.</div></div>
-					<div class="slidenote"><div class="l_slidenote_hostcore"></div></div>
 				</section>
 
 				<section>
@@ -366,7 +353,7 @@ if(cat.hasStripes == true) {
 					<h2 style="" class="l_vtypes">Data Types</h2>
 					<ul style="width:80%;">
 						<li class="l_vtypes1">Primary (primitive) types &mdash; String, Number, Boolean</li>
-						<li class="l_vtypes2">Composite types &emdash; Object, Array</li>
+						<li class="l_vtypes2">Composite types &mdash; Object, Array</li>
 						<li class="l_vtypes3">Special types &mdash; Null, Undefined, NaN, Infinity</li>
 						<li class="l_vtypes4">Weakly typed &mdash; variables can hold differing values over their lifetime</li>
 					</ul>
@@ -460,7 +447,7 @@ var baz = function() {
 
 					</code></pre>
 
-					<div class="slidenote"><div class="l_slidenote_hoisting"></div></div>
+					<div class="slidenote"><div class="l_slidenote_hoisting">Variable declarations are treated as if they were put at the top of the file, but not their initialiation (value assignment). The same is true for function declarations, in which case the entire assignment is moved to the top! That doesn't happen with function statements, though.</div></div>
 				</section>
 
 				<section>
@@ -776,7 +763,7 @@ son.speak(); // says 'Hello'
 console.log(son.whoami); // 'parent'
 
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_prototypeexample">Here we define a constructor, and modify it via its prototype property. Next, we define an object that will inherit from Parent. We create the association by pointing the child's prototype to be an instance of the parent. We add a property to the parent (ie. the class), then check out the result with some logging statements. </div></div>
+					<div class="slidenote"><div class="l_slidenote_prototypeexample">Here we define a constructor, and modify it via its prototype property. Next, we define an object that will inherit from Parent. We create the association by pointing the child's prototype to be an instance of the parent. We add a property to the parent (ie. the class), then check out the result with some logging statements. Ref: http://javascriptweblog.wordpress.com/2010/06/07/understanding-javascript-prototypes/</div></div>
 				</section>
 
 				<section>
@@ -803,7 +790,7 @@ console.log(son.whoami);
 console.log(son.foo); // undefined
 
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_inheritance">So how does JavaScript find properties and methods you call on? It looks up the prototype chain. Every object has a prototype except the top-level Object itself. In this way, children can override or hide properties and methods of the parent.</div></div>
+					<div class="slidenote"><div class="l_slidenote_inheritance">So how does JavaScript find properties and methods you call on? It looks up the prototype chain. Every object has a prototype except the top-level Object itself. In this way, children can override or hide properties and methods of the parent. Ref: https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Inheritance_and_the_prototype_chain</div></div>
 				</section>
 
 				<section>
@@ -865,7 +852,7 @@ alert(a.__proto__ == Circle.prototype); // true
 
 					</code></pre>
 
-					<div class="slidenote"><div class="l_slidenote_proto">While the difference is subtle, it is important. Functions have a prototype property; objects have a __proto__ property. A function's prototype property points to the object (ie. the class) that will be returned. An object's proto property points to its parent. To add new class methods, either assign them to the function's prototype property or an instance's __proto__ property.</div></div>
+					<div class="slidenote"><div class="l_slidenote_proto">While the difference is subtle, it is important. Functions have a prototype property; objects have a __proto__ property. A function's prototype property points to the object (ie. the class) that will be returned. An object's proto property points to its parent. To add new class methods, either assign them to the function's prototype property or an instance's __proto__ property.<br/><br/>Ref: http://javascriptweblog.wordpress.com/2010/06/07/understanding-javascript-prototypes/</div></div>
 				</section>
 
 				<section>
@@ -884,7 +871,7 @@ var Employee = function(name, age, group) {
 var alex = new Employee('Alejandro', 25, 'Developer');
 					</code></pre>
 					<p class="l_parasiticexplanation">(Works with <code>__proto__</code> so you don't have to!)</p>
-					<div class="slidenote"><div class="l_slidenote_parasitic">This syntax is perhaps the more typical way that developers will subclass or extend objects. Here we see two constructors. The second instantiates a Person object, adds properties, then returns it. This is simpler code than working directly with __proto__ and prototype, and thus eliminates a bunch of confusion.</div></div>
+					<div class="slidenote"><div class="l_slidenote_parasitic">This syntax is perhaps the more typical way that developers will subclass or extend objects. Here we see two constructors. The second instantiates a Person object, adds properties, then returns it. This is simpler code than working directly with __proto__ and prototype, and thus eliminates a bunch of confusion. Ref: http://daniel.carrera.name/2008/02/parasitic-inheritance-in-javascript/</div></div>
 				</section>
 
 				<section>
@@ -896,7 +883,7 @@ var alex = new Employee('Alejandro', 25, 'Developer');
 				<section>
 					<h2 style="" class="l_commonjs">CommonJS</h2>
 					<ul style="width:80%;">
-						<li class="l_commonjs1">Standard way to create self-contained, exportable functionality. See commonjs.org</li>
+						<li class="l_commonjs1">Standard way to create self-contained, exportable functionality. See commonjs.org for the spec.</li>
 						<li class="l_commonjs2">Goals:<br/><ul style="margin:5px 0 10px 60px;"><li>Private scope within the module</li><li>Explicitly exported API</li><li>Decoupling and reusability</li></ul></li>
 						<li class="l_commonjs3">Inside a module, <code>exports</code> is an object to which you can attach properties</li>
 						<li class="l_commonjs4">You can replace that property by setting <code>module.exports</code></li>
@@ -980,60 +967,153 @@ var button2 = new Button('bar');
 				</section>
 
 				<section>
-					<h2 style="" class="l_maintain">Code for Maintainability</h2>
+					<h2 style="" class="l_maintain">Code for Readability</h2>
 					<ul style="width:80%;">
+					</ul>
+					<ul style="width:40%;float:left;">
 						<li class="l_maintain1">Naming variables and objects</li>
 						<li class="l_maintain2">Spacing and indentation</li>
-						<li class="l_maintain3">Comments</li>
-						<li class="l_maintain4">Pass {} rather than a list of arguments</li>
+						<li class="l_maintain3">Pass {} rather than a list of arguments</li>
+						<li class="l_maintain4">Comments</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_maintain"></div></div>
+					<pre style="width:550px;float:right;margin-top:-50px;"><code contenteditable>
+var a; // not so good
+var object_user_level_superadmin; // ugh
+var admin; // Goldilocks!
+
+myFunc(1, 2, 1, 3); // unclear
+myFunc({
+  height: 1, width: 2, left: 1, right: 3
+}); // much clearer
+					</code></pre>
+<div class="fragment">
+					<pre style="clear:both;width:450px;float:left;"><code contenteditable>
+// http://en.wikipedia.org/wiki/JSDoc
+/**
+ * Creates an instance of Circle.
+ *
+ * @constructor
+ * @this {Circle}
+ * @param {number} r The desired radius of the circle.
+ */
+					</code></pre>
+
+					<pre style="width:550px;float:right;"><code contenteditable>
+// http://www.naturaldocs.org/
+/*
+ Function: Multiply
+
+ Multiplies two integers.
+
+ Parameters:
+
+    x - The first integer.
+    y - The second integer.
+
+ Returns:
+
+    The two integers multiplied together.
+
+*/
+					</code></pre>
+</div>
+					<div class="slidenote"><div class="l_slidenote_maintain">Readable code is maintainable code. Whether you or some other developer has to revisit your code later, you want the developer to be able to quickly understand your code so changes and fixes can be implemented. <br/><br/>Name variables reasonably -- not too short and not too long. Be consistent with spacing and indentation; follow your company or co-worker's conventions. Liberally use comments especially to explain dense or potentially confusing code. While Titanium's tooling doesn't directly support the standard JS documentation formats, following those conventions is still a good idea. Plus, you could run your Titanium files through a JSDoc/Natural Docs processor to create code documentation.</div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_garbagecollection">Garbage Collection</h2>
-					<div class="slidenote"><div class="l_slidenote_garbagecollection"></div></div>
+					<ul style="width:80%;">
+						<li class="l_garbage1">Automatic via "mark &amp; sweep"</li>
+						<li class="l_garbage2">Objects collected when no references remain</li>
+						<li class="l_garbage3">Nothing in the global space is ever collected!</li>
+						<li class="l_garbage4">"Force" collection by encapsulating within functions or modules that will go out of scope</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_garbagecollection">Before we can talk about avoiding memory leaks, we need to understand how JavaScript cleans up variable references and memory.<br/><br/>JavaScript uses a "stop the world" automatic garbage collection routine to clean up memory. It sweeps through memory, marking objects in use; then tears down any that are unmarked (and hence unused). Nothing in the global scope can be collected because there will always be a reference to the object. Within functions or other scopes, you can force collection by encapsulating within functions or modules that will go out of scope.</div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_avoidingleaks">Avoiding Memory Leaks</h2>
-					<div class="slidenote"><div class="l_slidenote_avoidingleaks"></div></div>
+					<ul style="width:80%;">
+						<li class="l_avoidleaks1">Don't store variables in the global scope</li>
+						<li class="l_avoidleaks2">Set objects = null when no longer needed</li>
+						<li class="l_avoidleaks3">Watch for "hidden" references in functions, closures, event listeners, accidental global assignments</li>
+						<li class="l_avoidleaks4">Profile your app</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_avoidingleaks">These are some techniques to minimize wasted memory and avoid leaks. Setting objects to null doesn't actually remove the object. But it minimizes it's memory use. We'll cover how to profile an app in the advanced course.</div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_performance">Performant Coding</h2>
-					<div class="slidenote"><div class="l_slidenote_performance"></div></div>
-				</section>
-
-
-				
-
-<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
-				<section>
-					<h2 style="" class="l_demo">Demo</h2>
 					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
+						<li class="l_perf1">Defer execution &mdash; load modules as needed &amp; don't Ti.include() code</li>
+						<li class="l_perf2">Modules cache code so it's not re-evaluated</li>
+						<li class="l_perf3">Avoid the global scope</li>
+						<li class="l_perf4">Use closures sparingly</li>
+						<li class="l_perf5">Avoid eval() and implicit evals</li>
+						<li class="l_perf6">Don't change data types stored in a variable</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
+					<div class="slidenote"><div class="l_slidenote_performance">Avoid include() statments and use modules instead. They offer deferred execution and caching to both minimize memory use and speed up perceived performance. Avoid the global scope. In addition to memory leak problems, JavaScript must "step up" through the scope chain to find your variables. This means you should define variables a function needs inside that function when feasible.<br/><br/>Modern JavaScript engines like V8 include internal optimizations that can be defeated when you change the type of data stored in a variable. So while JavaScript permits that, try to not do it.</div></div>
 				</section>
 
-				
+				<section>
+					<h2 style="" class="l_perfloops">Performant Loops</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_perfloops1">Set upper bound before loop</li>
+						<li class="l_perfloops2">For/in loops slower than for or while</li>
+						<li class="l_perfloops3">Define local references</li>
+						<li class="l_perfloops4">Operators a little faster than functions</li>
+					</ul>
+					<pre style="width:550px;float:right;"><code contenteditable>
+for(var i=0, j=arr.length; i < j; i++) { }
+// faster than
+for(var i=0; arr.length; i++) { }
+
+var foo = bar.someproperty.anotherproperty
+while(foo < 10) { }
+// faster than
+while(bar.someproperty.anotherproperty < 10) { }
+
+for(var i=0; i < 100; i++) {
+  someVal = (a < b) ? a : b;
+  // is a tiny bit faster than
+  someVal = Math.min(a,b);
+
+  arr[arr.length] = newMember
+  // is faster than
+  arr.push(newMember)
+}
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_perfloops">Loops by their nature are very sensitive to even small optimizations. Thus, take the time to implement features like shown here. The last bullet shown in code: while operators are only a tiny bit faster than functions, in a long-running loop this difference matters.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_tiperf">Titanium Performance Tips</h2>
+					<p class="l_tiperfpara">From the "You'll just have to believe us" category ...</p>
+
+					<ul style="width:80%;">
+						<li class="l_tiperf1">Event listeners are slower than callbacks &mdash; use callbacks rather than app-level events</li>
+						<li class="l_tiperf2">Take advantage of the build-time optimization features. They're a lot faster than if(platformTest) statements</li>
+						<li class="l_tiperf3">Don't extend the Titanium proxies</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_tiperf">We haven't learned much about Titanium and its JavaScript environment yet. So, these are all "just believe us" types of tips. Once you've worked through the rest of the lessons, these items will make more sense.<br/><br/>Event listeners are slower than callbacks &mdash; I realize we haven't dug into event listeners yet. But keep in mind that you should use callbacks instead.<br/><br/>Titanium and Alloy offer build-time optimization techniques that create much faster code than testing to see if you're running on Android or iOS. Use those techniques.<br/><br/>Don't extend the built-in Titanium objects. You app could crash or hang.</div></div>
+				</section>
+
+
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
 					<h1 style="" class="l_summary">Summary</h1>
 					<p class="l_summarypara">In this lesson, you:</p>
 			    	<ul>
-			    		<li class="l_summary1">learning objective as past tense</li>
-			    		<li class="l_summary2">e.g.</li>
-			    		<li class="l_summary3">Created your app's UI with Views</li>
-			    		<li class="l_summary4">Applied styles using TSS files</li>
-			    		<li class="l_summary5">agenda item</li>
+			    		<li class="l_summary1">Examined JavaScript language basics</li>
+			    		<li class="l_summary1">Gained an understanding of variables and scope</li>
+			    		<li class="l_summary1">Learned how to create and use functions</li>
+			    		<li class="l_summary1">Learned how to create and use objects and manage inheritance</li>
+			    		<li class="l_summary1">Examined CommonJS modules</li>
+			    		<li class="l_summary1">Examined code that implements JavaScript best practices</li>
 			    	</ul>
 					<div class="slidenote">
-						<div class="l_slidenote_summary"></div>
+						<div class="l_slidenote_summary">&nbsp;</div>
 					</div>
 				</section>
 
@@ -1049,13 +1129,17 @@ var button2 = new Button('bar');
 					<p class="l_labintro">In this lab, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
-						<li class="l_labobjective2">e.g.</li>
-						<li class="l_labobjective3">Display a list of fugitives in a table</li>
-						<li class="l_labobjective4">etc.</li>
+						<li class="l_labobjective1">Take the "JavaScript Scope Quiz"</li>
+						<li class="l_labobjective2">Homework: Take Baranovskiy’s JavaScript quiz</li>
+						<li class="l_labobjective3">Homework: Work through John Resig's Learning JavaScript tutorial</li>
 					</ul>
 					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
-					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
+					<div class="slidenote"><div class="l_slidenote_lab">
+						lab tip: use http://jsbin.com/ with HTML pane off, JS, Console, &amp; Output on to test code
+						http://madebyknight.com/javascript-scope/
+						http://dmitry.baranovskiy.com/post/91403200 (follow up at http://www.nczonline.net/blog/2010/01/26/answering-baranovskiys-javascript-quiz/)
+						http://ejohn.org/apps/learn/
+						</div></div>
 				</section>
 
 <!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->
