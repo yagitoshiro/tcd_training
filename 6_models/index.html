@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>LESSON TITLE</title>
-		<meta name="description" content="Titanium Certified Developer Training">
+		<title>Models</title>
+		<meta name="description" content="Alloy Models, Titanium Certified Developer Training">
     	<meta name="author" content="Appcelerator, Inc." />
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -61,7 +61,7 @@
 			<div class="slides">
 				
 				<section>
-					<h1 style="margin-top:100px;" class="l_lessontitle">LESSON TITLE</h1>
+					<h1 style="margin-top:100px;" class="l_lessontitle">Models &amp; Collections</h1>
 					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
 					<script>
 						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
@@ -75,48 +75,599 @@
 				<section id="agenda">
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
-			    		<li class="l_agenda1">performance-based learning objective</li>
-			    		<li class="l_agenda2">e.g.</li>
-			    		<li class="l_agenda3">Create your app's UI with Views</li>
-			    		<li class="l_agenda4">Apply styles using TSS files</li>
-			    		<li class="l_agenda5">agenda item</li>
+			    		<li class="l_agenda1">Explore Alloy's implementation of Backbone's Models &amp; Collections</li>
+			    		<li class="l_agenda2">Represent your app's data via Models and Collections</li>
+			    		<li class="l_agenda3">Bind Models and Collections to Views</li>
+			    		<li class="l_agenda4">Save data locally and remotely via sync adapters</li>
+			    		<li class="l_agenda5">Explore API (non-Alloy) techniques for saving data to properties and local database</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
 					</div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
-					<h5 style="clear:both;">Alloy</h5>
-
-					<div class="slidenote"><div class="l_slidenote_classname"></div></div>
+					<h5 style="clear:both;" class="l_modelscollections">Models &amp; Collections</h5>
+					<div class="slidenote"><div class="l_slidenote_modelscollections"></div></div>
 				</section>
-				
 
-<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
+					<h2 style="" class="l_model">Models</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_model1">Encapsulate the data and state of your app</li>
+						<li class="l_model2">Define data-related rules (defaults, validation, etc.)</li>
+						<li class="l_model3">Define where and how that data is persisted</li>
+						<li class="l_model4">Define data-transformation logic ("business logic")</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
+					<pre style="width:550px;float:right;"><code contenteditable>
+// File: app/models/book.js
+exports.definition = {
+  config: {
+    "columns": {
+      "title":"string",
+      "author":"string",
+      "isbn":"string"
+    },
+    "adapter": {
+      "type": "sql",
+      "collection_name": "book"
+    }
+  }
+}
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_model">Models are where the data of your app is defined and ultimately stored. Models are defined in JavaScript files of the format shown here. These files are stored in the app/models folder. At minimum, you specify the data to be stored (the columns shown in this code sample). To persist data, you define an adapter. As shown here, storing your data in a SQL database is enabled by using a 'sql' type adapter. We'll cover adapters more later. Your app could have more than one model.</div></div>
 				</section>
 
+				<section>
+					<h2 style="" class="l_collections">Collections</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_collections1">Groups of models</li>
+						<li class="l_collections2">Created in the controller</li>
+						<li class="l_collections3">There is no "models/mycollection.js" file</li>
+						<li class="l_collections4">But you can customize within the model file</li>
+					</ul>
+					<pre style="width:550px;float:right;"><code contenteditable>
+// File: app/controllers/someview.js
+var library = Alloy.createCollection('book'); 
+library.fetch(); // Grab data from persistent storage 
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_collections">Collections are ordered sets of models and inherit from the Backbone.Collection class. Collections are automatically defined and available in the controller scope as the name of the model. To access a collection in the controller, use the Alloy.createCollection method with the name of the JavaScript file minus the '.js' extension as the required parameter. </div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_modeldetails">Model Anatomy</h2>
+					<pre style="margin-top:20px;"><code contenteditable>
+// File: app/models/book.js
+exports.definition = {
+    config: {
+        // table schema and adapter information
+    },
+    defaults: {
+        // default values for fields go here
+    },
+    extendModel: function(Model) {		
+        _.extend(Model.prototype, {
+            // Put model validation and manipulation functions here
+        });
+		
+        return Model;
+    },
+
+    extendCollection: function(Collection) {		
+        _.extend(Collection.prototype, {
+            // Put collection validation and manipulation functions here
+        });
+		
+        return Collection;
+    }
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_modeldetails">This is a complete illustration of the anatomy of a model. As you saw in the preceding slide about models, the config section defines your data structure and adapter. The extend* functions enable you to add logic to your model and collection; those are optional functions. </div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_accessing">Accessing Model Data</h2>
+					<pre style=""><code contenteditable>
+// Define a model of type 'book'
+var book = Alloy.createModel('book', {
+  title:'Green Eggs and Ham',
+  author:'Dr. Seuss'
+}); 
+
+// access the fields in our model
+var title = book.get('title');
+var author = book.get('author');
+
+// Assuming a Ti.UI.Label object in the view with id = 'label'
+$.label.text = title + ' by ' + author;
+
+book.set('title', 'Cat in the Hat');
+$.label2text = 'Also by ' + author + ', ' + title;
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_accessing">In this case, we define a model in our controller. Then, we access its fields to use its data in our UI component.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_accesscoll">Accessing Model/Collection Data</h2>
+					<pre style=""><code contenteditable>
+function addItem() {
+  var books = Alloy.Collections.books;
+
+  // Create a new model for the books collection
+  var book = Alloy.createModel('book', {
+      author : $.authorField.value,
+      title : $.titleField.value,
+      isbn : $.isbnField.value
+  });
+  
+  // add new model to the collection
+  books.add(book);
+
+  // save the model to persistent storage
+  book.save();
+
+  // reload the tasks
+  books.fetch();
+
+  closeWindow();
+}
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_accesscoll">In this case, we access our collection, add to it, then save it again. We don't have to concern ourselves how the data will be saved here. That's defined in the model definition file and handled by Alloy. Same with fetching data; we just call fetch() and Alloy figures it out.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_extending">Extending Backbone.Model</h2>
+					<pre style=""><code contenteditable>
+exports.definition = {
+    config: {
+        // table schema and adapter information
+    },
+    extendModel: function(Model) {		
+        _.extend(Model.prototype, {
+            // Implement the validate method
+            validate: function (attrs) {
+    	        for (var key in attrs) {
+                    var value = attrs[key];
+                    if (key === "title") {
+                        if (value.length &lt;= 0) {
+                            return "Error: No title!";
+                        }
+                    }
+                }
+            },
+            // Extend Backbone.Model with a custom property and function
+            customProperty: 'book',
+            customFunction: function() {
+                Ti.API.info('I am a book model.');
+            },	
+        });
+        return Model;
+    }
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_extending"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_backbone">Models/Collections based on Backbone</h2>
+					<ul style="width:80%;">
+						<li class="l_backbone1">Backbone.js is an MVC framework for web development</li>
+						<li class="l_backbone2">Alloy's models/collections based on the Backbone's classes</li>
+						<li class="l_backbone3">Requires Underscore.js (so it's included in Alloy projects)</li>
+					</ul>
+					<p class="l_backbonepara" style="text-align:center;"><img src='images/backbonejs.png'></p>
+					<div class="slidenote"><div class="l_slidenote_backbone"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_extcoll">e.g. Extending Collections to Sort</h2>
+					<pre style="width:420px;float:right;"><code contenteditable>
+// in our controller
+var books = Alloy.Collections.books;
+// force a sort() by title
+books.sort();
+
+					</code></pre>
+					<pre style="width:580px;float:left;"><code contenteditable>
+// in our model
+exports.definition = {
+  config: {
+      // schema and adapter info
+  },
+  extendModel: function(Model) {		
+      _.extend(Model.prototype, {
+      });
+   return Model;
+  },
+  extendCollection: function(Collection) {		
+      _.extend(Collection.prototype, {
+          // Implement the comparator method,
+          // which is used to sort the collection
+  	    comparator : function(book) {
+      	    return book.get('title');
+          }
+
+      }); // end extend
+
+      return Collection;
+  }
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_extcoll">Collections will be sorted by default if you define a comparator() function. You can also force a collection to re-sort itself by calling sort() Your comparator could be more complex than shown here. See the Backbone docs for more information.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_modelevents">Model/Collection Events</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_modelevents1">Many Alloy (Backbone) operations fire events</li>
+						<li class="l_modelevents2">Model events include: add, change, change:field_name, &amp; error</li>
+						<li class="l_modelevents3">Collection events include add, change, error, remove, reset, &amp; sort</li>
+					</ul>
+					<pre style="width:550px;float:right;"><code contenteditable>
+exports.definition = {
+    config: {
+        // table schema and adapter information
+    },
+    initialize: function(){
+       this.on("error", function(currentModel){
+         Ti.API.error('error!!');
+       });
+    },
+    extendModel: function(Model) {		
+       _.extend(Model.prototype, {
+          // Implement the validate method
+          validate: function (attrs) {
+            // validation code here
+         },
+...
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_modelevents"></div></div>
+				</section>
+
+
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_appdata">Representing App Data</h5>
+					<div class="slidenote"><div class="l_slidenote_appdata"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_dbdatatypes">Data types</h2>
+					<ul style="width:80%;">
+						<li class="l_dbdatatypes1">SQLite: TEXT, INTEGER, REAL, BLOB</li>
+						<li class="l_dbdatatypes2">Alloy: string, varchar, int, tinyint, smallint, bigint, double, float, decimal, number, date, datetime and boolean</li>
+						<li class="l_dbdatatypes3">Map logically (int, tinyint, etc. &rarr; INTEGER)</li>
+						<li class="l_dbdatatypes4">Unknown types map to TEXT</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_dbdatatypes">Under the covers, SQLite supports only the four data types listed here, plus NULL values. Alloy supports a richer set familiar to those who've worked with MySQL or other web databases. These are mapped to logical counterparts automatically. Unknow types map to TEXT. You use the type names shown here in the model definition file.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_whereclause">WHERE clause</h2>
+					<pre style=""><code contenteditable>
+extendCollection : function(Collection) {
+   _.extend(Collection.prototype, {
+   		comparator: function(todo) {
+		return todo.get('done');
+   },
+   /** returns all objects that were completed today */
+   completedToday : function(_options) {
+       var self = this;
+
+       var yesterday, tomorrow, today;
+       // get today and reset to midnight
+       yesterday = moment().hours(0).minutes(0).seconds(1).subtract('days', 1);
+       tomorrow = moment().hours(0).minutes(0).seconds(1).add('days', 1);
+
+       var p = [];
+       p.push(yesterday.unix() +"");
+       p.push(tomorrow.unix() +"");
+       // pass params
+       _options['query'] = {
+           "sql" : 'WHERE date_completed between ? AND ?',
+           "params" : p
+       };
+       self.fetch(_options);
+   },
+...
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_whereclause">In this snippet from a model definition, we see a custom method that returns to-do items that were completed today. It determines current dates and uses them to create a WHERE clause. That clause is then passed to the fetch() method as part of the options map.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_underscore">Underscore methods</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_underscore1">Alloy includes the underscore.js library</li>
+						<li class="l_underscore2">Use its methods to provide group-by and other data selection techniques</li>
+						<li class="l_underscore3">See http://underscorejs.org/#collections</li>
+					</ul>
+					<pre style="width:550px;float:right;"><code contenteditable>
+_.each(yourCollection, someFunction);
+_.sortyBy(yourCollection, fieldName);
+_.groupBy(yourCollection, fieldName);
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_underscore"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_prebuilt">Installing a Pre-built Database</h2>
+					<pre style=""><code contenteditable>
+exports.definition = {
+  config: {
+    "columns": {
+      "name":"text",
+      "nickname":"text"
+    },
+    "adapter": {
+      "type": "sql",
+      "collection_name": "fighters",
+
+      // Pre-load the database (safe method)
+      "db_file": "fighters.sqlite",
+
+      // db_name required when pre-loading a db
+      // should the name of your pre-loaded db
+      "db_name": "fighters"
+    }
+  }
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_prebuilt">You can install a SQLite database as part of your model definition. Specify the name relative to your app's assets folder. This is a safe technique -- the database won't be reinstalled each time the app is run, only the first time.</div></div>
+				</section>
+
+
+
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_binding">Binding Models &amp; Collections to Views</h5>
+					<div class="slidenote"><div class="l_slidenote_binding"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_bind">Binding</h2>
+					<ul style="width:80%;">
+						<li class="l_bind1">Bind a collection to a TableView or View object</li>
+						<li class="l_bind2">Bind a model to a component (i.e. button)</li>
+						<li class="l_bind3">Alloy monitors add(), destroy(), remove(), change(), and fetch() methods and updates the view</li>
+						<li class="l_bind4">Accomplished in View XML rather than controller</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_bind">In Alloy, collection data can be synchronized to a TableView or View object, or a single model can be bound to a view component. The Backbone add, destroy, remove, change and fetch events are monitored to update the data in the view.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_bindexample1">Example 1</h2>
+					<pre style=""><code contenteditable>
+// in the View
+&lt;Alloy>
+  &lt;Collection src="book" />
+  &lt;Window class="container">
+    &lt;TableView dataCollection="book">
+      &lt;!-- Also can use Require -->
+      &lt;TableViewRow title="{title}" />
+    &lt;/TableView>
+  &lt;/Window>
+&lt;/Alloy>
+
+// in the associated controller
+$.index.open();
+var library = Alloy.Collections.book;
+library.fetch();
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_bindexample1"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_example2">Example 2</h2>
+					<pre style=""><code contenteditable>
+&lt;Alloy>
+  &lt;Collection src="myModel"/>
+
+  &lt;Tab title="global/&lt;Require>">
+    &lt;Window id="window" title="global/&lt;Require>">
+
+      &lt;!-- use the global reference to the dataCollection -->
+      &lt;TableView id="table" dataCollection="myModel" onClick="removeItem">
+
+        &lt;!-- use a &lt;Require> for our repeated TableViewRow -->
+        &lt;Require src="row"/>
+      &lt;/TableView>
+
+      &lt;!-- let's use a simple button or android -->
+      &lt;Button class="addButton" onClick="addItem" platform="android"/>
+    &lt;/Window>
+  &lt;/Tab>
+&lt;/Alloy>
+
+// in the controller
+var common = require('common'); // a helper library
+function addItem(e) {
+  common.addItem(myModels);
+}
+var myModels = Alloy.Collections.myModel;
+myModels.fetch();
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_example2"></div></div>
+				</section>
+
+
+				<section>
+					<h2 style="" class="l_release">Releasing the model binding</h2>
+					<pre style=""><code contenteditable>
+// in the View
+&lt;Alloy>
+  &lt;Window>
+    &lt;TableView dataCollection="movies">
+      &lt;TableViewRow title="{title}"/>
+    &lt;/TableView>
+  &lt;/Window>
+&lt;/Alloy>
+
+// in the controller
+$.movies.on('close', function() {
+	// make sure to call $.destroy() when you are done with the 
+	// controller/window. This will ensure that no memory is 
+	// leaked and that the bindings are properly released.
+	$.destroy();
+});
+
+Alloy.Collections.movies.fetch();
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_release"></div></div>
+				</section>
+
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_sync">Sync Adapters (saving data)</h5>
+					<div class="slidenote"><div class="l_slidenote_sync"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_savingmodels">Saving a Model</h2>
+					<pre style=""><code contenteditable>
+function addItem(itemname) {
+  var todos = Alloy.Collections.todo;
+
+  // Create a new model for the todo collection
+  var task = Alloy.createModel('Todo', {
+      item : itemname,
+      done : 0
+  });
+  
+  // add new model to the global collection
+  todos.add(task);
+
+  // save the model to persistent storage
+  task.save();
+
+  // reload the tasks
+  todos.fetch();
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_savingmodels">Saving model data is as simple as calling save(). But where does that data get stored? For that, you need to specify a sync adapter when defining your model.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_syncadapters">Sync Adapters</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_syncadapters1">'sql' - SQLite database on iOS/Android</li>
+						<li class="l_syncadapters2">'localStorage' - HTML5 Local Storage on Mobile Web</li>
+						<li class="l_syncadapters3">'properties' - application properties on all</li>
+						<li class="l_syncadapters4">Specify in the model</li>
+						<li class="l_syncadapters5">Purpose of collection_name varies</li>
+					</ul>
+					<pre style="width:550px;float:right;"><code contenteditable>
+// File: app/models/book.js
+exports.definition = {
+  config: {
+    "columns": {
+      "title":"string",
+      "author":"string",
+      "isbn":"string"
+    },
+    "adapter": {
+      "type": "sql",
+      "collection_name": "book"
+    }
+  }
+}
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_syncadapters"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_syncextras">Custom Sync Adapters</h2>
+					<ul style="width:80%;">
+						<li class="l_syncextras1">Community contributions: ACS, Dual-storage (local &amp; remote), and more</li>
+						<li class="l_syncextras2">Model/Collection  methods implement RESTful calls</li>
+						<li class="l_syncextras3">Define in a JavaScript file in either app/assets/alloy/sync or app/lib/alloy/sync </li>
+						<li class="l_syncextras4">See docs for more info: http://goo.gl/XTn9O</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_syncextras"></div></div>
+				</section>
+
+
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_direct">Direct/API Style Access</h5>
+					<div class="slidenote"><div class="l_slidenote_direct"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_apiprops">Properties API</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_apiprops1">Lightweight key/value store</li>
+						<li class="l_apiprops2">Best for few values, mostly strings</li>
+						<li class="l_apiprops3">Ti.App.Properties offers get/set methods for strings, booleans, numbers, objects</li>
+						<li class="l_apiprops4">Remains in memory during app execution</li>
+					</ul>
+					<pre style="width:550px;float:right;"><code contenteditable>
+var foo = Ti.App.Properties.getString('foo');
+var foo = 'bar';
+Ti.App.Properties.setString('foo', foo);
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_apiprops">Properties are useful for storing small bits of data about your app, such as a user name, state information, and so forth. These values are read into memory and remain in memory during the app's execution. So properties are not suitable for heavy data storage purposes. There are getter/setters for the common data types. You don't need to JSON encode or decode when using these methods.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_apidb">Database API</h2>
+					<ul style="width:40%;float:left;">
+						<li class="l_apidb1">Direct access to SQLite DB</li>
+						<li class="l_apidb2">Ti.Database.open()</li>
+						<li class="l_apidb3">Ti.Database.install()</li>
+						<li class="l_apidb4">Interact with "raw" SQL commands</li>
+						<li class="l_apidb5">Not available on Mobile Web</li>
+						<li class="l_apidb6">You can use direct DB access with Alloy (just not with models)</li>
+					</ul>
+					<pre style="width:560px;float:right;"><code contenteditable>
+var conn = Ti.Database.open('todos');
+var data = [];
+var rows = db.execute('SELECT * FROM todoitems');
+while(rows.isValidRow()) {
+  data.push({
+	title: rows.fieldByName('todo'),
+	id: rows.fieldByName('id')
+  });
+  rows.next();
+}
+rows.close();
+conn.close();
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_apidb">You can use Ti.Database for API-style access to SQLite databases. You use "raw" SQL commands rather than any sort of ORM or Model layer between your code and the database. If the database doesn't exist, the open() method will create it. Similarly, the install() method is 'safe' in that it won't overwrite the database if it was already installed. It will simply open the database. The SQLite database is not available on Mobile Web (via either models or API access).</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_modellimits">API access benefits</h2>
+					<ul style="width:80%;">
+						<li class="l_modellimits1">SQL adapter limitations: no joins, group by, or other "advanced" query support</li>
+						<li class="l_modellimits2">Use existing DB libraries</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_modellimits">As of this writing, the SQL adapter supplied with Alloy does not support any 'advanced' queries. For example, you cannot do joins between tables via Alloy models and collections. Until the adapter is improved, the direct API access method shown here is your best solution.<br/><br/>If you have an existing app that uses a library of database access functions, you can still use that library with an Alloy app. You would simply use it as a CommonJS module within your project and not use Models to represent your data.</div></div>
+				</section>
 				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
 					<h1 style="" class="l_summary">Summary</h1>
 					<p class="l_summarypara">In this lesson, you:</p>
 			    	<ul>
-			    		<li class="l_summary1">learning objective as past tense</li>
-			    		<li class="l_summary2">e.g.</li>
-			    		<li class="l_summary3">Created your app's UI with Views</li>
-			    		<li class="l_summary4">Applied styles using TSS files</li>
-			    		<li class="l_summary5">agenda item</li>
+			    		<li class="l_summary1">Explored Alloy's implementation of Backbone's Models &amp; Collections</li>
+			    		<li class="l_summary2">Represented your app's data via Models and Collections</li>
+			    		<li class="l_summary3">Bound Models and Collections to Views</li>
+			    		<li class="l_summary">Saved data locally and remotely via sync adapters</li>
+			    		<li class="l_summary5">Explored API (non-Alloy) techniques for saving data to properties and local database</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_summary"></div>
