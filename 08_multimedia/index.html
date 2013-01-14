@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>LESSON TITLE</title>
-		<meta name="description" content="Titanium Certified Developer Training">
+		<title>Multimedia</title>
+		<meta name="description" content="Multimedia, Titanium Certified Developer Training">
     	<meta name="author" content="Appcelerator, Inc." />
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -61,7 +61,7 @@
 			<div class="slides">
 				
 				<section>
-					<h1 style="margin-top:100px;" class="l_lessontitle">LESSON TITLE</h1>
+					<h1 style="margin-top:100px;" class="l_lessontitle">Multimedia</h1>
 					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
 					<script>
 						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
@@ -75,6 +75,9 @@
 				<section id="agenda">
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
+			    		<li class="l_agenda1">Explore Titanium Media APIs</li>
+			    		<li class="l_agenda2">Leveraging media in your application</li>
+
 			    		<li class="l_agenda1">performance-based learning objective</li>
 			    		<li class="l_agenda2">e.g.</li>
 			    		<li class="l_agenda3">Create your app's UI with Views</li>
@@ -87,11 +90,51 @@
 				</section>
 
 				<section>
-					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
-					<h5 style="clear:both;">Alloy</h5>
-
-					<div class="slidenote"><div class="l_slidenote_classname"></div></div>
+					<h2 class="l_audio_api">Audio APIs</h2>
+					<p align="left" class="l_play_sounds">Play sounds from local or remote files (Sound)</p>
+					<p align="left" class="l_streaming_audio">Streaming audio support (AudioPlayer)</p>
+					<p align="left" class="l_audio_recording">Audio recording support</p>
+					<p align="left" class="l_demos_audio">Demos and Code Walkthrough</p>
+					<div class="slidenote"><div class="l_slidenote_audio_api">Demos in the Kitchen Sink<br><ul><li>Phone tab / Sounds / Local  (demo each button)</li><li>Sounds / Record (record with lo/hi fidelity &amp; playback)</li></ul>Show code: examples/sound_local.js<ul><li>Show: createSound()</li><li>play(), pause(), stop() in button event handlers</li><li> looping</li></ul></div></div>
 				</section>
+				
+				<section>
+					<h2 class="l_video_api">Video APIs</h2>
+					<p align="left" class="l_play_video">Play video from local files</p>
+					<p align="left" class="l_streaming_video">Streaming video support - HTTP Live Streaming (iOS), RTSP (Android), pseudo-streaming</p>
+					<p align="left" class="l_video_capture">Video capture support</p>
+					<p align="left" class="l_demos_video">Demos and Code Walkthrough for Local Video</p>
+					<div class="slidenote"><div class="l_slidenote_video_api">Demos in the Kitchen Sink<br><ul><li>Phone tab / Play Movie / Local -- point out overlays</li><li>Phone tab / Play Movie / Remote streaming</li></ul>Show code: examples/movie_local.js<ul><li>Show: contentURL property, label overlay</li></ul></div></div>
+				</section>
+				
+				<section>
+					<h2 class="l_still_api">Still Image APIs</h2>
+					<p align="left" class="l_display_using">Display using ImageView or backgroundImage</p>
+					<p align="left" class="l_can_either">Can either be local or remote</p>
+					<p align="left" class="l_can_be">Can be density specific in either case</p>
+					<p align="left" class="l_demo_local">Demo: Image from Local URL</p>
+					<p align="left" class="l_demo_remote">Demo: Image from Remote URL</p>
+					<p align="left" class="l_demo_blob">Demo: Image from file blob</p>
+					<div class="slidenote"><div class="l_slidenote_still_api">Demos in the Kitchen Sink<br><ul><li>Base UI tab / Views / Image Views / Basic &mdash; responds to events</li><li>Remote image</li><li>Animated &mdash; array of images / flipbook effect</li></ul>Show code:<ul><li>examples/imageview_basic.js -- Show: createImageView</li><li>Examples/imageview_file.js &mdash; show image property pointing to local file</li><li>explain the flexible nature of property (accepts file path, url, file system object)</li></ul></div></div>
+				</section>
+
+				<section>
+					<h2 class="l_capturing_images">Capturing Images</h2>
+					<p align="left" class="l_can_get">Can get images from the device via camera or gallery</p>
+					<p align="left" class="l_function_names">Function names are different, signature the same</p><br>
+					<p align="left" class="l_success"><b>success:</b>called on photo retrieval</p><br>
+					<p align="left" class="l_error"><b>error:</b>called on a device error</p><br>
+					<p align="left" class="l_cancel"><b>cancel:</b>called when a user cancels photo retrieval</p><br>
+					<div class="slidenote"><div class="l_slidenote_capturing_images">Same signature means you can use nearly identical code whether working with the camera or gallery<br>Demo notes on next slide</div></div>
+				</section>				
+				
+			
+				<section>
+					<h2 class="l_demo_photo_gallery">Demo: Photo Gallery</h2>
+					<p style="text-align:left;" class="l_photodemo">From KitchenSink:<br/>Phone > Photo Gallery<br/>examples/photo_gallery.js and examples/camera_basic.js</p>
+					<div class="slidenote"><div class="l_slidenote_demo_photo_gallery">** Make sure to have images pre-installed in your simulator/emulator<br>Demos in the Kitchen Sink<ul><li>Phone tab / Photo Gallery</li></ul>Show code: examples/photo_gallery.js<ul><li>createImageView (holds image), openPhotoGallery and its 3 callbacks</li><li>allowEditing and mediaTypes</li><li>imageView.image</li></ul>Show code: examples/camera_basic.js<ul><li>showCamera</li><li>image = event.media</li><li>saveToPhotoGallery and mediaTypes properties</li></ul></div></div>
+				</section>
+				
 				
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
@@ -135,13 +178,20 @@
 					<p class="l_labintro">In this lab, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
-						<li class="l_labobjective2">e.g.</li>
+						<li class="l_labobjective1">Capture an image from the camera or load it from the gallery</li>
+						<li class="l_labobjective2">Display the image in an app</li>
 						<li class="l_labobjective3">Display a list of fugitives in a table</li>
 						<li class="l_labobjective4">etc.</li>
 					</ul>
-					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
-					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
+					<p align="left" class="l_make">Make TiBountyHunter capture an image (camera or gallery), and store the photo on the filesystem</p><br>
+					<p align="left" class="l_requirements">Requirements:</p>
+					<div align="left"><ul>
+						<li class="l_capture_image">Capture an image (camera or gallery)</li>
+						<li class="l_store_image">Store image on the filesystem</li>
+						<li class="l_associate_image">Associate the image with a row in the database</li>
+					</ul></div>
+					<p class="l_labURL" style="font-size:0.7em;margin-top:20px;"><a href='https://wiki.appcelerator.org/display/td/260+Working+With+Media+and+the+File+System'>wiki.appcelerator.org/display/td/260+Working+With+Media+and+the+File+System</a></p>
+					<div class="slidenote"><div class="l_slidenote_lab">Will need to uninstall app from simulator because of database changes<br>Store the path to the image in the database, not a blob<br>Get the placeholder image from the Wiki<br>Demo - <b>TiBH260</b><ul><li>Make sure to have an image in your sim's gallery</li><li>Show app in both simulator/emulator</li><li>Select a photo for a bounty and show it sticks</li></ul></div></div>
 				</section>
 
 <!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->

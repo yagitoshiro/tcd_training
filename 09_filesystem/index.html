@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>LESSON TITLE</title>
-		<meta name="description" content="Titanium Certified Developer Training">
+		<title>Filesystem</title>
+		<meta name="description" content="Filesystem, Titanium Certified Developer Training">
     	<meta name="author" content="Appcelerator, Inc." />
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -61,7 +61,7 @@
 			<div class="slides">
 				
 				<section>
-					<h1 style="margin-top:100px;" class="l_lessontitle">LESSON TITLE</h1>
+					<h1 style="margin-top:100px;" class="l_lessontitle">Filesystem</h1>
 					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
 					<script>
 						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
@@ -75,6 +75,9 @@
 				<section id="agenda">
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
+			    		<li class="l_agenda3">Explore Titanium Filesystem APIs</li>
+			    		<li class="l_agenda4">Understand how and where to store data on the filesystem</li>
+
 			    		<li class="l_agenda1">performance-based learning objective</li>
 			    		<li class="l_agenda2">e.g.</li>
 			    		<li class="l_agenda3">Create your app's UI with Views</li>
@@ -87,10 +90,32 @@
 				</section>
 
 				<section>
-					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
-					<h5 style="clear:both;">Alloy</h5>
+					<h2 class="l_files">Files and the Filesystem</h2>
+					<p align="left" class="l_many_titanium">Many Titanium APIs return Blob objects which point to binary data</p>
+					<p align="left" class="l_these_blobs">These blobs and other data (strings, commonly) can be written to Files</p>
+					<p align="left" class="l_the_filesystem">The filesystem is the appropriate place to store binary data</p>
+					<div class="slidenote"><div class="l_slidenote_files"></div></div>
+				</section>
 
-					<div class="slidenote"><div class="l_slidenote_classname"></div></div>
+				<section>
+					<h2 class="l_filesystem">Filesystem Persistence and Security</h2>
+					<p align="left" class="l_your_app">Your application has limited Read/Write access to the filesystem</p>
+					<p align="left" class="l_filesystem_data">Filesystem data persists until uninstall, except temp directory</p>
+					<p align="left" class="l_filesystem_locations">Locations:</p>
+					<p align="left" class="l_filesystem_resourcesDir"><b>Ti.Filesystem.resourcesDirectory  - read-only</b></p>
+					<p align="left" class="l_filesystem_appsDir"><b>Ti.Filesystem.applicationDataDirectory - read/write</b></p>
+					<p align="left" class="l_filesystem_cacheDir"><b>Ti.Filesystem.applicationCacheDirectory - read/write</b></p>
+					<p align="left" class="l_filesystem_tempDir"><b>Ti.Filesystem.tempDirectory - read/write</b></p>
+					<p align="left" class="l_filesystem_extDir"><b>Ti.Filesystem.externalStorageDirectory - read/write</b></p>
+					<p align="left" class="l_plus">plus Ti.Filesystem.isExternalStoragePresent()</p>
+					<div class="slidenote"><div class="l_slidenote_filesystem">Temp directory is wiped on reboot<br>externalStorageDirectory is Android only<br>SDK 1.8 adds iOS ìdo not backupî flag support for files that don't need to be synced to iCloud<br>That's a concern for iOS 5.x+ devices only (older iOS versions don't support iCloud)</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_demo_file_io">Demo: File I/O</h2>
+					<p style="text-align:left;" class="l_filedemo">From KitchenSink:<br/>Persistence app</p>
+					<div class="slidenote"><div class="l_slidenote_demo_file_io">Using the Persistence demo app<br>Run app in simulator, Filesystem tab<br>Reading in JSON file, parsing it to populate text fields<br>Changes to fields are saved to a file on the file system<br>Code walkthrough:
+					<ol><li>Open Persistence project</li><li>Open Resources/test.json and explain contents</li><li>Open Resources/filesystem.js, show:</li></ol><ol><li>Simulator special &mdash; writing to Resources directory</li><li>getFile()</li><li>JSON.parse()</li><li>Setting values of fields</li><li>Event listeners on the fields</li><li>Save button and event handler that saves the values</li></ol></div></div>
 				</section>
 				
 

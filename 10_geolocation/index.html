@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>LESSON TITLE</title>
-		<meta name="description" content="Titanium Certified Developer Training">
+		<title>Geolocation and Mapping</title>
+		<meta name="description" content="Geolocation and Mapping, Titanium Certified Developer Training">
     	<meta name="author" content="Appcelerator, Inc." />
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -61,7 +61,7 @@
 			<div class="slides">
 				
 				<section>
-					<h1 style="margin-top:100px;" class="l_lessontitle">LESSON TITLE</h1>
+					<h1 style="margin-top:100px;" class="l_lessontitle">Geolocation and Mapping</h1>
 					<h5 class="l_subtitle">Titanium Certified Developer (TCD) Training</h5>
 					<script>
 						// DO NOT REMOVE THIS, MUST BE INCLUDED WITH THE FIRST SLIDE
@@ -75,35 +75,115 @@
 				<section id="agenda">
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
-			    		<li class="l_agenda1">performance-based learning objective</li>
-			    		<li class="l_agenda2">e.g.</li>
-			    		<li class="l_agenda3">Create your app's UI with Views</li>
-			    		<li class="l_agenda4">Apply styles using TSS files</li>
-			    		<li class="l_agenda5">agenda item</li>
+			    		<li class="l_agenda1">Learn to use GPS positioning in your applications</li>
+			    		<li class="l_agenda2">Use forward and reverse geo-coding</li>
+			    		<li class="l_agenda3">Integrate native maps</li>
+			    		<li class="l_agenda4">Use custom map annotations</li>
 			    	</ul>
 					<div class="slidenote">
-						<div class="l_slidenote_agenda"></div>
+						<div class="l_slidenote_agenda">GPS positioning in your apps<br>Forward &amp; reverse geocoding to convert addresses to lat/long coords<br> or convert lat/long coords to addresses<br>Include native maps in your apps<br>Customize map annotations</div>
 					</div>
+				</section>
+				
+				<section>
+					<h2 class="l_overview">Overview</h2>
+					<p align="left" class="l_location_apis">Location APIs can be used for everything from device positioning to augmented reality applications. Taking location into account is mobile's killer feature.</p>
+					<p class="l_overviewimage"><img src="images/overview.png" style="margin-top:30px;height:320px;align:center"></p>
+					<div class="slidenote"><div class="l_slidenote_overview">Location is one of mobile's killer features<br>Data delivery, augmented reality, mapping are all great features you can enable via location services</div></div>
+				</section>
+				
+				<section>
+					<h2 class="l_geolocation_support">Geolocation Support in Titanium</h2>
+					<p align="left" class="l_detect_if">Detect if geolocation support is available</p>
+					<p align="left" class="l_obtain_once">Obtain once or continually monitor the user's location</p>
+					<p align="left" class="l_device_compass">Device Compass (if available)</p>
+					<p align="left" class="l_forward_and">Forward and reverse geo-coding</p>
+					<div class="slidenote"><div class="l_slidenote_geolocation_support">We'll look at platform specifics on the upcoming slides</div></div>
 				</section>
 
 				<section>
-					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
-					<h5 style="clear:both;">Alloy</h5>
+					<h2 style="" class="l_geoios">iOS Geolocation</h2>
+					<div style="float:right;width:300px;" class="l_iosgeoimage"><img src='images/geopurpose.png' width='240'/></div>
+					<p align="left" class="l_geoios1">Must set Ti.Geolocation.purpose</p>
+					<p align="left" class="l_geoios2">Check for authorization before using</p>
+					<p align="left" class="l_geoios3">Primary configuration: Ti.Geolocation.accuracy property (e.g. ACCURACY_BEST)</p>
+					<p align="left" class="l_geoios4">Also Ti.Geolocation.distanceFilter</p>
+					<p align="left" class="l_geoios5">Based on those, iOS chooses provider and tunings</p>
+					<div class="slidenote"><div class="l_slidenote_geoios">Accuracy constants are qualifiers like BEST, NEAREST_TEN_METERS, etc.<br/>distanceFilter is in meters</div></div>
+				</section>
 
-					<div class="slidenote"><div class="l_slidenote_classname"></div></div>
+				<section>
+					<h2 style="" class="l_geoandroid">Android Geolocation</h2>
+					<p align="left" class="l_geoandroid1">Pre Ti2.0, Android followed the iOS model &amp; methods</p>
+					<p align="left" class="l_geoandroid2">Ti2.0 adds specific Android features</p>
+					<p align="left" class="l_geoandroid3">Legacy, Simple, and Manual modes</p>
+					<p align="left" class="l_geoandroid4">Simple: enable with accuracy = ACCURACY_HIGH or ACCURACY_LOW</p>
+					<p align="left" class="l_geoandroid5">Manual: More control, more precision, more provider options</p>
+					<div class="slidenote"><div class="l_slidenote_geoandroid">Implementing iOS model led to inefficiencies and inaccuracies<br/>Simple mode is a compromise: easy to set up but not hugely accurate<br/>Manual involves more work but can be very precise.<br/>One-time geo fixes normally return a cached location on Android</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_geomw">Mobile Web Geolocation</h2>
+					<p align="left" class="l_geomw1">Browser must support W3C Geolocation spec</p>
+					<p align="left" class="l_geomw2">Implementation &amp; accuracy varies</p>
+					<p align="left" class="l_geomw3">User must grant permission</p>
+					<p align="left" class="l_geomw4">But, you can't change the message</p>
+					<div class="slidenote"><div class="l_slidenote_geomw">Generally limited by the browser environment<br/>That environment varies by device, operating system, and browser version.</div></div>
+				</section>
+
+				
+				<section>
+					<h2 class="l_geolocation_gotchas">Geolocation Gotchas</h2>
+					<p align="left" class="l_continually_monitoring">Continually monitoring GPS drains battery faster</p>
+					<p align="left" class="l_android_emulator">Android emulator: GPS might not be enabled<br>    Edit the AVD to add GPS support</p>
+					<p align="left" class="l_android_emulator_no_default">Android emulator: no default location<br>    Use DDMS to send location</p>
+					<div class="slidenote"><div class="l_slidenote_geolocation_gotchas">If you set a listener, especially on Android make sure to remove it when the app is backgrounded or closed<br>Used to have to delete/re-create the AVD. Can edit it to add GPS emulation<br><b>Demo &mdash; do on Android</b><ol><li>Start Android emulator</li><li>Open Maps &mdash; no user location available</li><li>Open DDMS, send location</li><li>In emulator, open Maps, location now available</li></ul>** stop here &mdash; you can demo more about maps on the next slides<br/>Map API keys are no longer needed for Android.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_geodemo">Geolocation Demo</h2>
+					<ul style="width:80%;">
+						<li class="l_geodemo1">iOS: Kitchen Sink &mdash; Phone > Geolocation</li>
+						<li class="l_geodemo2">Mobile Web: Kitchen Sink &mdash; Phone > Geolocation</li>
+						<li class="l_geodemo3">Android: AndroidGeo app</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_geodemoV2">Demo: iOS &amp; Mobile Web (examples/geolocation.js)<br/>Make sure to point out purpose, checking for location services being enabled, and checking authorization. Load demo in iOS Simulator and Mobile Web (browser) to show permissions messages.<br/><br/>Android - demo is in tcad-code repo, called AndroidGeo. Works best (only?) on a device not in emulator. In app.js, show provider and rules definitions, explain locationCallback(), and point out Android lifecycle events for managing GP &amp; battery life. In buttons.js, show the click handlers that turn on/off the various providers.</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_native_map_kits">Native Map Kits</h2>
+					<div style="width:340px;float:right;margin-left:10px;margin-top:-20px" class="l_nativemapkitimage"><img src="images/native-map-kit.png" style="width:340px;"></div>
+					<p align="left" class="l_native_maps">Native maps provide zooming, scrolling, and different display types</p>
+					<p align="left" class="l_points_of">Points of interest are added with Annotations (pins)</p>
+					<p align="left" class="l_support_forV2">Support for drawing routes (iOS and Android)</p>
+					<p align="left" class="l_can_choose">Can choose center point and initial display range</p>
+					<div class="slidenote"><div class="l_slidenote_native_map_kitsV2">Embed or full screen maps<br>Routes on iOS, recently added for Android</div></div>
+				</section>
+
+				<section>
+					<h2 class="l_more_on">More on Annotations</h2>
+					<div style="width:240px;float:right;margin-left:10px;" class="l_annotationimage"><img src="images/mapview.png" style="width:240px;"></div>
+					<p align="left" class="l_annotations_can">Annotations can be added on or after creation</p>
+					<p align="left" class="l_can_customize">Can customize:</p>
+					<div align="left"><ul>
+						<li class="l_pin_image">Pin image/color</li>
+						<li class="l_title_sub">Title/Subtitle</li>
+						<li class="l_right_left">Right/Left Button</li>
+					</ul></div>
+					<p align="left" class="l_can_individually">Can individually update pins, all are set at the same time</p>
+					<div class="slidenote"><div class="l_slidenote_more_onV2">Adding Points of Interest (POI)<br>Create annotations prior to rendering the map or add dynamically after<br>Pins/annotations customizable<br>Gotchas:<ul><li>Need Google API extensions for Android</li></ul></div></div>
 				</section>
 				
-
+				
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
 					<h2 style="" class="l_demo">Demo</h2>
 					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
+						<lh class="ldemoheading">KitchenSink Map demos</li>
+						<li class="l_demo1">Base UI > Views > Map View</li>
+						<li class="l_demo2">examples/map_view.js</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
+					<div class="slidenote"><div class="l_slidenote_demo">KitchenSink: <ul><li>embedded map</li><li>discuss annotation components</li><li>map types</li><li>zooming</li><li>user location (no default on Android)</li></ul>examples/map_view.js<ul><li>~line 22 createAnnotation()</li><li>~line 60 createMapView()</li><ul><li>mapType reference API docs</li><li>region: lat/long &amp; delta</li><li>userLocation</li><li>annotations</li></ul></div></div>
 				</section>
 
 				
@@ -112,11 +192,10 @@
 					<h1 style="" class="l_summary">Summary</h1>
 					<p class="l_summarypara">In this lesson, you:</p>
 			    	<ul>
-			    		<li class="l_summary1">learning objective as past tense</li>
-			    		<li class="l_summary2">e.g.</li>
-			    		<li class="l_summary3">Created your app's UI with Views</li>
-			    		<li class="l_summary4">Applied styles using TSS files</li>
-			    		<li class="l_summary5">agenda item</li>
+			    		<li class="l_summary1">Learned to use GPS positioning in your applications</li>
+			    		<li class="l_summary2">Used forward and reverse geo-coding</li>
+			    		<li class="l_summary3">Integrated native maps</li>
+			    		<li class="l_summary4">Used custom map annotations</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_summary"></div>
@@ -143,13 +222,25 @@
 					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
 					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
 				</section>
+				<section>
+					<h2 class="l_labgoals">Lab Goals</h2>
+					<p align="left" class="l_add_captured">Add captured-at coordinates to a fugitive's record in the database</p><br>
+					<p align="left" class="l_lab_spec">Lab Spec:</p>
+					<div align="left"><ul>
+						<li class="l_uninstall_app">Uninstall app</li>
+						<li class="l_modify_db">Modify database to include capturedLat and capturedLong properties for GPS</li>
+						<li class="l_when_a">When a fugitive is captured, persist their location</li>
+						<li class="l_from_the">From the detail page, provide a native map which shows their position when they were captured.</li>
+					</ul></div>
+					<p class="l_labURL" style="font-size:0.7em;margin-top:20px;"><a href='https://wiki.appcelerator.org/display/td/270+Using+Location+Services'>wiki.appcelerator.org/display/td/270+Using+Location+Services</a></p>
+					<div class="slidenote"><div class="l_slidenote_TiBountyHunter">Uninstalling because database is changing<br>Demo app: TiBH270<ol>li>Capture a fugitive</li><li>Explain location prompt (if it shows)</li><li>On captured tab, view details</li><li>Click Show on Map</li><li>Click pin to show custom annotation</li></ul></div></div>
+				</section>
 
 <!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->
 				<section>
 					<h2 class="l_solution">Solution Walkthrough</h2>
-					<div class="slidenote"><div class="l_slidenote_solution"></div></div>
+					<div class="slidenote"><div class="l_slidenote_solutionV2"><b>Code Walk through &mdash; TiBH270</b><br><u>db.js</u><ul><li>new database fields</li><li>list() &mdash; new properties for lat/long</li><li>bust() &mdash; new lat/long properties saved</li></ul><u>DetailWindow.js</u><ul><li>Capture button click handler: geolocation code and call to bust() with lat/long</li><li>New map button</li><u>MapWindow.js</u><ul><li>Accepts _bounty</li><li>Opens modal window with map</li></ul></div></div>
 				</section>
-
 
 
 			<!-- MAKE NO CHANGES BELOW THIS LINE -->
