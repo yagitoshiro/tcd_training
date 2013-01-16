@@ -79,7 +79,8 @@
 			    		<li class="l_agenda2">Represent your app's data via Models and Collections</li>
 			    		<li class="l_agenda3">Bind Models and Collections to Views</li>
 			    		<li class="l_agenda4">Save data locally and remotely via sync adapters</li>
-			    		<li class="l_agenda5">Explore API (non-Alloy) techniques for saving data to properties and local database</li>
+						<li class="l_agenda5">Explore migrations to update models to new schema</li>
+			    		<li class="l_agenda6">Explore API (non-Alloy) techniques for saving data to properties and local database</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
@@ -598,6 +599,53 @@ exports.definition = {
 					<div class="slidenote"><div class="l_slidenote_syncextras"></div></div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_migrations">Migrations</h5>
+					<div class="slidenote"><div class="l_slidenote_migrations"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_migr">Migration - Example</h2>
+					<pre style=""><code contenteditable>
+migration.up = function(db) {
+    db.createTable({
+        "columns": {
+            "book": "string",
+            "author": "string",
+            "isbn": "integer"
+        },
+        "defaults": {
+            "book": "-",
+            "author": "-",
+            "isbn": "0"
+        },
+        "adapter": {
+            "type": "sql",
+            "collection_name": "books"
+        }
+    });
+};
+
+migration.down = function(db) {
+    db.dropTable("books");
+};
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_migr">In this case, we can assume that one of the fields is new compared to the original models version. It will be added to the database table when your app is next run.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_migrnotes">Migrations</h2>
+					<ul style="width:80%;">
+						<li class="l_migrnotes1">app/migrations/YYYYMMDDHHMMSS_model.js</br>&nbsp; &nbsp; &nbsp; &rarr; 20120610049877_book.js.</li>
+						<li class="l_migrnotes2">You must have the same new columns/defaults in the model and migration file</li>
+						<li class="l_migrnotes3">Migrations are a work in progress. Currently, there is not a way to revert a table to a previous version.</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_migrnotes"></div></div>
+				</section>
+
+
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
@@ -666,8 +714,9 @@ conn.close();
 			    		<li class="l_summary1">Explored Alloy's implementation of Backbone's Models &amp; Collections</li>
 			    		<li class="l_summary2">Represented your app's data via Models and Collections</li>
 			    		<li class="l_summary3">Bound Models and Collections to Views</li>
-			    		<li class="l_summary">Saved data locally and remotely via sync adapters</li>
-			    		<li class="l_summary5">Explored API (non-Alloy) techniques for saving data to properties and local database</li>
+			    		<li class="l_summary4">Saved data locally and remotely via sync adapters</li>
+			    		<li class="l_summary5">Explored migrations to update models to new schema</li>
+			    		<li class="l_summary6">Explored API (non-Alloy) techniques for saving data to properties and local database</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_summary"></div>

@@ -385,16 +385,10 @@ themes/
 				<section>
 					<h2 style="" class="l_events">Event Handling</h2>
 					<pre><code contenteditable>
-/* The traditional Titanium way */
 var listener = function() { Ti.API.info("Event listener called."); }
 $.win.addEventListener('click', listener);
 $.win.removeEventListener('click', listener);
 
-
-/* Or, use the Backbone style */
-var listener = function() { Ti.API.info("Event listener called."); }
-$.win.on('click', listener);
-$.win.off('click', listener);
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_events"></div></div>
 				</section>
@@ -402,14 +396,14 @@ $.win.off('click', listener);
 				<section>
 					<h2 style="" class="l_events2">Events, Continued</h2>
 					<pre><code contenteditable>
-/* firing an event on a view component */
-$.button.on('click', function(e){
+/* listening/firing an event on a Ti proxy object */
+$.button.addEventListener('click', function(e){
    // do something
 });
-$.button.trigger('click', null);
+$.button.fireEvent('click', {foo: 'bar'});
 
 
-/* firing a custom event and passing data */
+/* firing a custom event on non-proxy and passing data */
 $.fooObject.on('customEvent', function(e) {
     if (foo) {
         var message = msg || 'Hello!';
@@ -513,7 +507,7 @@ if (ENV_DEV && OS_IOS) {
 					<li class="l_platform3">App assets</li>
 					<li class="l_platform4">Platform Build-time Folders</li>
 					<li class="l_platform1">Markup-based Techniques</li>
-					<li class="l_platform1">Media / Device Queries</li>
+					<li class="l_platform1">TSS-based Qualifiers</li>
 				</ul>
 
 					<div class="slidenote"><div class="l_slidenote_platform"></div></div>
@@ -562,7 +556,7 @@ if (ENV_DEV && OS_IOS) {
 				</section>
 
 				<section>
-					<h2 class="l_pselectors">Media / Device Queries</h2>
+					<h2 class="l_pselectors">TSS-based Qualifiers</h2>
 				<pre><code contenteditable>
 "#mybutton[platform=android]" : {
 	height:'40dp',
@@ -611,6 +605,18 @@ alert(Alloy.CFG.foo); // value is 1 or 2 depending on OS
 						<li class="l_demo3">Briefly explore a Model</li>
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_demo">Demo is alloy_fugitive: run the project to show what app does. Then, walk through contents of views, styles, and controllers. Show the contents of the model, but don't spend much time explaining it. We'll cover models in more details in the next lesson.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_alloyvsapi">Alloy vs. &ldquo;Traditional&rdquo;</h2>
+					<ul style="width:80%;">
+						<li class="l_alloyvsapi1">It's not all or nothing &mdash; <code>Ti.UI.createView()</code> and its brethren still valid</li>
+						<li class="l_alloyvsapi2">API techniques used within the controllers, in helper libraries (network, database, etc.)</li>
+						<li class="l_alloyvsapi3">Typical: compose the 'static' UI components in Alloy; dynamic components via APIs</li>
+						<li class="l_alloyvsapi4">As you'll see, some database operations not yet supported via Alloy; use the traditional approach</li>
+					</ul>
+
+					<div class="slidenote"><div class="l_slidenote_alloyvsapi"></div></div>
 				</section>
 
 				
