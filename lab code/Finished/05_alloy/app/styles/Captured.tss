@@ -1,0 +1,8 @@
+"Window": {
+	backgroundColor: "transparent",
+	backgroundImage: 'images/grain.png',
+	barColor: '#6d0a0c'
+},
+"TableView" : {
+	backgroundColor: "transparent"
+}
