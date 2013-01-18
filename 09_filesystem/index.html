@@ -75,14 +75,9 @@
 				<section id="agenda">
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
-			    		<li class="l_agenda3">Explore Titanium Filesystem APIs</li>
-			    		<li class="l_agenda4">Understand how and where to store data on the filesystem</li>
-
-			    		<li class="l_agenda1">performance-based learning objective</li>
-			    		<li class="l_agenda2">e.g.</li>
-			    		<li class="l_agenda3">Create your app's UI with Views</li>
-			    		<li class="l_agenda4">Apply styles using TSS files</li>
-			    		<li class="l_agenda5">agenda item</li>
+			    		<li class="l_agenda1">Explore Titanium Filesystem APIs</li>
+			    		<li class="l_agenda2">Understand how and where to store data on the filesystem</li>
+			    		<li class="l_agenda3">Understand LocalStorage for use with Mobile Web</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
@@ -99,49 +94,89 @@
 
 				<section>
 					<h2 class="l_filesystem">Filesystem Persistence and Security</h2>
-					<p align="left" class="l_your_app">Your application has limited Read/Write access to the filesystem</p>
-					<p align="left" class="l_filesystem_data">Filesystem data persists until uninstall, except temp directory</p>
-					<p align="left" class="l_filesystem_locations">Locations:</p>
-					<p align="left" class="l_filesystem_resourcesDir"><b>Ti.Filesystem.resourcesDirectory  - read-only</b></p>
-					<p align="left" class="l_filesystem_appsDir"><b>Ti.Filesystem.applicationDataDirectory - read/write</b></p>
-					<p align="left" class="l_filesystem_cacheDir"><b>Ti.Filesystem.applicationCacheDirectory - read/write</b></p>
-					<p align="left" class="l_filesystem_tempDir"><b>Ti.Filesystem.tempDirectory - read/write</b></p>
-					<p align="left" class="l_filesystem_extDir"><b>Ti.Filesystem.externalStorageDirectory - read/write</b></p>
-					<p align="left" class="l_plus">plus Ti.Filesystem.isExternalStoragePresent()</p>
-					<div class="slidenote"><div class="l_slidenote_filesystem">Temp directory is wiped on reboot<br>externalStorageDirectory is Android only<br>SDK 1.8 adds iOS ìdo not backupî flag support for files that don't need to be synced to iCloud<br>That's a concern for iOS 5.x+ devices only (older iOS versions don't support iCloud)</div></div>
+					<ul style="width:80%;">
+						<li class="l_filesystem1">iOS/Android applications have limited Read/Write access to the filesystem</li>
+						<li class="l_filesystem2">Filesystem data persists until uninstall, except temp directories</li>
+						<li class="l_filesystem3">Filesystem locations are 'sandboxed' and private to your app</li>
+						<li class="l_filesystem4">Except external storage on Android</li>
+						<li class="l_filesystem5">Mobile Web has no filesystem access</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_filesystem">Temp directory is wiped on reboot<br>externalStorageDirectory is Android only<br></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_fscommon">Common Storage Locations</h2>
+					<ul style="width:80%;">
+						<li class="l_fscommon1">Ti.Filesystem.resourcesDirectory &mdash; read-only</li>
+						<li class="l_fscommon2">Ti.Filesystem.applicationDataDirectory &mdash; read/write</li>
+						<li class="l_fscommon3">Ti.Filesystem.tempDirectory &mdash; read/write</li>
+						<li class="l_fscommon4">Ti.Filesystem.applicationCacheDirectory &mdash; read/write</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_fscommon">These storage locations are common to iOS and Android apps. Resources directory corresponds to what you see in Studio. ApplicationDataDirectory is where you save file. Temp and cache directories are temporary storage locations and may be wiped when your app closes or device is restarted.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_fsios">iOS Filesystem</h2>
+					<ul style="width:80%;">
+						<li class="l_fsios1">applicationDirectory &mdash; read-only</li>
+						<li class="l_fsios2">applicationSupportDirectory &mdash; read/write</li>
+						<li class="l_fsios3"><code>remoteBackup</code> property</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_fsios">On iOS, you have access to the applicationDirectory and its support directory. Databases and other such files are stored in the support directory. You can set remoteBackup to false to prevent backing up to iCloud/iTunes. (Temp directory contents are not backed up by default; rest are.)</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_fsandroid">Android Filesystem</h2>
+					<ul style="width:80%;">
+						<li class="l_fsandroid1">Ti.Filesystem.externalStorageDirectory &mdash; read/write, not sandboxed</li>
+						<li class="l_fsandroid2">Ti.Filesystem.isExternalStoragePresent() &mdash; returns true/false</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_fsandroid">Android defines an external storage location, which might or might not refer to an actual removable SD card. Newer devices often partition the single storage media into internal/external space. External storage is accessible by all apps, which makes it the suitable location for storing files that must be accessible by other apps.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_fsaccess">Filesystem Example</h2>
+					<pre style=""><code contenteditable>
+var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, "myfile.txt");
+var blob = file.read();  // binary representation of blob (file)
+var textOfFile = blob.text;
+var path = blob.nativePath; // path to the file
+var mimetype = blob.mimeType; 
+// dispose of file handle and blob
+file = null;
+blob = null; (no close() method)
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_fsaccess"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_localstorage">Local Storage</h2>
+					<ul style="width:80%;">
+						<li class="l_localstorage1">In-browser persistent storage location</li>
+						<li class="l_localstorage2">Support varies by browser and version</li>
+						<li class="l_localstorage3">Typical limit is 5MB &mdash; for app, properties, Titanium libraries, etc.</li>
+						<li class="l_localstorage4">User can clear at any time via browser tools</li>
+						<li>Local Storage == Resources directory in Mobile Web</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_localstorage"></div></div>
 				</section>
 
 				<section>
 					<h2 class="l_demo_file_io">Demo: File I/O</h2>
-					<p style="text-align:left;" class="l_filedemo">From KitchenSink:<br/>Persistence app</p>
+					<p style="text-align:left;" class="l_filedemo">Persistence app</p>
 					<div class="slidenote"><div class="l_slidenote_demo_file_io">Using the Persistence demo app<br>Run app in simulator, Filesystem tab<br>Reading in JSON file, parsing it to populate text fields<br>Changes to fields are saved to a file on the file system<br>Code walkthrough:
 					<ol><li>Open Persistence project</li><li>Open Resources/test.json and explain contents</li><li>Open Resources/filesystem.js, show:</li></ol><ol><li>Simulator special &mdash; writing to Resources directory</li><li>getFile()</li><li>JSON.parse()</li><li>Setting values of fields</li><li>Event listeners on the fields</li><li>Save button and event handler that saves the values</li></ol></div></div>
 				</section>
 				
-
-<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
-				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
-				</section>
-
 				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
 					<h1 style="" class="l_summary">Summary</h1>
 					<p class="l_summarypara">In this lesson, you:</p>
 			    	<ul>
-			    		<li class="l_summary1">learning objective as past tense</li>
-			    		<li class="l_summary2">e.g.</li>
-			    		<li class="l_summary3">Created your app's UI with Views</li>
-			    		<li class="l_summary4">Applied styles using TSS files</li>
-			    		<li class="l_summary5">agenda item</li>
+			    		<li class="l_summary1">Explored Titanium Filesystem APIs</li>
+			    		<li class="l_summary1">Examined how and where to store data on the filesystem</li>
+			    		<li class="l_summary1">Looked at LocalStorage for use with Mobile Web</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_summary"></div>
@@ -160,10 +195,9 @@
 					<p class="l_labintro">In this lab, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
-						<li class="l_labobjective2">e.g.</li>
-						<li class="l_labobjective3">Display a list of fugitives in a table</li>
-						<li class="l_labobjective4">etc.</li>
+						<li class="l_labobjective1">Extend TiBountyHunter to save photos associated with each fugitive</li>
+						<li class="l_labobjective2">Save images to application data directory</li>
+						<li class="l_labobjective3">Store native path in the model for later retrieval</li>
 					</ul>
 					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
 					<div class="slidenote"><div class="l_slidenote_lab"></div></div>

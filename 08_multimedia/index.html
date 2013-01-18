@@ -76,13 +76,7 @@
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
 			    		<li class="l_agenda1">Explore Titanium Media APIs</li>
-			    		<li class="l_agenda2">Leveraging media in your application</li>
-
-			    		<li class="l_agenda1">performance-based learning objective</li>
-			    		<li class="l_agenda2">e.g.</li>
-			    		<li class="l_agenda3">Create your app's UI with Views</li>
-			    		<li class="l_agenda4">Apply styles using TSS files</li>
-			    		<li class="l_agenda5">agenda item</li>
+			    		<li class="l_agenda2">Leverage media in your application</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
@@ -139,14 +133,14 @@
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
+					<h2 style="" class="l_demo">Demo - Saving images to the gallery</h2>
+					<ol style="width:80%;">
+						<li class="l_open_gallery">Open gallery in simulator, then close it</li>
+						<li class="l_find_images">Find images using simulator's web browser (e.g. Google Images search)</li>
+						<li class="l_press">Press and hold on image</li>
+						<li class="l_choose">Choose Save image</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_demo">Demonstrate this, as some students miss the how-to if you just tell them about the procedure.</div></div>
 				</section>
 
 				
@@ -155,11 +149,8 @@
 					<h1 style="" class="l_summary">Summary</h1>
 					<p class="l_summarypara">In this lesson, you:</p>
 			    	<ul>
-			    		<li class="l_summary1">learning objective as past tense</li>
-			    		<li class="l_summary2">e.g.</li>
-			    		<li class="l_summary3">Created your app's UI with Views</li>
-			    		<li class="l_summary4">Applied styles using TSS files</li>
-			    		<li class="l_summary5">agenda item</li>
+			    		<li class="l_summary1">Explored Titanium Media APIs</li>
+			    		<li class="l_summary2">Leveraged media in your application</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_summary"></div>
@@ -179,19 +170,10 @@
 
 					<ul style="margin-bottom:40px;">
 						<li class="l_labobjective1">Capture an image from the camera or load it from the gallery</li>
-						<li class="l_labobjective2">Display the image in an app</li>
-						<li class="l_labobjective3">Display a list of fugitives in a table</li>
-						<li class="l_labobjective4">etc.</li>
+						<li class="l_labobjective2">Display the image on the details window for the fugitive</li>
 					</ul>
-					<p align="left" class="l_make">Make TiBountyHunter capture an image (camera or gallery), and store the photo on the filesystem</p><br>
-					<p align="left" class="l_requirements">Requirements:</p>
-					<div align="left"><ul>
-						<li class="l_capture_image">Capture an image (camera or gallery)</li>
-						<li class="l_store_image">Store image on the filesystem</li>
-						<li class="l_associate_image">Associate the image with a row in the database</li>
-					</ul></div>
-					<p class="l_labURL" style="font-size:0.7em;margin-top:20px;"><a href='https://wiki.appcelerator.org/display/td/260+Working+With+Media+and+the+File+System'>wiki.appcelerator.org/display/td/260+Working+With+Media+and+the+File+System</a></p>
-					<div class="slidenote"><div class="l_slidenote_lab">Will need to uninstall app from simulator because of database changes<br>Store the path to the image in the database, not a blob<br>Get the placeholder image from the Wiki<br>Demo - <b>TiBH260</b><ul><li>Make sure to have an image in your sim's gallery</li><li>Show app in both simulator/emulator</li><li>Select a photo for a bounty and show it sticks</li></ul></div></div>
+					<p class="l_labURL" style="font-size:0.7em;margin-top:20px;"><a href=''>wiki.appcelerator.com/foo</a></p>
+					<div class="slidenote"><div class="l_slidenote_lab">At this point, the image won't be saved. So reopening the details view for the fugitive again will show the default image and the user can select again. We'll learn in the next lesson how to save the image to the file system to complete the functionality we're beginning here.</div></div>
 				</section>
 
 <!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->
