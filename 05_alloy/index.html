@@ -296,7 +296,7 @@ exports.definition = {
 						<li class="l_tss2">Global app.tss</li>
 						<li class="l_tss3">Constants</li>
 						<li class="l_tss4">i18n functions</li>
-						<li class="l_tss5">expr()</li>
+						<li class="l_tss5">Alloy globals with expr() -- deprecated</li>
 					</ul>
 					<pre style="width:670px;float:right;"><code contenteditable>
 ".activeButton": {
@@ -311,11 +311,12 @@ exports.definition = {
   color: "#999",
   systemButton: Titanium.UI.iPhone.SystemButton.DISCLOSURE,
   title: L('iosbutton'),
-  left: expr(Ti.Platform.displayCaps.platformWidth-200)
+  left: Alloy.Globals.computedWidth
+  /* was expr(Ti.Platform.displayCaps.platformWidth-200) */
 }
 					</code></pre>
 
-					<div class="slidenote"><div class="l_slidenote_tss"><ul><li>Cascade order: component &lt; class &lt; ID</li><li>Set app-level styles with app.tss file. View-specific TSS overrides app.tss.</li><li>You can use any of the Ti constants, such as Ti.UI.SIZE</li><li>You can use the i18n functions, such as L()</li><li>Valid JavaScript within expr() will be evaluated at runtime.</li></ul></div></div>
+					<div class="slidenote"><div class="l_slidenote_tss"><ul><li>Cascade order: component &lt; class &lt; ID</li><li>Set app-level styles with app.tss file. View-specific TSS overrides app.tss.</li><li>You can use any of the Ti constants, such as Ti.UI.SIZE</li><li>You can use the i18n functions, such as L()</li><li>The expr() expression has been deprecated. With it, valid JavaScript within expr() was evaluated at runtime. Now, you'd define the runtime value in the global configuration file and refer to it as shown here in your TSS file.</li></ul></div></div>
 				</section>
 
 

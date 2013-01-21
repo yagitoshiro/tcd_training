@@ -351,36 +351,22 @@ exports.definition = {
 				</section>
 
 				<section>
-					<h2 style="" class="l_whereclause">WHERE clause</h2>
+					<h2 style="" class="l_customqueries">Custom Queries</h2>
 					<pre style=""><code contenteditable>
-extendCollection : function(Collection) {
-   _.extend(Collection.prototype, {
-   		comparator: function(todo) {
-		return todo.get('done');
-   },
-   /** returns all objects that were completed today */
-   completedToday : function(_options) {
-       var self = this;
+// works only with sql_new adapter
+function showColorInfo(e) {
+	var color = e.row.model.color;
+	var collection = Alloy.createCollection('color');
 
-       var yesterday, tomorrow, today;
-       // get today and reset to midnight
-       yesterday = moment().hours(0).minutes(0).seconds(1).subtract('days', 1);
-       tomorrow = moment().hours(0).minutes(0).seconds(1).add('days', 1);
-
-       var p = [];
-       p.push(yesterday.unix() +"");
-       p.push(tomorrow.unix() +"");
-       // pass params
-       _options['query'] = {
-           "sql" : 'WHERE date_completed between ? AND ?',
-           "params" : p
-       };
-       self.fetch(_options);
-   },
-...
+	// fetch color info from the color collection based on the
+	// given color from the user model
+	collection.fetch({
+		query: 'SELECT * FROM colors WHERE color = "' + color + '"'
+	});
+	
+	...
 					</code></pre>
-
-					<div class="slidenote"><div class="l_slidenote_whereclause">In this snippet from a model definition, we see a custom method that returns to-do items that were completed today. It determines current dates and uses them to create a WHERE clause. That clause is then passed to the fetch() method as part of the options map.</div></div>
+					<div class="slidenote"><div class="l_slidenote_customqueries"></div></div>
 				</section>
 
 				<section>
@@ -408,7 +394,7 @@ exports.definition = {
       "nickname":"text"
     },
     "adapter": {
-      "type": "sql",
+      "type": "sql_new",
       "collection_name": "fighters",
 
       // Pre-load the database (safe method)
@@ -417,6 +403,9 @@ exports.definition = {
       // db_name required when pre-loading a db
       // should the name of your pre-loaded db
       "db_name": "fighters"
+
+      // specify the unique ID field
+      "idAttribute": "id" 
     }
   }
 }
@@ -562,7 +551,7 @@ function addItem(itemname) {
 				<section>
 					<h2 style="" class="l_syncadapters">Sync Adapters</h2>
 					<ul style="width:40%;float:left;">
-						<li class="l_syncadapters1">'sql' - SQLite database on iOS/Android</li>
+						<li class="l_syncadapters1">'sql' / 'sql_new' - SQLite database on iOS/Android</li>
 						<li class="l_syncadapters2">'localStorage' - HTML5 Local Storage on Mobile Web</li>
 						<li class="l_syncadapters3">'properties' - application properties on all</li>
 						<li class="l_syncadapters4">Specify in the model</li>
@@ -585,7 +574,7 @@ exports.definition = {
 }
 
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_syncadapters"></div></div>
+					<div class="slidenote"><div class="l_slidenote_syncadapters">With version 0.3.5, Tony released a new sql adapter that is not backward compatible. He called it sql_new to avoid breaking existing apps. It adds various features such as custom queries, advanced model definitions, better migration support, and so forth. When Alloy is finally released, the 'sql_new' adapter will be renamed and replace the 'sql' adapter.</div></div>
 				</section>
 
 				<section>
@@ -700,10 +689,10 @@ conn.close();
 				<section>
 					<h2 style="" class="l_modellimits">API access benefits</h2>
 					<ul style="width:80%;">
-						<li class="l_modellimits1">SQL adapter limitations: no joins, group by, or other "advanced" query support</li>
+						<li class="l_modellimits1">Prior to Alloy 0.3.5: SQL adapter limitations: no joins, group by, or other "advanced" query support</li>
 						<li class="l_modellimits2">Use existing DB libraries</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_modellimits">As of this writing, the SQL adapter supplied with Alloy does not support any 'advanced' queries. For example, you cannot do joins between tables via Alloy models and collections. Until the adapter is improved, the direct API access method shown here is your best solution.<br/><br/>If you have an existing app that uses a library of database access functions, you can still use that library with an Alloy app. You would simply use it as a CommonJS module within your project and not use Models to represent your data.</div></div>
+					<div class="slidenote"><div class="l_slidenote_modellimits">Prior to version 0.3.5, the SQL adapter supplied with Alloy does not support any 'advanced' queries. For example, you cannot do joins between tables via Alloy models and collections. If your app is using an older version, the direct API access method would be your best solution for implementing such queries.<br/><br/>If you have an existing app that uses a library of database access functions, you can still use that library with an Alloy app. You would simply use it as a CommonJS module within your project and not use Models to represent your data.</div></div>
 				</section>
 				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
