@@ -89,6 +89,15 @@
 				</section>
 
 				<section>
+					<h2 style="" class="l_tryit">Try it</h2>
+					<ul style="width:80%;">
+						<li class="l_tryit1">Use your browser's console</li>
+						<li class="l_tryit2">Visit <a href="http://jsbin.com/">jsbin.com</a> (turn off HTML pane, turn on JavaScript, Console, &amp; Output)</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_tryit">We encourage students to try out the code as they go. This is especially the case later in the lesson where we start showing off some of JavaScript's more confusing or subtle features (hoisting, inheritance, implicit/explicit returns, etc.).</div></div>
+				</section>
+
+				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
 					<h5 style="clear:both;" class="l_core">JavaScript Basics</h5>
 					<div class="slidenote"><div class="l_slidenote_core">&nbsp;</div></div>
@@ -112,13 +121,15 @@
 					<pre><code contenteditable>
 1 // integer (whole numbers)
 1.23456 // float (fractions)
+'this is a string'
+"and so is this"
 true // or false == boolean
 ['one', 'two', 'three'] // array
 { color: 'blue', size: 10 } // object
 null, undefined, NaN, Infinity // special types
 					</code></pre>
 
-					<div class="slidenote"><div class="l_slidenote_datatypes">Because JavaScript is type-flexible, our biggest concern here is learning the terminology and understanding the complex data types: arrays and objects, plus the special types.</div></div>
+					<div class="slidenote"><div class="l_slidenote_datatypes">JavaScript is type-flexible, meaning a single variable could hold different types of data during its lifetime. But that doesn't mean that JavaScript doesn't treat data differently depending on its type. </div></div>
 				</section>
 
 
@@ -127,13 +138,15 @@ null, undefined, NaN, Infinity // special types
 					<pre><code contenteditable>
 var x = 1;
 var y = 'foo'; // enclose strings in quotes
-var i = 0, j = 1, k = true; // declare multiple w/single statement
+
+// declare multiple w/single statement
+var i = 0, j = 1, k = true; 
+
 y = 4; // reassigns y's value
-x = y; // put y's value into x, so x = ?
+x = y; // put y's value into x, both x &amp; y hold same value
  </code></pre>
 					<ul style="width:80%;">
 						<li class="l_var1">Always declare using <code>var</code> keyword</li>
-						<li class="l_var2">JavaScript doesn't care about data types (but you should)</li>
 					</ul>
 
 					<div class="slidenote"><div class="l_slidenote_variables">Explain each of the examples. Save a discussion about how omitting <code>var</code> creates a variable in the global scope till the variable hoisting slide later.</div></div>
@@ -144,18 +157,28 @@ x = y; // put y's value into x, so x = ?
 					<pre><code contenteditable>
 var x = 100 * 2;
 var y = Math.round(22/7);
+ </code></pre>
+					<ul style="width:80%;">
+						<li class="l_statements1">Expressions that create a result</li>
+						<li class="l_statements2">End with a semicolon</li>
+					</ul>
+
+					<div class="slidenote"><div class="l_slidenote_statements">The JavaScript interpreter will add semicolons for you if you don't add them. It won't always guess correctly. When it guesses incorrectly, you can be left with a difficult-to-debug logic error. So our recommendation is that you always end the statements you write with a semicolon.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_comments">Comments</h2>
+					<pre><code contenteditable>
 // this is a comment
+
+var foo = 'bar'; // this is a comment too
+
 /*
   This is a
   multi-line comment
 */
  </code></pre>
-					<ul style="width:80%;">
-						<li class="l_statements1">Expressions that create a result</li>
-						<li class="l_statements2">End with a semi-colon</li>
-					</ul>
-
-					<div class="slidenote"><div class="l_slidenote_statements">While semi-colons are technically not required, omitting them can cause errors in some cases. Our recommendation is that you strongly encourage students to always end statements with a semi-colon.</div></div>
+					<div class="slidenote"><div class="l_slidenote_comments"></div></div>
 				</section>
 
 				<section>
@@ -179,13 +202,98 @@ if(somecondition) {
 } else {
   // do this if others aren't true
 }
-/* Comparison operators:
-  == vs ===  and != vs !==
-  &lt; or > or &lt;= or >=
-*/
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_ifelse">&nbsp;</div></div>
 				</section>
+
+				<section>
+					<h2 style="" class="l_comparison">Comparison operators</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th>Operators</th><th>Description</th></tr>
+	<tr><td>==, ===</td><td>Equals, strict-equals ('equivalent')</td></tr>
+	<tr><td>!=, !==</td><td>Not-equals, not-equivalent</td></tr>
+	<tr><td>&lt;, &lt;=, &lt;==</td><td>Less-than, less-than or equal, less-than or equivalent</td></tr>
+	<tr><td>&gt;, &gt;=, &gt;==</td><td>Less-than, less-than or equal, less-than or equivalent</td></tr>
+</table>
+					<div class="slidenote"><div class="l_slidenote_comparison"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_equalsdammit">== vs. ===</h2>
+					<pre style="width:400px;float:left;margin-right:20px;"><code contenteditable>
+var x = 1, y = '1';
+
+if(x == y) {
+   // will this run?
+}
+
+if(x === y) {
+   // how about this one?
+}
+
+					</code></pre>
+					<pre style="width:400px;float:left;" class="fragment"><code contenteditable>
+var x = 1, y = true;
+
+if(x == y) {
+   // will this run?
+}
+
+if(x === y) {
+   // how about this one?
+}
+
+					</code></pre>
+					<ul style="width:100%;list-style-type: none;" class="fragment">
+						<li class="l_equalsdammit1">== operands converted so data types match, then equality is tested</li>
+						<li class="l_equalsdammit2">=== must have same value and same data type; no type casting</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_equalsdammit"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_ternary">Ternary operator</h2>
+					<pre style=""><code contenteditable>
+var foo = (isGreen == true) ? 'green' : 'blue';
+
+// equivalent to 
+var foo;
+if(isGreen == true) {
+  foo = 'green';
+} else {
+  foo = 'blue';
+}
+
+// general form is   (condition) ? val_if_true : val_if_false;
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_ternary">The ternary operator is a compact if-else block in a single statement. It can be used any place a statement will work.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_ortrick">An assignment 'trick'</h2>
+					<pre style=""><code contenteditable>
+var baz = bar || {};
+// baz = bar if bar != false (with type conversion, so null, '', false, etc.)
+// otherwise baz = {}  -- an empty object
+
+// common use
+function foo(bar) {
+  var baz = bar || {};
+  return baz.someProperty;
+}
+
+// equivalent
+function foo(bar) {
+  if(typeof baz == 'object') {
+     return baz.someProperty;
+  } else {
+     return null;
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_ortrick">You'll see this shorthand if/else statement in many programmer's code. While strange at first, the technique saves many lines of code not to mention some potential errors if you simply omit any value testing.</div></div>
+				</section>
+
 
 				<section>
 					<h2 class="l_forloops">For Loops</h2>
@@ -261,31 +369,32 @@ var sum = function(a, b) {
 var total = sum(100, 200);
 					</code></pre>
 					<ul style="width:80%;">
-						<li class="l_functionsc0">Equivalent to other format</li>
+						<li class="l_functionsc0">Essentially equivalent to other format</li>
 						<li class="l_functionsc1">You're defining a variable that will hold a function</li>
 						<li class="l_functionsc2">Highlights that functions are 'first class citizens' in JavaScript</li>
 						<li class="l_functionsc3">You can pass a function as an argument to another function</li>
 					</ul>
 
-					<div class="slidenote"><div class="l_slidenote_functionsc">&nbsp;</div></div>
+					<div class="slidenote"><div class="l_slidenote_functionsc">Function statements have a subtle difference that manifests itself with variable hoisting behavior. We suggest you save discussion of that till you get to the hoisting slide.</div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_functioncallbacks">Function Callbacks</h2>
 					<pre><code contenteditable>
-var doCoolness = function(a, b, fn) {
-  // something here that takes a long time to finish, such
-  // as getting data from the network
-  return fn(a, b);
+var getAsyncData = function(fn) {
+  // this function does something that takes a long time to finish, 
+  // such as getting data from the network
+  return fn(networkData);
 }
-var sum = function(a, b) {
-  return a + b;
+var saveData = function(data) {
+  // this function does something with the data when it's finally available
+  return successCode;
 }
 // then use like this:
-var total = doCoolness(100, 200, sum);
+var success = getAsyncData(saveData);
 					</code></pre>
 					<ul style="width:80%;">
-						<li class="l_functioncallbacks1">Great when doCoolness() might take a long time to run (like when accessing the network).</li>
+						<li class="l_functioncallbacks1">Great when getAsyncData() might take a long time to run (like when accessing the network).</li>
 					</ul>
 
 					<div class="slidenote"><div class="l_slidenote_functioncallbacks">Callbacks are a critical part of modern JavaScript programming. They are the primary pattern for dealing with asynchronous operations, such as network access, geolocation lookups, even database operations.</div></div>
