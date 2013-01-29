@@ -75,60 +75,14 @@
 				<section id="agenda">
 					<h1 style="margin-top:50px;" class="l_agenda_title">In this lesson, you will:</h1>
 			    	<ul>
-			    		<li class="l_agenda1">Learn the roles of UX and UI design</li>
-			    		<li class="l_agenda2">Explore the components used to create your UI</li>
-			    		<li class="l_agenda3">Learn your options for UI layout and component positioning</li>
+			    		<li class="l_agenda1">Explore the components used to create your UI</li>
+			    		<li class="l_agenda2">Learn your options for UI layout and component positioning</li>
+						<li class="l_agenda3">Handle user and non-user generated events</li>
 						<li class="l_agenda4">Learn how to set your app's icon &amp; splash screens, and internationalize your app</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_agenda"></div>
 					</div>
-				</section>
-
-				<section>
-					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
-					<h5 style="clear:both;" class="l_uxui">User Experience / User Interface</h5>
-					<div class="slidenote"><div class="l_slidenote_uxui"></div></div>
-				</section>
-
-				<section>
-					<h2 class="l_ux_basics">What is UX?</h2>
-					<p class="l_ux_image"><img src='images/basics-ux.png' style='margin-top:40px;height:550px;'/></p>				
-					<div class="slidenote"><div class="l_slidenote_ux_basics">UX, or user experience, is all about how your app works. Not what it looks like. Think about your user and the way they'll use your app. How do screens flow from one to another? Are buttons in the right place? Are you showing too much or too little information?<br><br>The 3 examples<br><ul><li>Tweet: confusing options and actions</li><li>App on left: too much info, too much in app, controls poorly laid out -- there's no flow or logical indication of what comes first</li><li>Dialog: not a mobile app, but still poor UX &mdash; It asks users to select command-line switches. If user knows what those switches would be used for, they'd be typing at console. If they don't, then the dialog doesn't give appropriate info.</li></ul></div>
-				</div></section>
-
-				<section>
-					<h2 class="l_critial_questions">Critical Questions</h2>
-					<p align="center" class="l_can_you">You need to answer the following:</p><br>
-					<p align="center" class="l_what_problem">What problem(s) am I solving?</p><br>
-					<p align="center" class="l_who">Who are my key users?</p><br>
-					<p align="center" class="l_what_needs">What are their needs?</p>
-					<div class="slidenote"><div class="l_slidenote_critial_questions">When developing any application you need to ask these fundamental questions. These questions form the foundation atop which you build your application. If a feature doesn't address a user's need, or will serve only a few users, leave it out! </div>
-				</div></section>
-
-				<section>
-					<h2 class="l_window_nav">Sketch it!</h2>
-					<p class="l_windownav_image"><img src="images/sketchit.png" style="margin-top:50px;height:440px;padding:20px;"/></p>
-					<div class="slidenote"><div class="l_slidenote_window_nav">When designing your app, sketch it out. You can use a simple notepad. Index (3 by 5) cards are pretty close to the size of a mobile phone. You can sketch each screen on a card. Then, flip through the deck to get a general sense of how your app will flow. You can even share the cards with others to see what they think of the design and flow.</div>
-				</div></section>
-
-				<section>
-					<h2 style="" class="l_ui">UI</h2>
-				    <img src="images/googlefinance.png" style="width:800px;"/>
-					<div class="slidenote"><div class="l_slidenote_ui">User interface is how something looks -- colors, size, texture, along with concepts of harmony, balance, symmetry, and so forth. UI complements UI and often the two are nearly inseparable. In this screen, you can see a before &amp; after version of an app. Largely, just the UI of the app has changed making for a significantly different looking app.</div></div>
-				</section>
-
-				<section>
-					<h2 style="" class="l_whatisui">What goes into UI?</h2>
-					<ul style="width:80%;">
-						<li class="l_whatisui1">UI Components</li>
-						<li class="l_whatisui2">Colors</li>
-						<li class="l_whatisui3">Fonts</li>
-						<li class="l_whatisui4">Textures and patterns</li>
-						<li class="l_whatisui5">Balance, harmony, symmetry</li>
-					</ul>
-
-					<div class="slidenote"><div class="l_slidenote_whatisui">We won't spend very much time covering UI design principles or artistic concepts like balance and symmetry. </div></div>
 				</section>
 
 				<section>
@@ -296,6 +250,146 @@ var view = Ti.UI.createView({
 					<div class="slidenote"><div class="l_slidenote_vertical_layout">Parent object has the Vertical layout<br>Child object's positions are then in relation to each other within the parent</div></div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_eventstopic">Events</h5>
+					<div class="slidenote"><div class="l_slidenote_eventstopic"></div></div>
+				</section>
+				<section>
+					<h2 style="" class="l_eventhandling">Event Handling</h2>
+					<ul style="width:80%;">
+						<li class="l_eh1">Events are things that happen that you can monitor and react to</li>
+						<li class="l_eh2">User-generated: clicks, swipes, shakes, etc.</li>
+						<li class="l_eh3">Custom: non-user events that you use to signal within your app</li>
+						<li class="l_eh4">System-generated: battery low, phone call or SMS received</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_eventhandling"></div></div>
+				</section>
+
+				<section>
+					<h2 class="l_event_handlingctd">Event Handling, cont'd</h2>
+					<ul style="width:80%;">
+						<li class="l_ehctd1">Event listener - code you 'attach' to something to run when an event occurs</li>
+						<li class="l_ehctd2">Firing event - causing an event so that listeners are engaged</li>
+						<li class="l_ehctd3">You can add a listener on any UI component</li>
+						<li class="l_ehctd4">You can add custom listeners to nearly any object in your app</li>
+						<li class="l_ehctd5">You can fire any user-generated or custom type event (not the system events though)</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_event_handlingctd"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_ehexample">Example 1</h2>
+					<pre style=""><code contenteditable>
+// let's start with a UI component, a button
+var btn = Ti.UI.createButton({
+  title: 'Click me'
+});
+
+btn.addEventListener('click', function() {
+  alert('Ouch! You clicked me!');
+});
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_ehexample"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_ehexampleb">Example 2</h2>
+					<pre style=""><code contenteditable>
+// let's start with a UI component, a button
+var btn = Ti.UI.createButton({
+  title: 'Click me'
+});
+
+// let's define our function first
+function ouch() {
+  alert('Ouch! You clicked me!');
+}
+
+// then use it in the listener -- without the () !!
+btn.addEventListener('click', ouch);
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_ehexampleb"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_removing">Removing Event Listeners</h2>
+					<pre style=""><code contenteditable>
+var btn = Ti.UI.createButton({
+  title: 'Click me'
+});
+
+function ouch() {
+  alert('Ouch! You clicked me!');
+  btn.removeEventListener('click', ouch);
+  btn.title = "You can't click me";
+}
+
+btn.addEventListener('click', ouch);
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_removing"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_evprops">Event Object Properties</h2>
+					<pre style=""><code contenteditable>
+var textField = Ti.UI.createTextField();
+var anotherField = Ti.UI.createTextField();
+
+textField.addEventListener('change', function(e) {
+  // e represents the 'event' object
+  anotherField.value = e.value; // it has various properties
+});
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_evprops"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_eventdocs">Events Documentation</h2>
+				    <img src="images/events.png" style="width:400px;margin-right:20px;"/>
+				    <img src="images/eventprops.png" style="width:490px;float:right;"/>
+					<p class="l_docslink" style="margin-top: 20px; font-weight: bold;">docs.appcelerator.com</p>
+					<div class="slidenote"><div class="l_slidenote_eventdocs"></div></div>
+				</section>
+
+				<section>
+					<h2 class="l_application_events">Application-Level Events</h2>
+					<ul style="width:80%;">
+						<li class="l_applevel1">Not associated with a UI component</li>
+						<li class="l_applevel2">Used for signaling within the application</li>
+						<li class="l_applevel3">Can be fired from and listened for from anywhere within your app</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_application_events"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_appex">App Events Example</h2>
+					<pre style=""><code contenteditable>
+function saveToDatabase() {
+  // code goes here to save info
+  // to the database, when it's
+  // done, fire app event
+  Ti.App.fireEvent('databaseUpdated');
+}
+					</code></pre>
+					<pre style="margin-top:10px;"><code contenteditable>
+var table = Ti.UI.createTableView();
+
+Ti.App.addEventListener('databaseUpdated', function() {
+  table.data = db.getInfoAsTableRows();
+});
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_appex"></div></div>
+				</section>
+
+
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
 					<h5 style="clear:both;" class="l_appextras">Icons, Splash screens, i18n</h5>
@@ -437,13 +531,12 @@ var view = Ti.UI.createView({
 					<p class="l_labintro">In this lab, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
-						<li class="l_labobjective2">e.g.</li>
-						<li class="l_labobjective3">Display a list of fugitives in a table</li>
-						<li class="l_labobjective4">etc.</li>
+						<li class="l_labobjective1">Examine an app design, determine UI components needed</li>
+						<li class="l_labobjective2">List the container and visual UI objects</li>
+						<li class="l_labobjective3">Determine what graphic assets will be needed</li>
 					</ul>
-					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
-					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
+					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/display/td/04.+User+Interface'>wiki.appcelerator.org/display/td/04.+User+Interface</a></p>
+					<div class="slidenote"><div class="l_slidenote_lab">This is a paper &amp; pencil style lab where students will 'cut up' a UI design to determine what will be needed to build that app.</div></div>
 				</section>
 
 <!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->

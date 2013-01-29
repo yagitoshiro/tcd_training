@@ -163,7 +163,7 @@ var y = Math.round(22/7);
 						<li class="l_statements2">End with a semicolon</li>
 					</ul>
 
-					<div class="slidenote"><div class="l_slidenote_statements">The JavaScript interpreter will add semicolons for you if you don't add them. It won't always guess correctly. When it guesses incorrectly, you can be left with a difficult-to-debug logic error. So our recommendation is that you always end the statements you write with a semicolon.</div></div>
+					<div class="slidenote"><div class="l_slidenote_statements">The JavaScript interpreter will add semicolons for you if you don't add them. It won't always guess correctly. When it guesses incorrectly, you can be left with a difficult-to-debug logic error. So our recommendation is that you always add semicolons so that JavaScript doesn't do it for you.</div></div>
 				</section>
 
 				<section>
@@ -447,6 +447,7 @@ if(cat.hasStripes == true) {
 											<li class="l_ecma3">Current ECMA standard is ECMAScript 5 (2010)</li>
 											<li class="l_ecma4">JavaScriptCore is Apple's JavaScript engine, used by Titanium on iOS</li>
 											<li class="l_ecma5">V8 is the Chrome JavaScript engine, used by Titanium on Android</li>
+											<li class="l_ecma6">V8 &amp; JSCore, thus Titanium, support nearly all of ECMAScript 5</li>
 										</ul>
 					
 					<div class="slidenote"><div class="l_slidenote_ecma">No need to go deep into the history or evolution of JavaScript here. The key point is to reinforce the message from the preceding slide that in Titanium you have pretty much complete access to the features defined in ECMAScript 5.</div></div>
@@ -479,14 +480,13 @@ if(cat.hasStripes == true) {
 					<pre style="width:550px;float:right;"><code contenteditable>
 var one = '1', two = 2, three='three';
 
-// string concatenation has
-// precedence over conversion
+// JavaScript will concatenate if either operand is a string 
 console.log(one + 1);  // = 11
 
-// conversion when a NaN value might result
+// it will convert when a NaN value might result
 console.log(one * 2);  // = 2
 
-// force a usage
+// you can force a data type
 console.log(parseInt(one) + 1); // = 2
 console.log(String(1) + one); // = 11
 
