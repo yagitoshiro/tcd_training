@@ -95,17 +95,13 @@
 				<section>
 					<h2 class="l_httpclient">The HTTPClient Object</h2>
 					<p align="left" class="l_ti_network">Ti.Network.HTTPClient implements the XHR specification</p>
-					<p align="left" class="l_thats_why">That's why you see 'xhr' in sample code</p>
 					<p align="left" class="l_low_level">Low level HTTP client interface with support for all HTTP verbs</p>
 					<p align="left" class="l_should_be">Should be familiar to Ajax programmers</p>
-					<div class="slidenote"><div class="l_slidenote_httpclient">Xhr refers to the XMLHTTPRequest object, and is seen in demo apps like the Kitchen Sink<br>Titanium implements XHR<br>Very similar to low-level Ajax without a jQuery type library<br>Support for all verbs: get, post, delete, put</div></div>
+					<div class="slidenote"><div class="l_slidenote_httpclient">Titanium implements XHR which you implement with techniques very similar to low-level Ajax without a jQuery type library<br>Support for all verbs: get, post, delete, put</div></div>
 				</section>
 				
 				<section>
-					<h2 class="l_typical">A Typical Network Request</h2>
-					<p align="left" class="l_language">Language-independent text-based means to represent arrays and objects (without methods)</p>
-					<p align="left" class="l_compact">Compact data format, efficient over slow networks</p>
-					<p align="left" class="l_standardized">Standardized and widely supported, see json.org</p>
+					<h2 class="l_typical">A GET Network Request</h2>
 <pre><code contenteditable class="l_xhrcode1">
 var xhr = Ti.Network.createHTTPClient();
 xhr.onload = function() {
@@ -115,41 +111,56 @@ xhr.open('GET', 'http://example.com/endpoint');
 xhr.send();
 
 </code></pre>
-					<div class="slidenote"><div class="l_slidenote_typical">Define XHR object<br>Specify an onload callback and other lifecycle handlers<br>Open the the request<br>Then finally send the request</div></div>
+					<div class="slidenote"><div class="l_slidenote_typical">Define XHR object<br>Specify an onload callback and other lifecycle handlers<br>Open the the request<br>Then finally send the request.<br/><br/>In case it's not obvious, this sort of code would go in your controller.</div></div>
 				</section>
 
 				<section>
-					<h2 class="l_typical">A Typical Network Request</h2>
-					<p align="left" class="l_post">POST example:</p>
+					<h2 class="l_typical">A POST Network Request</h2>
 <pre><code contenteditable class="l_xhrcode2">
 var xhr = Ti.Network.createHTTPClient();
 xhr.onload = function() {
   // do something with the response payload
 };
 xhr.open('POST', 'http://example.com/endpoint');
+// set HTTP headers here, if required
 xhr.send({myvariable: 'value'});
 
 </code></pre>
-					<div class="slidenote"><div class="l_slidenote_typical2">You can set HTTP headers: after open before send</div></div>
+					<div class="slidenote"><div class="l_slidenote_typical2">With the POST, PUT, etc. verbs, you send your data payload by adding an object to the send() call. You don't need to set the MIME encoding type as you would with an HTML form. You also don't need to HTML/URL encode binary data you POST.</div></div>
 				</section>
 
 
 				<section>
 					<h2 class="l_lifecycle">Lifecycle Callbacks</h2>
-					<p align="left" class="l_generally">This is a good idea - synchronous network is a bad idea</p>
-					<p align="left" class="l_good_idea">Compact data format, efficient over slow networks</p><br>
-					<p align="left" class="l_onload"><b>onload:</b>function called when HTTP request returns</p><br>
-					<p align="left" class="l_onerror"><b>onerror:</b>function called for HTTP request error</p><br>
-					<p align="left" class="l_onreadystatechange"><b>onreadystatechange:</b>low-level handler for HTTP state</p><br>
-					<p align="left" class="l_onsendstream"><b>onsendstream/ondatastream:</b>file upload/download</p>
-					<div class="slidenote"><div class="l_slidenote_lifecycle">XHR centered around callbacks<br>So, asynchronous<br>Could probably do sync but that's not a best practice<br>As of SDK 1.8, HTTP 4xx &amp; 5xx errors cause onerror() to be called rather than onload()</div></div>
+					<p align="left" class="l_onload"><b>onload:</b> function called when HTTP request returns (200 status code)</p><br>
+					<p align="left" class="l_onerror"><b>onerror:</b> function called when HTTP error received (404, 500, etc.)</p><br>
+					<p align="left" class="l_onreadystatechange"><b> onreadystatechange:</b>low-level handler for HTTP state</p><br>
+					<p align="left" class="l_onsendstream"><b> onsendstream/ondatastream:</b>file upload/download</p>
+					<div class="slidenote"><div class="l_slidenote_lifecycle">XHR centered around callbacks &mdash; it's asynchronous<br>Could probably do sync but that's not a best practice<br/><br/>Just because you get a 200 status, doesn't mean you got valid data. You still need to validate the data you receive in the onload function.</div></div>
 				</section>				
 
 				<section>
+					<h2 style="" class="l_returndata">Return Data</h2>
+					<pre style=""><code contenteditable>
+var xhr = Ti.Network.createHTTPClient();
+xhr.onload = function() {
+  // this.responseText = returned data as text
+  // this.responseData = returned data as blob
+  // this.responseXML = returned data as XML object
+};
+xhr.open('GET', 'http://example.com/endpoint');
+xhr.send();
+
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_returndata">Within your callback, you have various 'views' of the returned data. Of coruse, not all are valid depending on what's actually transmitted.</div></div>
+				</section>
+
+				<section>
 					<h2 style="" class="l_mobileweb">Mobile Web Considerations</h2>
-					<p align="left" class="l_mw1">Must consider cross-domain issues</p>
-					<p align="left" class="l_mw2">Set up CORS header support</p>
-					<p align="left" class="l_mw3">Configure a proxy service</p>
+					<p align="left" class="l_mw1">Must consider cross-domain security issues &mdash; app is running in a browser</p>
+					<p align="left" class="l_mw2">Either set up CORS header support on your server</p>
+					<p align="left" class="l_mw3">Or, configure a proxy service</p>
 					<div class="slidenote"><div class="l_slidenote_mobileweb">Network requests must account for cross-domain access. Typically, you'll enable CORS header support on your server or set up a proxy service to handle network requests on behalf of your mobile web users</div></div>
 				</section>
 				
@@ -162,54 +173,59 @@ xhr.send({myvariable: 'value'});
 				
 				<section>
 					<h2 class="l_working_json">Working With JSON</h2>
-					<p align="left" class="l_json_namespace">JSON namespace is built in to global scope</p>
-					<p align="left" class="l_recommended">Recommended data transport format for Titanium Mobile</p>
-					<p align="left" class="l_super_easy">Super easy to serialize response data</p>
+					<p align="left" class="l_recommended">Recommended data transport format for Titanium Mobile - compact and efficient</p>
+					<p align="left" class="l_super_easy">Super easy to serialize/rehydrate data</p>
 					<p align="left" class="l_json_parse"><b>JSON.parse()</b> &mdash; convert string to JavaScript object</p>
 					<p align="left" class="l_json_stringify"><b>JSON.stringify()</b> - convert JavaScript object to string</p>
-					<div class="slidenote"><div class="l_slidenote_working_json">JSON is built into and accessible in global scope<br>JSON is compact, easy to serialize and re-hydrate</div></div>
+					<pre style=""><code contenteditable>
+var character = { name: 'Thomas Anderson', nickname: 'Neo'};
+var asJSON = JSON.stringify(character);
+var sameCharacter = JSON.parse(asJSON);
+
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_working_json">JSON is built into and accessible in global scope<br>JSON is compact, easy to serialize and rehydrate</div></div>
 				</section>
 
 				<section>
 					<h2 class="l_working_xml">Working With XML</h2>
 					<p align="left" class="l_xml_dom">XML DOM Level 2 API built in</p>
-					<p align="left" class="l_xml_doc">XML document created for your for every HTTPClient request</p>
+					<p align="left" class="l_xml_doc">XML document by referring to <code>this.responseXML</code></p>
 					<p align="left" class="l_xml_related">XML related functions in the Ti.XML namespace</p>
-					<p align="left" class="l_many_xml">Many XML/XHR examples in Kitchen Sink</p>
+					<p align="left" class="l_many_xml">See XML/XHR examples in Kitchen Sink</p>
 					<p align="left" class="l_more_data">More data over the wire, but still commonly used</p>
 					<div class="slidenote"><div class="l_slidenote_working_xml">Web services often publish their data in XML<br>An XML doc object is created when you fetch an XML document<br>See the Ti.XML namespace on the API docs<br>Examples in the KitchenSink</div></div>
 				</section>
 
 				<section>
-					<h2 class="l_demo_twitter">Demo: Twitter XML</h2>
-					<p align="left" class="l_twitterdemo">From KitchenSink:<br/>Platform > XHR > XML Data</p>
-					<div class="slidenote"><div class="l_slidenote_demo_twitter">Demo - KitchenSink<br>Platform > XHR > XML Data<br>- Pulls public data stream from Twitter API<br><ul><li>Get data from XML for label</li><li>Dumping raw data into a text field</li></ul><br>examples/xhr_xml.js<ul><li>XHR object, onload handler</li><li>Show how variables are extracted:</li><ul><li>doc, elements, screenName, and text node</li></ul><li>responseText dumped into textarea</li><li>open() &amp; URL</li></ul></div></div>
-				</section>				
+					<h2 style="" class="l_xmlexample">XML Example</h2>
+					<pre style=""><code contenteditable>
+var xhr = Titanium.Network.createHTTPClient();
+
+xhr.onload = function() {
+  var doc = this.responseXML.documentElement;
+  var elements = doc.getElementsByTagName("screen_name");
+  var screenName = elements.item(0);
+  Ti.API.info("screenname = " + screenName.text);
+
+  Ti.API.info("Raw XML returned: " + this.responseText);
+};
+xhr.open('GET','http://api.twitter.com/1/users/show.xml?screen_name=appcelerator');
+xhr.send();
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_xmlexample">In this example, we access the XML representation of the data with this.responseXML. We grab the XML document object via documentElement. From there, you'll need to know the XML schema of your data. But essentially, you'll walk the XML tree using the Ti.XML functions as shown here to extract the data you need. The raw XML data is also accessible via this.responseText.</div></div>
+				</section>
 
 				<section>
 					<h2 class="l_few_words">A Few Words on SOAP</h2>
 					<p align="left" class="l_soap">'Simple Object Access Protocol'- possibly the most ironic acronym in tech history</p>
 					<p align="left" class="l_at_end">At the end of the day, it is just a layer of abstraction over the top of XML and HTTP</p>
 					<p align="left" class="l_plan_a">Plan A: Use a server-side proxy to return JSON</p>
-					<p align="left" class="l_plan_b">Plan B: Use the Suds helper library</p>
+					<p align="left" class="l_plan_b">Plan B: Use the Suds helper library (github.com/kwhinnery/Suds)</p>
 					<p align="left" class="l_plan_c">Plan C: Manually construct SOAP envelopes</p>
-					<p align="left" class="l_in_practice">In practice, people usually go with Plan C</p>
 					<div class="slidenote"><div class="l_slidenote_few_words_slide">Examples in the Kitchen Sink<br>Consuming/invoking SOAP web services means correctly setting the HTTP headers and XML payload (SOAP envelope) of the request<br>Lots of meta data included in every request, which means lots of data over a slow cellular connection<br>Suds at github.com/kwhinnery/Suds</div></div>
 				</section>
-				
-
-<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
-				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
-				</section>
-
 				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
@@ -219,7 +235,7 @@ xhr.send({myvariable: 'value'});
 			    		<li class="l_summary1">Used the HTTPClient API to fetch remote data</li>
 			    		<li class="l_summary1">Explored how to upload and download files</li>
 			    		<li class="l_summary1">Worked with JSON and XML data retrieved from the network</li>
-			    		<li class="l_summary1">Learned how to work with SOAP data</li>
+			    		<li class="l_summary1">Learned how you could work with SOAP data</li>
 			    	</ul>
 					<div class="slidenote">
 						<div class="l_slidenote_summary"></div>
@@ -239,17 +255,15 @@ xhr.send({myvariable: 'value'});
 
 					<ul style="margin-bottom:40px;">
 						<li class="l_labobjective1">Program an app to seed its database from a simple web service</li>
-						<li class="l_labobjective2">Post to a web service, which will count the number of fugitives you've captured</li>
-						<li class="l_labobjective3">You'll be completing network library code in an otherwise finished app</li>
+						<li class="l_labobjective3">Make sure the app doesn't re-seed the database by setting an app property</li>
 					</ul>
-					<p class="l_labURL" style="font-size:0.7em;margin-top:20px;"><a href='https://wiki.appcelerator.org/display/td/255+Working+with+Remote+Data'>wiki.appcelerator.org/display/td/255+Working+with+Remote+Data</a></p>
+					<p class="l_labURL" style="margin-top:20px;">Lab: <a href='https://wiki.appcelerator.org/display/td/07.+Networking'>wiki.appcelerator.org/display/td/07.+Networking</a></p>
 					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
 				</section>
 
 <!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->
 				<section>
 					<h2 class="l_solution">Solution Walkthrough</h2>
-					<div class="slidenote"><div class="l_slidenote_solution">Walk through &mdash; TiBH25h<br><ul><li><strong>lib/network.js</strong> &mdash; walk through both functions</li><li><strong>lib/db.js</strong> &mdash; 'seeded' block at end of file</li><li><strong>ui/common/DetailWindow.js</strong> &mdash; Capture button listener, network call, delay in closing window on Android</li></ul></div></div>
 					<div class="slidenote"><div class="l_slidenote_solution"></div></div>
 				</section>
 

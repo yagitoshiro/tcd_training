@@ -84,6 +84,97 @@
 				</section>
 
 				<section>
+					<h2 class="l_still_api">Still Image APIs</h2>
+					<p align="left" class="l_display_using">Display using ImageView or backgroundImage</p>
+					<p align="left" class="l_can_either">Can either be local or remote</p>
+					<pre style="width:450px;float:left;"><code contenteditable>
+&lt;Alloy>
+  &lt;ImageView id='localImage'/>
+  &lt;ImageView id='remoteImage'/>
+  &lt;View id='aTitaniumView'/>
+&lt;/Alloy>
+					</code></pre>
+					<pre style="width:450px;float:right;"><code contenteditable>
+'#localImage': {
+  image: 'images/myimage.png'
+  /* myimage@2x used on iOS if avail &amp; retina */
+},
+'#remoteImage': {
+  image: 'http://foo.com/myimage.png',
+  defaultImage: 'images/loading.png'
+},
+'#aTitaniumView': {
+  backgroundImage: '/images/bg.png',
+  height: 100, width: 100
+}
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_still_api"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_bgscaling">Background Scaling</h2>
+					<ul style="width:80%;">
+						<li class="l_bgscale1">Background stretched/squeezed to fit</li>
+						<li class="l_bgscale2">On iOS, left/right cap not stretched</li>
+						<li class="l_bgscale3"> .. or top/bottom cap</li>
+					</ul>
+				    <img src="images/default_image_scaling.png" style="width:500px;"/>
+					<div class="slidenote"><div class="l_slidenote_bgscaling">When the background image is larger than the component, it will be squeezed to fit the component's dimensions. Both platforms handle that in essentially the same way, as you can see in the red images in the graphic. But iOS and Android handle background images differently when they're smaller than the component. Look carefully at the following image. Overlaid on top, you see the original small PNG image that is used as the background if the view with the four Xs. In that view, on Android the background image is stretched to fit the width of the component. On iOS, a small portion of the left and right of the image remain un-stretched while the remainder is stretched to fill the width.</div></div>
+				</section>
+
+<!--  slide disabled due to alloy bug https://jira.appcelerator.org/browse/ALOY-494
+				<section>
+					<h2 style="" class="l_flipbook">Flipbook Animations</h2>
+					<pre style="width:450px;float:left;"><code contenteditable>
+&lt;Alloy>
+  &lt;ImageView id='animImage'/>
+&lt;/Alloy>
+					</code></pre>
+					<pre style="width:450px;float:right;"><code contenteditable>
+var imageArray = [];
+for(var i=1; i&lt;18; i++) {
+	imageArray.push('campFire'+ i +'.gif');
+}
+$.animImage.images = imageArray;
+
+$.index.open();
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_flipbook"></div></div>
+				</section>
+-->
+
+				<section>
+					<h2 style="" class="l_sound">Sound</h2>
+					<pre style=""><code contenteditable>
+// with &lt;Button id="play">&lt;/Button>
+
+// in controller:
+$.play.addEventListener('click', function() {
+  var sound = Titanium.Media.createSound({
+    url: 'cricket.wav' // could be http url too!
+  });
+  sound.play();
+});
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_sound">You can playback local or remote sounds via the createSound() call. The entire sound must be loaded or downloaded before it can be played. This is not a streaming audio player. There is a different control for that purpose.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_recording">Recording</h2>
+					<pre style=""><code contenteditable>
+// with &lt;Button id="record">&lt;/Button>
+
+// in controller:
+
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_sound"></div></div>
+				</section>
+
+				<section>
 					<h2 class="l_audio_api">Audio APIs</h2>
 					<p align="left" class="l_play_sounds">Play sounds from local or remote files (Sound)</p>
 					<p align="left" class="l_streaming_audio">Streaming audio support (AudioPlayer)</p>
@@ -91,6 +182,8 @@
 					<p align="left" class="l_demos_audio">Demos and Code Walkthrough</p>
 					<div class="slidenote"><div class="l_slidenote_audio_api">Demos in the Kitchen Sink<br><ul><li>Phone tab / Sounds / Local  (demo each button)</li><li>Sounds / Record (record with lo/hi fidelity &amp; playback)</li></ul>Show code: examples/sound_local.js<ul><li>Show: createSound()</li><li>play(), pause(), stop() in button event handlers</li><li> looping</li></ul></div></div>
 				</section>
+
+
 				
 				<section>
 					<h2 class="l_video_api">Video APIs</h2>
@@ -101,16 +194,6 @@
 					<div class="slidenote"><div class="l_slidenote_video_api">Demos in the Kitchen Sink<br><ul><li>Phone tab / Play Movie / Local -- point out overlays</li><li>Phone tab / Play Movie / Remote streaming</li></ul>Show code: examples/movie_local.js<ul><li>Show: contentURL property, label overlay</li></ul></div></div>
 				</section>
 				
-				<section>
-					<h2 class="l_still_api">Still Image APIs</h2>
-					<p align="left" class="l_display_using">Display using ImageView or backgroundImage</p>
-					<p align="left" class="l_can_either">Can either be local or remote</p>
-					<p align="left" class="l_can_be">Can be density specific in either case</p>
-					<p align="left" class="l_demo_local">Demo: Image from Local URL</p>
-					<p align="left" class="l_demo_remote">Demo: Image from Remote URL</p>
-					<p align="left" class="l_demo_blob">Demo: Image from file blob</p>
-					<div class="slidenote"><div class="l_slidenote_still_api">Demos in the Kitchen Sink<br><ul><li>Base UI tab / Views / Image Views / Basic &mdash; responds to events</li><li>Remote image</li><li>Animated &mdash; array of images / flipbook effect</li></ul>Show code:<ul><li>examples/imageview_basic.js -- Show: createImageView</li><li>Examples/imageview_file.js &mdash; show image property pointing to local file</li><li>explain the flexible nature of property (accepts file path, url, file system object)</li></ul></div></div>
-				</section>
 
 				<section>
 					<h2 class="l_capturing_images">Capturing Images</h2>

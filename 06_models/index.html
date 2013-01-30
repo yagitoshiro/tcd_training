@@ -438,9 +438,9 @@ exports.definition = {
 					<pre style=""><code contenteditable>
 // in the View
 &lt;Alloy>
-  &lt;Collection src="book" />
+  &lt;Collection src="books" />
   &lt;Window class="container">
-    &lt;TableView dataCollection="book">
+    &lt;TableView dataCollection="books">
       &lt;!-- Also can use Require -->
       &lt;TableViewRow title="{title}" />
     &lt;/TableView>
@@ -449,8 +449,8 @@ exports.definition = {
 
 // in the associated controller
 $.index.open();
-var library = Alloy.Collections.book;
-library.fetch();
+var books = Alloy.Collections.book;
+books.fetch();
 
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_bindexample1"></div></div>
@@ -460,13 +460,13 @@ library.fetch();
 					<h2 style="" class="l_example2">Example 2</h2>
 					<pre style=""><code contenteditable>
 &lt;Alloy>
-  &lt;Collection src="myModel"/>
+  &lt;Collection src="myModels"/>
 
   &lt;Tab title="global/&lt;Require>">
     &lt;Window id="window" title="global/&lt;Require>">
 
       &lt;!-- use the global reference to the dataCollection -->
-      &lt;TableView id="table" dataCollection="myModel" onClick="removeItem">
+      &lt;TableView id="table" dataCollection="myModels" onClick="removeItem">
 
         &lt;!-- use a &lt;Require> for our repeated TableViewRow -->
         &lt;Require src="row"/>
@@ -551,7 +551,7 @@ function addItem(itemname) {
 				<section>
 					<h2 style="" class="l_syncadapters">Sync Adapters</h2>
 					<ul style="width:40%;float:left;">
-						<li class="l_syncadapters1">'sql' / 'sql_new' - SQLite database on iOS/Android</li>
+						<li class="l_syncadapters1">'sql' - SQLite database on iOS/Android</li>
 						<li class="l_syncadapters2">'localStorage' - HTML5 Local Storage on Mobile Web</li>
 						<li class="l_syncadapters3">'properties' - application properties on all</li>
 						<li class="l_syncadapters4">Specify in the model</li>
@@ -574,7 +574,7 @@ exports.definition = {
 }
 
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_syncadapters">With version 0.3.5, Tony released a new sql adapter that is not backward compatible. He called it sql_new to avoid breaking existing apps. It adds various features such as custom queries, advanced model definitions, better migration support, and so forth. When Alloy is finally released, the 'sql_new' adapter will be renamed and replace the 'sql' adapter.</div></div>
+					<div class="slidenote"><div class="l_slidenote_syncadapters">Starting with version 0.3.5, the sql adapter includes features such as custom queries, advanced model definitions, better migration support, and so forth. During the beta period, there was a time when there were two versions of this adapter: sql and sql_new. You might see a few examples that use the 'sql_new' adapter name. With the Alloy final release, the 'new' version replaced the older version; you should use 'sql' as the name of the SQLite sync adapter.</div></div>
 				</section>
 
 				<section>
@@ -585,7 +585,7 @@ exports.definition = {
 						<li class="l_syncextras3">Define in a JavaScript file in either app/assets/alloy/sync or app/lib/alloy/sync </li>
 						<li class="l_syncextras4">See docs for more info: http://goo.gl/XTn9O</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_syncextras"></div></div>
+					<div class="slidenote"><div class="l_slidenote_syncextras">You can create your own sync adapters if the supplied versions don't meet your needs. The community has contributed a few already. Check out the documentation link shown on this slide for more details on how you would write your adapter.</div></div>
 				</section>
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
@@ -603,11 +603,9 @@ migration.up = function(db) {
         "columns": {
             "book": "string",
             "author": "string",
-            "isbn": "integer"
+            "isbn": "integer"  /* our new field */
         },
         "defaults": {
-            "book": "-",
-            "author": "-",
             "isbn": "0"
         },
         "adapter": {
@@ -621,15 +619,15 @@ migration.down = function(db) {
     db.dropTable("books");
 };
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_migr">In this case, we can assume that one of the fields is new compared to the original models version. It will be added to the database table when your app is next run.</div></div>
+					<div class="slidenote"><div class="l_slidenote_migr">In this case, we are adding the isbn field to our model. We're also setting a default for it (and not for any of the other fields). In addition to creating the migration file as shown here, you would need to modify the accompanying model file with the same data definition. That way, both new users of the app and those upgrading would get the same model structure.</div></div>
 				</section>
 
 				<section>
 					<h2 style="" class="l_migrnotes">Migrations</h2>
 					<ul style="width:80%;">
-						<li class="l_migrnotes1">app/migrations/YYYYMMDDHHMMSS_model.js</br>&nbsp; &nbsp; &nbsp; &rarr; 20120610049877_book.js.</li>
+						<li class="l_migrnotes1">Stored in app/migrations/ </li>
+						<li class="l_migrnotes3">File name: YYYYMMDDHHMMSS_model.js</br>&nbsp; &nbsp; &nbsp; e.g.  20120610049877_book.js.</li>
 						<li class="l_migrnotes2">You must have the same new columns/defaults in the model and migration file</li>
-						<li class="l_migrnotes3">Migrations are a work in progress. Currently, there is not a way to revert a table to a previous version.</li>
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_migrnotes"></div></div>
 				</section>
@@ -689,8 +687,8 @@ conn.close();
 				<section>
 					<h2 style="" class="l_modellimits">API access benefits</h2>
 					<ul style="width:80%;">
-						<li class="l_modellimits1">Prior to Alloy 0.3.5: SQL adapter limitations: no joins, group by, or other "advanced" query support</li>
 						<li class="l_modellimits2">Use existing DB libraries</li>
+						<li class="l_modellimits1">Prior to Alloy 0.3.5: SQL adapter limitations: no joins, group by, or other "advanced" query support</li>
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_modellimits">Prior to version 0.3.5, the SQL adapter supplied with Alloy does not support any 'advanced' queries. For example, you cannot do joins between tables via Alloy models and collections. If your app is using an older version, the direct API access method would be your best solution for implementing such queries.<br/><br/>If you have an existing app that uses a library of database access functions, you can still use that library with an Alloy app. You would simply use it as a CommonJS module within your project and not use Models to represent your data.</div></div>
 				</section>
@@ -724,12 +722,12 @@ conn.close();
 					<p class="l_labintro">In this lab, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1">goal or objective, stated as a performance-based objective</li>
-						<li class="l_labobjective2">e.g.</li>
-						<li class="l_labobjective3">Display a list of fugitives in a table</li>
-						<li class="l_labobjective4">etc.</li>
+						<li class="l_labobjective1">Back an app's UI with data in an Alloy Model</li>
+						<li class="l_labobjective2">Save data in a local SQLite database</li>
+						<li class="l_labobjective3">Bind a DB table to a TableView</li>
+						<li class="l_labobjective4">Seed the database with initial data</li>
 					</ul>
-					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
+					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/display/td/06.+Models+and+Collections'>wiki.appcelerator.org/display/td/06.+Models+and+Collections</a></p>
 					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
 				</section>
 
