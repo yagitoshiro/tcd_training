@@ -145,6 +145,14 @@ $.index.open();
 				</section>
 -->
 
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_audiotopic">Audio</h5>
+					<div class="slidenote"><div class="l_slidenote_audiotopic"></div></div>
+				</section>
+
+
 				<section>
 					<h2 style="" class="l_sound">Sound</h2>
 					<pre style=""><code contenteditable>
@@ -163,56 +171,143 @@ $.play.addEventListener('click', function() {
 				</section>
 
 				<section>
-					<h2 style="" class="l_recording">Recording</h2>
+					<h2 style="" class="l_recording">Recording (iOS)</h2>
 					<pre style=""><code contenteditable>
 // with &lt;Button id="record">&lt;/Button>
 
 // in controller:
+var recorder = Ti.Media.createAudioRecorder({
+	compression: Ti.Media.AUDIO_FORMAT_ULAW,
+	format: Ti.Media.AUDIO_FILEFORMAT_WAVE
+});
 
+$.record.addEventListener('click', function() {
+  recorder.start();
+  Ti.Media.startMicrophoneMonitor();
+});
 
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_sound"></div></div>
+					<div class="slidenote"><div class="l_slidenote_sound">You can record audio, right now only on iOS. You have options for compression and recording format, among others. </div></div>
 				</section>
 
 				<section>
-					<h2 class="l_audio_api">Audio APIs</h2>
-					<p align="left" class="l_play_sounds">Play sounds from local or remote files (Sound)</p>
-					<p align="left" class="l_streaming_audio">Streaming audio support (AudioPlayer)</p>
-					<p align="left" class="l_audio_recording">Audio recording support</p>
-					<p align="left" class="l_demos_audio">Demos and Code Walkthrough</p>
-					<div class="slidenote"><div class="l_slidenote_audio_api">Demos in the Kitchen Sink<br><ul><li>Phone tab / Sounds / Local  (demo each button)</li><li>Sounds / Record (record with lo/hi fidelity &amp; playback)</li></ul>Show code: examples/sound_local.js<ul><li>Show: createSound()</li><li>play(), pause(), stop() in button event handlers</li><li> looping</li></ul></div></div>
+					<h2 style="" class="l_streamingaudio">Streaming Audio</h2>
+					<pre style=""><code contenteditable>
+// with &lt;AudioPlayer id="player"/> and &lt;Button id='playbtn'/>
+
+// in the controller:
+$.player.url = 'http://www.example.com/podcast.mp3';
+$.playbtn.addEventListener('click', function() {
+  $.player.start();
+});
+
+$.win.addEventListener('close', function() {
+  $.player.stop(); // stop playback when window closes!
+});
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_streamingaudio">You can stream audio from a web URL with the Ti.Media.AudioPlayer object. The AudioPlayer supports pseudo-streaming (of MP3 or other files) as well as HTML Live Streaming. </div></div>
 				</section>
 
-
-				
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
-					<h2 class="l_video_api">Video APIs</h2>
-					<p align="left" class="l_play_video">Play video from local files</p>
-					<p align="left" class="l_streaming_video">Streaming video support - HTTP Live Streaming (iOS), RTSP (Android), pseudo-streaming</p>
-					<p align="left" class="l_video_capture">Video capture support</p>
-					<p align="left" class="l_demos_video">Demos and Code Walkthrough for Local Video</p>
-					<div class="slidenote"><div class="l_slidenote_video_api">Demos in the Kitchen Sink<br><ul><li>Phone tab / Play Movie / Local -- point out overlays</li><li>Phone tab / Play Movie / Remote streaming</li></ul>Show code: examples/movie_local.js<ul><li>Show: contentURL property, label overlay</li></ul></div></div>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_videotopic">Video</h5>
+					<div class="slidenote"><div class="l_slidenote_videotopic"></div></div>
 				</section>
-				
 
 				<section>
-					<h2 class="l_capturing_images">Capturing Images</h2>
-					<p align="left" class="l_can_get">Can get images from the device via camera or gallery</p>
-					<p align="left" class="l_function_names">Function names are different, signature the same</p><br>
-					<p align="left" class="l_success"><b>success:</b>called on photo retrieval</p><br>
-					<p align="left" class="l_error"><b>error:</b>called on a device error</p><br>
-					<p align="left" class="l_cancel"><b>cancel:</b>called when a user cancels photo retrieval</p><br>
-					<div class="slidenote"><div class="l_slidenote_capturing_images">Same signature means you can use nearly identical code whether working with the camera or gallery<br>Demo notes on next slide</div></div>
-				</section>				
-				
-			
+					<h2 style="" class="l_video">VideoPlayer</h2>
+					<pre style=""><code contenteditable>
+// with &lt;VideoPlayer id="player"/> and &lt;Button id='playbtn'/>
+
+// in the controller:
+$.player.url = 'movie.mp4'; // http url would work too!
+
+// set player control style
+$.player.movieControlStyle = Titanium.Media.VIDEO_CONTROL_EMBEDDED;
+$.playbtn.addEventListener('click', function() {
+  $.player.start();
+});
+
+$.win.addEventListener('close', function() {
+  $.player.stop(); // stop playback when window closes!
+})
+
+					</code></pre>
+					<p class="l_vidpara">Streaming support: HTTP Live Streaming (iOS), RTSP (Android), pseudo-streaming</p>
+					<div class="slidenote"><div class="l_slidenote_video">You can show full screen or embedded video players (latter on iOS only) using the VideoPlayer component. You can control the way in which the video playback controls are shown for the player by setting the movieControlStyle property. </div></div>
+				</section>
+
 				<section>
-					<h2 class="l_demo_photo_gallery">Demo: Photo Gallery</h2>
-					<p style="text-align:left;" class="l_photodemo">From KitchenSink:<br/>Phone > Photo Gallery<br/>examples/photo_gallery.js and examples/camera_basic.js</p>
-					<div class="slidenote"><div class="l_slidenote_demo_photo_gallery">** Make sure to have images pre-installed in your simulator/emulator<br>Demos in the Kitchen Sink<ul><li>Phone tab / Photo Gallery</li></ul>Show code: examples/photo_gallery.js<ul><li>createImageView (holds image), openPhotoGallery and its 3 callbacks</li><li>allowEditing and mediaTypes</li><li>imageView.image</li></ul>Show code: examples/camera_basic.js<ul><li>showCamera</li><li>image = event.media</li><li>saveToPhotoGallery and mediaTypes properties</li></ul></div></div>
+					<h2 style="" class="l_videoevents">Video Events</h2>
+					<ul style="width:80%;">
+						<li class="l_videvents1"><code>load</code> Video file has finished loading</li>
+						<li class="l_videvents1"><code>complete</code> Video has finished playing, <code>e.reason</code> on event object will tell you why</li>
+						<li class="l_videvents1"><code>fullscreen</code> Video player has changed to or from fullscreen mode</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_videoevents">e.reason could be something other than Ti.Media.VIDEO_FINISH_REASON_PLAYBACK_ENDED so you should check.</div></div>
 				</section>
 				
-				
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_imagecapture">Capturing Images</h5>
+					<div class="slidenote"><div class="l_slidenote_imagecapture"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_gallery">From the Gallery</h2>
+					<pre style=""><code contenteditable>
+$.galleryButton.addEventListener('click', function() {
+  var options = {
+    success: function(e) {
+      // fired when user selects from gallery
+      // e.media == the image data
+    },
+    cancel: function() {
+      // fired when user cancels
+    },
+    error: function(error) {
+      // fired when there's an error
+      // error.code is a constant, like Titanium.Media.NO_CAMERA
+    },
+    allowEditing: true,
+    mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO]
+  }
+});
+Ti.Media.openPhotoGallery(options);
+
+					</code></pre>
+
+					<div class="slidenote"><div class="l_slidenote_gallery">This opens the platform's native gallery picker. Once the user selects a photo or video, the success callback is fired, inside with e.media is the blob returned.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_camera">From the Camera</h2>
+					<pre style=""><code contenteditable>
+$.galleryButton.addEventListener('click', function() {
+  var options = {
+    success: function(e) {
+      // fired when user selects from gallery
+      // e.media == the image data
+    },
+    cancel: function() {
+      // fired when user cancels
+    },
+    error: function(error) {
+      // fired when there's an error
+      // error.code is a constant, like Titanium.Media.NO_CAMERA
+    },
+    saveToPhotoGallery: true,
+    mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO, Ti.Media.MEDIA_TYPE_VIDEO]
+  }
+});
+Ti.Media.showCamera(options);
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_camera">The options supported showCamera and openPhotoGallery are identical. So, you can write a single set of options, then do an if statement to load the gallery or camera. No code duplication that way! The simulator doesn't provide camera support. The Android emulator does, but it gives strange results so don't try to use it. </div></div>
+				</section>
 
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
@@ -254,8 +349,9 @@ $.play.addEventListener('click', function() {
 					<ul style="margin-bottom:40px;">
 						<li class="l_labobjective1">Capture an image from the camera or load it from the gallery</li>
 						<li class="l_labobjective2">Display the image on the details window for the fugitive</li>
+						<li class="l_labobjective3">The image data won't be preserved (you'll do that in the next lab)</li>
 					</ul>
-					<p class="l_labURL" style="font-size:0.7em;margin-top:20px;"><a href=''>wiki.appcelerator.com/foo</a></p>
+					<p class="l_labURL" style="margin-top:20px;">Lab: <a href='https://wiki.appcelerator.org/display/td/08.+Multimedia'>wiki.appcelerator.org/display/td/08.+Multimedia</a></p>
 					<div class="slidenote"><div class="l_slidenote_lab">At this point, the image won't be saved. So reopening the details view for the fugitive again will show the default image and the user can select again. We'll learn in the next lesson how to save the image to the file system to complete the functionality we're beginning here.</div></div>
 				</section>
 

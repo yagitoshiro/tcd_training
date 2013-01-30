@@ -149,14 +149,24 @@
 				</section>
 
 				<section>
-					<h2 style="" class="l_geodemo">Geolocation Demo</h2>
+					<h2 style="" class="l_geodemo">iOS / Mobile Web Geo Demo</h2>
 					<ul style="width:80%;">
 						<li class="l_geodemo1">iOS: Kitchen Sink &mdash; Phone > Geolocation</li>
 						<li class="l_geodemo2">Mobile Web: Kitchen Sink &mdash; Phone > Geolocation</li>
-						<li class="l_geodemo3">Android: AndroidGeo app</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_geodemoV2">Demo: iOS &amp; Mobile Web (examples/geolocation.js)<br/>Make sure to point out purpose, checking for location services being enabled, and checking authorization. Load demo in iOS Simulator and Mobile Web (browser) to show permissions messages.<br/><br/>Android - demo is in tcad-code repo, called AndroidGeo. Works best (only?) on a device not in emulator. In app.js, show provider and rules definitions, explain locationCallback(), and point out Android lifecycle events for managing GP &amp; battery life. In buttons.js, show the click handlers that turn on/off the various providers.</div></div>
+					<div class="slidenote"><div class="l_slidenote_geodemoV2">Demo: iOS &amp; Mobile Web (examples/geolocation.js)<br/>Make sure to point out purpose, checking for location services being enabled, and checking authorization. Load demo in iOS Simulator and Mobile Web (browser) to show permissions messages.<br/><br/>There might be some legacy Android code in here. Feel free to tell students it no longer applies or should be used. You'll show the Android techniques next.</div></div>
 				</section>
+
+				<section>
+					<h2 style="" class="l_androidgeo">Android Geo Demo</h2>
+					<ul style="width:80%;">
+						<li class="l_androidgeo1">Project: https://github.com/appcelerator-training/AndroidGeo</li>
+						<li class="l_androidgeo2">Runs on device (not emulator)</li>
+						<li class="l_androidgeo3">Shows Legacy, Simple &amp; Manual modes</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_androidgeo">Show the code of this project. The UI is laid out in buttons.js and labels.js. The main file you want to walk through is app.js. Make sure to show where the providers and rules are defined for manual mode. It's not critical for students to understand the exact purpose of each line of code. Rather, you just want to familiarize them with the possibilities.</div></div>
+				</section>
+
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
@@ -252,7 +262,7 @@
 				
 <!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
 				<section>
-					<h2 style="" class="l_demo">Demo</h2>
+					<h2 style="" class="l_demo">Maps Demo</h2>
 					<ul style="width:80%;">
 						<lh class="ldemoheading">KitchenSink Map demos</li>
 						<li class="l_demo1">Base UI > Views > Map View</li>
@@ -260,6 +270,7 @@
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_demo">KitchenSink: <ul><li>embedded map</li><li>discuss annotation components</li><li>map types</li><li>zooming</li><li>user location (no default on Android)</li></ul>examples/map_view.js<ul><li>~line 22 createAnnotation()</li><li>~line 60 createMapView()</li><ul><li>mapType reference API docs</li><li>region: lat/long &amp; delta</li><li>userLocation</li><li>annotations</li></ul></div></div>
 				</section>
+
 
 				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
@@ -293,7 +304,7 @@
 						<li class="l_labobjective2">Save the latitude/longitude to the model for later retrieval</li>
 						<li class="l_labobjective3">Plot the capture location on a map</li>
 					</ul>
-					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/'>wiki.appcelerator.org/whatever</a></p>
+					<p class="l_labURL">Lab: <a href='https://wiki.appcelerator.org/display/td/10.+Geolocation+and+Mapping'>wiki.appcelerator.org/display/td/10.+Geolocation+and+Mapping</a></p>
 					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
 				</section>
 
