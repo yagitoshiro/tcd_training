@@ -228,6 +228,17 @@
 					<div class="slidenote"><div class="l_slidenote_instrument">Just like the dalvik monitor in Android, you can start different instrumentation tools to find memory leaks, track threads and processes and to find potential errors. These can be found in the run/run with performance tools menu.</div></div>
 				</section>
 
+				<section>
+					<h2 style="" class="l_netconditioner">Network Link Conditioner</h2>
+				    <img src="images/networklineconditioner.png" style="width:500px;" class="noborder"/>
+					<ol style="width:60%;">
+						<li class="l_netconditioner1">Spotlight search 'Network Link Conditioner'</li>
+						<li class="l_netconditioner2">Select Install for all users of this computer</li>
+						<li class="l_netconditioner3">Installs to Settings app</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_netconditioner"></div></div>
+				</section>
+
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
@@ -241,7 +252,48 @@
 					<div class="slidenote"><div class="l_slidenote_mwconsole">Debugging for Mobile Web is done in the browser console. Shown here is Chrome. Safari, and Firefox, particularly with the Firebug plug-in, works well too.</div></div>
 				</section>
 
-			
+				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
+					<h5 style="clear:both;" class="l_tips">Tips and Notes</h5>
+					<div class="slidenote"><div class="l_slidenote_tips"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_androidtips">Android Tips</h2>
+					<ul style="width:80%;">
+						<li class="l_anddroidtips1">Much more sensitive to data types (text.value=var will throw error if var != 'string')</li>
+						<li class="l_anddroidtips2">Less than forgiving than iOS with syntax errors</li>
+						<li class="l_anddroidtips3">Use Monitor/ddms to view logs. Studio sometimes doesn't show all</li>
+						<li class="l_anddroidtips4">Check out adb features: remote shell, push/pull files, launch sqlite to access an app's database</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_androidtips">Android tends to be much more sensitive to data types. It will often throw an cryptic error if you pass the wrong data type. Try passing a boolean to textfield.autocapitalize or setting textfield.value = 123 to see such crashes. iOS in comparison will often keep happily chugging along. Use Monitor (or ddms) to view the complete logs. And check the Android developer docs for info on using adb to access the emulator session (or rooted device).</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_simem">Simulator vs. Emulator</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th style='width:18%;'> </th><th style='width:40%;text-align:center !important;'>iOS Simulator</th><th style='width:40%;text-align:center !important;'>Android Emulator</th></tr>
+	<tr>
+		<td style="font-weight: bold;background-color: #888;border-right: 2px solid #444;">Description:</td>
+		<td style="border-right: 1px solid #444;">App runs as OS X process</td>
+		<td>App runs in real OS inside virtual computer</td>
+	</tr>
+	<tr>
+		<td style="font-weight: bold;background-color: #888;border-right: 2px solid #444;">Good:</td>
+		<td style="border-right: 1px solid #444;">Fast, no code signing steps, use native tools (Console, Instruments) for debugging</td>
+		<td>Emulate many types of hardware, screen sizes and densities, higher-fidelity representation of device environment</td>
+	</tr>
+	<tr>
+		<td style="font-weight: bold;background-color: #888;border-right: 2px solid #444;">Bad: </td>
+		<td style="border-right: 1px solid #444;">Unrealistically fast, fewer memory constraints, not case sensitive (unlike device)</td>
+		<td>Slow, slow, did we say slow? Debugging tools have limited view of Ti objects</td>
+	</tr>
+</table>
+					<div class="slidenote"><div class="l_slidenote_simem"></div></div>
+				</section>
+
+		
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
 					<h1 style="" class="l_summary">Summary</h1>
