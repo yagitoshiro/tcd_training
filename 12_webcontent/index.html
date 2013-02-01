@@ -130,17 +130,22 @@ win.add(webview);
 					<pre style="width:48%;float:left;"><code contenteditable>
 &lt;Alloy>
   &lt;Window class="container">
-    &lt;WebView url='myfile.htm'>
+    &lt;WebView url='/myfile.htm'>
   &lt;/Window>
 &lt;/Alloy>
 					</code></pre>
 					<pre style="width:48%;float:right;"><code contenteditable>
 var webview = Ti.UI.createWebView({
-  url:'myfile.html'
+  url:'/myfile.html'
 });
 win.add(webview);
 					</code></pre>
-					<p class="l_localwebpara" style="clear:both;margin-top:10px;">Put your HTML files in the assets folder (or Resources for non-Alloy projects) or subdirectories of that location</p>
+					<ul style="width:80%;">
+						<li class="l_localweb1">HTML, JS, etc. in the assets folder with Alloy</li>
+						<li class="l_localweb2">In Resources for non-Alloy</li>
+						<li class="l_localweb3">OK to put into subdirectories of those locations</li>
+						<li class="l_localweb4">Leading slash required for Android</li>
+					</ul>
 					<div class="slidenote"><div class="l_slidenote_localweb">Great for rendering lots of formatted text (such as an About this App screen) or HTML forms for data entry. Point URL to local web content file</div></div>
 				</section>
 
@@ -153,12 +158,18 @@ win.add(webview);
   &lt;/Window>
 &lt;/Alloy>
 
-					</code></pre>
-					<pre style="width:48%;float:right;"><code contenteditable>
 // in the controller
 // typically, html is retrieved from web
 // and rendered as inline content
 $.web.html = '&lt;p>This is &lt;b>HTML&lt;/b>.&lt;/p>';
+
+					</code></pre>
+					<pre style="width:48%;float:right;"><code contenteditable>
+var webview = Ti.UI.createWebView({
+  html:'&lt;p>This is &lt;b>HTML&lt;/b>.&lt;/p>'
+});
+win.add(webview);
+
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_inlineweb">Rather than pointing to a file, you can render inline HTML content. This is best used to display HTML retrieved from the network without requiring the interim step of saving the file to the local filesystem.</div></div>
 				</section>
@@ -245,12 +256,16 @@ $.web.html = '&lt;p>This is &lt;b>HTML&lt;/b>.&lt;/p>';
 
 				<section>
 					<h2 style="" class="l_webtools">Integrating Web Tools</h2>
-					<ul style="width:60%;float:left;">
-						<li class="l_webtools1">Graphing &amp; other libraries</li>
-						<li class="l_webtools2">Canvas not supported on Android &lt; ~4.0.3</li>
-						<li class="l_webtools3">jQuery only libraries include Sparklines, Flot, and others</li>
+					<ul style="width:80%;">
+						<li class="l_webtools1">CSS 3D, Canvas, PDF.js, etc.</li>
+						<li class="l_webtools2">Canvas not supported on all Android &lt; ~4.0.3</li>
+						<li class="l_webtools3">jQuery charting libraries, such as jqPlot, Sparklines, Flot, and others</li>
 					</ul>
-				    <img src="images/sparklines.png" style="width:300px;float:right;" class="noborder"/>
+					<p>
+				    <img src="images/sparklines.png" style="height:350px;" class="noborder"/>
+				    <img src="images/jqplot.png" style="height:310px;position:relative;top:-30px;" class="noborder"/>
+				    <img src="images/threejs.png" style="height:350px;" class="noborder"/>
+				    <img src="images/pdfjs.png" style="height:310px;position:relative;top:-30px;" class="noborder"/></p>
 					<div class="slidenote"><div class="l_slidenote_webtools"></div></div>
 				</section>
 
@@ -301,18 +316,6 @@ $.web.html = '&lt;p>This is &lt;b>HTML&lt;/b>.&lt;/p>';
 					<div class="slidenote"><div class="l_slidenote_embedded_docs">Source: http://developer.apple.com/library/ios/#qa/qa1630/_index.html</div></div>
 				</section>				
 
-<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
-				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
-				</section>
-
 				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
@@ -340,13 +343,11 @@ $.web.html = '&lt;p>This is &lt;b>HTML&lt;/b>.&lt;/p>';
 					<p class="l_labintro">In this lab, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1">Create an RSS Reader</li>
-						<li class="l_labobjective2">Pull data from an XML feed</li>
-						<li class="l_labobjective3">Display individual blog posts in a WebView</li>
-						<li class="l_labobjective4">Create an "about" page using local HTML</li>
+						<li class="l_labobjective1">Implement a jQuery-powered graph in a WebView</li>
+						<li class="l_labobjective2">Enable user updates to the graph via native &rarr; WebView communication</li>
 					</ul>
-					<p class="l_labURL" style="font-size:0.7em;margin-top:20px;"><a href='https://wiki.appcelerator.org/display/td/285+Integrating+Web+Content'>wiki.appcelerator.org/display/td/285+Integrating+Web+Content</a></p>
-					<div class="slidenote"><div class="l_slidenote_lab">Demo &mdash; Lab285:</b><ol><li>Show scrolling list of news items</li><li>Click one to show web view</li><li>Click About tab to show local HTML data</li></ol><br/>The UI, network, and RSS feed parsing is done already.</div></div>
+					<p class="l_labURL" style="margin-top:20px;">Lab: <a href='https://wiki.appcelerator.org/display/td/12.+Web+Content'>wiki.appcelerator.org/display/td/12.+Web+Content</a></p>
+					<div class="slidenote"><div class="l_slidenote_lab">Demo the finished lab project, showing how data is sent from native to the web view. Students will add the web view and rig up the event listener. The major work in creating the graph is already done for students; they don't have to implement jqPlot and jQuery.</div></div>
 				</section>
 
 <!-- EVERY LAB SHOULD BE ACCOMPANIED BY A SOLUTION WALK THROUGH. ONLY FILL IN THE SLIDENOTE CONTENT. USE IT TO EXPLAIN WHAT KEY CODE AND CONCEPTS THE INSTRUCTOR SHOULD POINT OUT TO STUDENTS. THIS INFO WILL ALSO BE VIEWABLE BY STUDENTS IN THE PRINTED MANUAL -->

@@ -71,81 +71,87 @@
 <section>
 
 <!-- YOUR LAB CONTENT GOES HERE -->
-<h1 class="l_labname">Lab - Integrating Web Content</h1>
-<p class="l_mission"><strong>Mission: </strong>In this lab, you will integrate web content into a partially-completed RSS reader. Individual articles will be displayed in a web view within a modal window. A local HTML file will be shown in an 'About' tab.</p>
+<h1 class="l_labname"><img src='http://assets.appcelerator.com.s3.amazonaws.com/app_u/tcd_labs/Finished/lab_ios.png' style='height:320px;' align='right' class='noborder'>Lab - Integrating Web Content</h1>
+<p class="l_mission"><strong>Mission: </strong>In this lab, you will implement a jQuery-based graph in a Titanium app and enable the user to update the graph data with native controls.</p>
 
-<p class="l_specification"><strong>Specification: </strong>You will download a partially-completed file and add the missing functionality. The finished app will look like this:<br/><img src='labimages/webview1.png' height='300' align='left'><img src='labimages/webview2.png' height='300' align='left'><img src='labimages/webview3.png' height='300' align='left'></p>
+<p class="l_specification"><strong>Specification: </strong>Starting with a partially-completed app, you will enable the following functionality listed below and illustrated in the screenshots here:<br/><img src='http://assets.appcelerator.com.s3.amazonaws.com/app_u/tcd_labs/Finished/lab_android.png' style='clear:both;height:290px;' align='right' class='noborder'></p>
 
-<table>
+<ul style="width:50%;margin-top:10px;">
+	<li class="l_labspec1">Add a WebView to the index view that loads the assets/graph.html file.</li>
+	<li class="l_labspec2">In the entryView controller, pass the user-entered data to the WebView.</li>
+	<li class="l_labspec3">In graph.html, add the script necessary to receive the data and update the graph.</li>
+</ul>
+
+
+<table style="width:80%;">
 	<tr>
-		<td colspan="2" class="labinstructions l_step1">1. Download the starting file set from <a href='https://github.com/appcelerator-training/tcad-code/tree/master/Starting_code/TiBH285'>GitHub</a> or <a href='http://assets.appcelerator.com.s3.amazonaws.com/app_u/code/TiBH285.zip'>AWS/S3</a> and import the resulting files as a new Titanium Mobile project.</td>
+		<td colspan="2" class="labinstructions l_step1">1. Download the starting file set from <a href='http://assets.appcelerator.com.s3.amazonaws.com/app_u/tcd_labs/Starting/12_webcontent.zip'>S3: 12_webcontent (Starting)</a> and import the resulting files as a new Titanium Mobile project.</td>
 	</tr>
 	<tr>
 		<td class="tdfiller"><!-- leave empty--></td>
 		<td class="labexplanations l_stepexplanation1"></td>
 	</tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_step2">2. Examine the contents of the app.js, ui/TabGroup.js, and lib/network.js files. These files have been completed for you.</td>
+	<td colspan="2" class="labinstructions l_labstep2">2. Update the index view to include a WebView after the entryView component. Use an id of <code>entryView</code> and load the assets/graph.html file into the WebView.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_stepexplanation2">We've written most of the UI features and network functions so that you can concentrate on adding the web view functionality. Of course, at this point, the app doesn't do anything.</td>
+	<td class="labexplanations l_labstepexplanation2"></td>
 </tr>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_step3">3. Open the <strong>ui/RSSWindow.js</strong> file. In the table event listener, follow the code comments to require in the appropriate module, instantiate the window, and open it.</td>
-</tr>
-<tr>
-	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_stepexplanation3">When users tap on a row, this window will open and display the contents of the blog article.</td>
-</tr>
-<tr>
-	<td colspan="2" class="labinstructions l_step4">4. Open <strong>ui/ArticleWindow.js</strong> and following the comments in that file, write the code to define the window that will contain the web view for showing the blog articles.</td>
+	<td colspan="2" class="labinstructions l_labstep3">3. In the entry view controller, update the updateWebView() function to pass the values of the fields, a, b, and c to the WebView via an app-level event. </td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_stepexplanation4"></td>
+	<td class="labexplanations l_labstepexplanation3">This function has been started for you. It hides the soft keyboard.</td>
+</tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<tr>
+	<td colspan="2" class="labinstructions l_labstep4">4. In graph.html, update the <code>&lt;script></code> block in the <code>&lt;head></code> to listen for the event you fire from the entry view controller. Within that event listener, add this code:<br/>
+<code>
+var newData = [['iOS',e.a],['Android',e.b],['Other',e.c]];<br/> 
+plot1.series[0].data = newData; <br/>
+plot1.resetAxesScale(); <br/>
+plot1.replot();<br/>
+</code>
+</td>
 </tr>
 <tr>
-	<td colspan="2" class="labinstructions l_step5">5. Open <strong>ui/AboutWindow.js</strong> and following the comments in that file, write the code to define the window that will display the index.html file on the 'About' tab.</td>
+	<td class="tdfiller"><!-- leave empty--></td>
+	<td class="labexplanations l_labstepexplanation4"></td>
+</tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<tr>
+	<td colspan="2" class="labinstructions l_labstep5">5. Add the correct viewport tag so that the WebView's content fills the entire width of the device screen. Users shouldn't be able to scale the display.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
 	<td class="labexplanations l_labstepexplanation5"></td>
 </tr>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <tr>
-	<td colspan="2" class="labinstructions l_step6">6. Save your changes in all files and build your project for the simulator/emulator.</td>
+	<td colspan="2" class="labinstructions l_labstep6">6. Save your work then run the app in the simulator/emulator or on device. You should be able to enter numbers in the first two text fields, the third will be auto-calculated for you, then click Update and the graph will redraw with your values.</td>
 </tr>
 <tr>
 	<td class="tdfiller"><!-- leave empty--></td>
 	<td class="labexplanations l_labstepexplanation6"></td>
-</tr>
-<tr>
-	<td colspan="2" class="labinstructions l_step7">7. Test your work by viewing an article or two and by displaying the About tab. </td>
-</tr>
-<tr>
-	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_stepexlpanation7">Correct any errors and rebuild the app, if necessary.</td>
-</tr>
-<tr>
-	<td colspan="2" class="labinstructions l_step8">8. Close the simulator/emulator and all open files in Studio.</td>
-</tr>
-<tr>
-	<td class="tdfiller"><!-- leave empty--></td>
-	<td class="labexplanations l_labstepexplanation8"></td>
 </tr>
 
 
 </table>
 
 <h2 class="l_summary">Summary</h2>
-<p class="l_summarypara">In this lab, you implemented web views in two different ways. In one, the contents of a blog post are displayed in a web view. In the other, the contents of a local HTML file are displayed within a web view to illustrate how you can display formatted text in that manner. </p>
+<p class="l_summarypara">In this lab, you implemented web views and enabled communication between the native wrapper and HTML context. </p>
 
 <h2 class="l_resources">Resources</h2>
 
 <ul>
 	<li class="l_resources1">API docs: WebView: <a href='http://docs.appcelerator.com/titanium/2.0/index.html#!/api/Titanium.UI.WebView'>http://docs.appcelerator.com/titanium/2.0/index.html#!/api/Titanium.UI.WebView</a></li>
 	<li class="l_resources2">Guides: Integrating Web Content: <a href='http://docs.appcelerator.com/titanium/2.0/index.html#!/guide/Integrating_Web_Content'>http://docs.appcelerator.com/titanium/2.0/index.html#!/guide/Integrating_Web_Content</a></li>
-	<li class="l_resources3">Finished code: <a href='https://github.com/appcelerator-training/tcad-code/tree/master/Finished_code/TiBH285'>GitHub</a></li>
+	<li class="l_resources3">Finished code: <a href='http://assets.appcelerator.com.s3.amazonaws.com/app_u/tcd_labs/Finished/12_webcontent.zip'>S3: 12_webcontent (finished)</a></li>
 </ul>
 
 
