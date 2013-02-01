@@ -24,8 +24,8 @@ These slides use [Crystal Clear](http://commons.wikimedia.org/wiki/Crystal_Clear
 some_folder  
    - presentation-engine (folder, must be named as shown here!)  
    - tcd_certification (folder)  
-      - index.html  <-- TOC for the whole course  
-         - 000 (folder)  
+      - index.html  <-- TOC for the whole course, open this file 
+         - 01_gettingstarted (folder)  
             - index.html <-- TOC for the lesson  
          ... etc
 ```
@@ -34,7 +34,7 @@ some_folder
 
 1. Open the coursename/index.html in your browser. Safari and Chrome work best, Firefox works too.
 2. Click a lesson's name, which opens that lesson's index.html file.
-3. Click the "Notes" icon to open a separate window (you might need to override any pop-up blocker to see that window). That new window will display presenter notes as you step through the slides.
+3. Click the "Notes" icon to open a separate window (you might need to override any pop-up blocker to see that window). You don't need to reload or do anything with that window. It will automatically display presenter notes as you step through the slides. 
 4. At the end of a lesson, if running Chrome, close the presenter notes window. In all browsers, click the home icon, which will take you back to the course TOC slide. Click the next lesson's title. (If running Chrome, reopen the presenter notes window.)
 
 ### Navigating within a presentation
@@ -43,6 +43,11 @@ Press right or left arrow keys to move forward/back in a presentation. Some slid
 
 Press the Spacebar to see a partial overview of the slides in a presentation.
 
+Click the house icon to return to the course table of contents slide.
+
+Click the blue arrow icon to return to the first slide in the current lesson
+
+<!--
 ### Downloading a specific version of the slides
 
 We recently started tagging releases of these slides with the corresponding Titanium version. That way, you can download slides for a given version.
@@ -56,6 +61,7 @@ We recently started tagging releases of these slides with the corresponding Tita
 <img src='https://img.skitch.com/20120808-mk19ffd8bc1t9sgpu3muj37w9x.png' width='640' alt='Download the zip file' style='border: 1px solid #000;'>
 
 **Step 3:** Unzip the archive you downloaded and rename it to **tcd_certification**
+-->
 
 # Corrections and Contributions
 
