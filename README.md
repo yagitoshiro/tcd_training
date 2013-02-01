@@ -1,6 +1,8 @@
 # TCD Certification Training
 
-This project houses the training materials needed for the TCD - Titanium Certified Developer training course, which corresponds to the Titanium Certified Developer (TCD) certification exam.
+*Draft status* -- Feb 1, 2013 -- In its initial public release, the TCD course is incomplete. Labs (and associated code) for the ACS and Debugging labs are not written. The corresponding exam has not be finalized. This note will be removed when those components are finished.
+
+This project houses the training materials needed for the Titanium Certified Developer (TCD) Training course, which corresponds to the Titanium Certified Developer (TCD) certification exam.
 
 # License
 
@@ -125,7 +127,7 @@ Lab steps and descriptions are provided in the lab.html files and associated i18
 
 ## Thanks to our translators
 
-Appcelerator thanks these great Titanium community supporters for translating our materials into Japanese:
+Appcelerator thanks these great Titanium community supporters for translating our TCAD materials into Japanese. Please help with TCD and we'll add your names to the list!
 
 * kazuaki konno (@kaz_konno)
 * daisuke aoki (@daoki2)
