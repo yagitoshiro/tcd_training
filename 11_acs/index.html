@@ -193,6 +193,41 @@ var login = function(username, password, callback) {
 				</section>
 
 				<section>
+					<h2 style="" class="l_loggedin">Login Required</h2>
+					<ul style="width:80%;">
+						<li class="l_loggedin1">(Almost) all ACS interactions must be done by logged in user</li>
+						<li class="l_loggedin2">Option 1: manually create ACS user &amp; hard-code login in your app</li>
+						<li class="l_loggedin3">Option 2: prompt user to create account and log in</li>
+						<li class="l_loggedin4">By default, user sessions not preserved</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_loggedin">For security reasons, nearly all ACS operations must be done by a logged in user. This means you must either hard-code the login into your app's code or prompt the user to log in prior to using ACS functions. Keep in mind that ACS user sessions are not preserved. Users will be logged out when the app closes.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_persisting">Persisting User Session</h2>
+					<pre style=""><code contenteditable>
+// In your createUser() type function, set
+// Ti.App.Properties.setString('sessionid', Cloud.sessionId); 
+
+// when your app starts, restore the session
+var Cloud = require('ti.cloud'),
+   sid = Ti.App.Properties.getString('sessionid'),
+   currentUser = null;
+
+if(sid) {
+   Cloud.sessionId = sid; // &larr; this is the critical piece
+   var me = Cloud.Users.showMe(function(e) {
+      // extra: store local reference to user object
+      currentUser = e.users[0];
+   });
+}
+
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_persisting">Here's one possible way to persist the user's session. Basically, in your createUser() function you'd save their session ID as an app property. Then, on subsequent launches, you'd use that session ID to re-establish an ACS connection.</div></div>
+				</section>
+
+
+				<section>
 					<h2 style="" class="l_alloyacs">ACS in Alloy</h2>
 					<ul style="width:80%;">
 						<li class="l_alloyacs1">Community contributed solution currently</li>
@@ -212,12 +247,12 @@ exports.definition = {
     },
 ...
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_alloyacs"></div></div>
+					<div class="slidenote"><div class="l_slidenote_alloyacs">Aaron Saunders, one of our Titans, has written an ACS sync adapter for Alloy. It's published at the URL on this slide. It offers custom object storage via Alloy Models/Collections. It is not an officially supported or endorsed Appcelerator project.</div></div>
 				</section>
 
 				<section>
 					<h1 style="" class="l_manage">Management</h1>
-					<p class="l_manage_explanation">Visit my.appcelerator.com to manage your apps.<br/><img src='images/acs_manage.png' style='height:400px'/></p>
+					<p class="l_manage_explanation">Visit my.appcelerator.com to manage your apps.<br/><img src='images/acs_manage.png' style='height:500px'/></p>
 					<div class="slidenote"><div class="l_slidenote_manage">You can view stats, see the objects that have been created, data that's been uploaded, and so forth via your my.appcelerator page.<br/><br/>Demo: <ol><li>Log into your my.appcelerator.com page</li><li>Click Go To My Apps</li><li>Once page is fully loaded, click Manage next to an ACS enabled app</li><li>Log in again.</li><li>Point out Development/Production options; click an API bucket with stats (e.g. Photos); click item if applicable to show more details</li></ol></div></div>
 				</section>
 
@@ -294,19 +329,6 @@ exports.definition = {
 					<div class="slidenote"><div class="l_slidenote_nodeacsdocs"></div></div>
 				</section>
 
-
-<!-- LESSONS MAY HAVE A DEMO (NOT REQUIRED) IN WHICH THE INSTRUCTOR WILL DEMONSTRATE A SAMPLE APP AND ITS CODE TO ILLUSTRATE THE MATERIALS COVERED IN THE LESSON -->
-				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">What you will demo</li>
-						<li class="l_demo2"></li>
-						<li class="l_demo3"></li>
-						<li class="l_demo4"></li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo"></div></div>
-				</section>
-
 				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->
 				<section id="summary">
@@ -334,12 +356,12 @@ exports.definition = {
 					<p class="l_labintro">In this lab, you will:</p>
 
 					<ul style="margin-bottom:40px;">
-						<li class="l_labobjective1"></li>
-						<li class="l_labobjective2"></li>
-						<li class="l_labobjective3"></li>
-						<li class="l_labobjective4"></li>
+						<li class="l_labobjective1">Start with partially-written app</li>
+						<li class="l_labobjective2">Add in the 'create user' ACS code</li>
+						<li class="l_labobjective3">Store captured fugitive data in ACS as custom objects</li>
+						<li class="l_labobjective4">Capture a fugitive and view the data in your ACS dashboard</li>
 					</ul>
-					<p class="l_labURL" style="margin-top:20px;">Lab: <a href='https://wiki.appcelerator.org/display/td/'>wiki.appcelerator.org/display/td/</a></p>
+					<p class="l_labURL" style="margin-top:20px;">Lab: <a href='https://wiki.appcelerator.org/display/td/11.+Storing+data+in+ACS'>wiki.appcelerator.org/display/td/11.+Storing+data+in+ACS</a></p>
 					<div class="slidenote"><div class="l_slidenote_lab"></div></div>
 				</section>
 

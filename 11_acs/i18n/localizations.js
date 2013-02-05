@@ -5,8 +5,8 @@
 */
 String.toLocaleString({
 	"en-US": {
-		"%l_filetitle": "LessonTitle",
-		"%l_lessontitle": "LessonTitle",
+		"%l_filetitle": "Appcelerator Cloud Services",
+		"%l_lessontitle": "Appcelerator Cloud Services",
 		"%l_subtitle": "Titanium Certified Developer (TCD) Training",
 		"%l_slidenote_titleslide": "",
 		"%l_agenda_title": "In this lesson, you will: "
