@@ -530,14 +530,14 @@ console.log(one); // throws error
 						<li class="l_hoisting4">Function statements are not</li>
 					</ul>
 					<pre style="width:550px;float:right;" class=""><code contenteditable>
-function baz(){}
+baz(foo);
 var foo = 'bar';
-baz();
+function baz(f){}
 
 // is treated like
-function baz(){}
 var foo;
-baz();
+function baz(f){}
+baz(foo);
 foo = 'bar';
 
 					</code></pre>
@@ -792,7 +792,9 @@ console.log(jim.name); // outputs 'Jimmy'
 
 var jane = Person('Jane');
 console.log(jane.name); // throws error
-// in browser environment:
+
+// though in browser environment:
+var jane = Person('Jane');
 console.log(window.name); // outputs 'Jane'
 
 					</code></pre>
@@ -842,6 +844,7 @@ console.log(lore.name); // => Lore
 						<li class="l_prototypes5">Every object has a prototype except the top-level Object</li>
 						<li class="l_prototypes6"><code>__proto__</code> is a way to access an object's prototype</li>
 					</ul>
+				    <img src="images/prototypetweet.png" style="width:400px;"/>
 
 					<div class="slidenote"><div class="l_slidenote_prototypes">Rather than trying to force-fit classical inheritance on JavaScript, you should use the language as it was designed to be use. JavaScript can provide for inheritance, class &amp; instance methods, and so forth. It does so via prototypes.<br/><br/>Objects inherit properties and methods from their prototype. Class properties and methods can be added to the prototype; instance methods to the object itself. You don't define a class then extend that class to instantiate. We'll see examples on the upcoming slides. We'll also talk about how to use that proto property. </div></div>
 				</section>
