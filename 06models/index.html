@@ -351,9 +351,31 @@ exports.definition = {
 				</section>
 
 				<section>
+					<h2 style="" class="l_ex_datatypes">Example</h2>
+					<pre style=""><code contenteditable>
+// File: app/models/book.js
+exports.definition = {
+  config: {
+    "columns": {
+      "title":"string",
+      "author":"varchar",
+      "isbn":"string",
+      "price": "float",
+      "publishDate": "date"
+    },
+    "adapter": {
+      "type": "sql",
+      "collection_name": "book"
+    }
+  }
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_ex_datatypes">Explain how the data types in each of the columns maps to the underlying SQLite datatypes.</div></div>
+				</section>
+
+				<section>
 					<h2 style="" class="l_customqueries">Custom Queries</h2>
 					<pre style=""><code contenteditable>
-// works only with sql_new adapter
 function showColorInfo(e) {
 	var color = e.row.model.color;
 	var collection = Alloy.createCollection('color');
@@ -394,7 +416,7 @@ exports.definition = {
       "nickname":"text"
     },
     "adapter": {
-      "type": "sql_new",
+      "type": "sql",
       "collection_name": "fighters",
 
       // Pre-load the database (safe method)
@@ -404,7 +426,8 @@ exports.definition = {
       // should the name of your pre-loaded db
       "db_name": "fighters"
 
-      // specify the unique ID field
+      // default primary key is alloy_id
+      // specify your own unique ID field with
       "idAttribute": "id" 
     }
   }
@@ -434,7 +457,7 @@ exports.definition = {
 				</section>
 
 				<section>
-					<h2 style="" class="l_bindexample1">Example 1</h2>
+					<h2 style="" class="l_bindexample1">Example</h2>
 					<pre style=""><code contenteditable>
 // in the View
 &lt;Alloy>
@@ -448,55 +471,21 @@ exports.definition = {
 &lt;/Alloy>
 
 // in the associated controller
-$.index.open();
 var books = Alloy.Collections.book;
 books.fetch();
+$.index.open();
 
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_bindexample1"></div></div>
 				</section>
 
 				<section>
-					<h2 style="" class="l_example2">Example 2</h2>
-					<pre style=""><code contenteditable>
-&lt;Alloy>
-  &lt;Collection src="myModels"/>
-
-  &lt;Tab title="global/&lt;Require>">
-    &lt;Window id="window" title="global/&lt;Require>">
-
-      &lt;!-- use the global reference to the dataCollection -->
-      &lt;TableView id="table" dataCollection="myModels" onClick="removeItem">
-
-        &lt;!-- use a &lt;Require> for our repeated TableViewRow -->
-        &lt;Require src="row"/>
-      &lt;/TableView>
-
-      &lt;!-- let's use a simple button or android -->
-      &lt;Button class="addButton" onClick="addItem" platform="android"/>
-    &lt;/Window>
-  &lt;/Tab>
-&lt;/Alloy>
-
-// in the controller
-var common = require('common'); // a helper library
-function addItem(e) {
-  common.addItem(myModels);
-}
-var myModels = Alloy.Collections.myModel;
-myModels.fetch();
-
-					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_example2"></div></div>
-				</section>
-
-
-				<section>
 					<h2 style="" class="l_release">Releasing the model binding</h2>
 					<pre style=""><code contenteditable>
 // in the View
 &lt;Alloy>
-  &lt;Window>
+  &lt;Collection src="movies">
+  &lt;Window id="moviesWin">
     &lt;TableView dataCollection="movies">
       &lt;TableViewRow title="{title}"/>
     &lt;/TableView>
@@ -504,16 +493,16 @@ myModels.fetch();
 &lt;/Alloy>
 
 // in the controller
-$.movies.on('close', function() {
-	// make sure to call $.destroy() when you are done with the 
-	// controller/window. This will ensure that no memory is 
-	// leaked and that the bindings are properly released.
-	$.destroy();
+$.moviesWin.on('close', function() {
+  // make sure to call $.destroy() when you are done with the 
+  // controller/window. This will ensure that no memory is 
+  // leaked and that the bindings are properly released.
+  $.destroy();
 });
 
 Alloy.Collections.movies.fetch();
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_release"></div></div>
+					<div class="slidenote"><div class="l_slidenote_release">When using Alloy's model-view binding in a view-controller, you MUST call the $.destroy() function when closing a controller to prevent potential memory leaks. The destroy function unbinds the callbacks created by Alloy when the model-view syntax is used. </div></div>
 				</section>
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
@@ -574,7 +563,7 @@ exports.definition = {
 }
 
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_syncadapters">Starting with version 0.3.5, the sql adapter includes features such as custom queries, advanced model definitions, better migration support, and so forth. During the beta period, there was a time when there were two versions of this adapter: sql and sql_new. You might see a few examples that use the 'sql_new' adapter name. With the Alloy final release, the 'new' version replaced the older version; you should use 'sql' as the name of the SQLite sync adapter.</div></div>
+					<div class="slidenote"><div class="l_slidenote_syncadapters"></div></div>
 				</section>
 
 				<section>
@@ -593,6 +582,16 @@ exports.definition = {
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
 					<h5 style="clear:both;" class="l_migrations">Migrations</h5>
 					<div class="slidenote"><div class="l_slidenote_migrations"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_migrnotes">Migrations</h2>
+					<ul style="width:80%;">
+						<li class="l_migrnotes1">Stored in app/migrations/ </li>
+						<li class="l_migrnotes3">File name: YYYYMMDDHHMMSS_model.js</br>&nbsp; &nbsp; &nbsp; e.g.  20120610049877_book.js.</li>
+						<li class="l_migrnotes2">You must have the same new columns/defaults in the model and migration file</li>
+					</ul>
+					<div class="slidenote"><div class="l_slidenote_migrnotes">Migrations are the way you modify your data store to use a different table structure. You define a new structure in the migrations file. Because the file name is essentially a datetime stamp, Titanium can determine at run time if the data store needs to be updated. Let's see how that works...</div></div>
 				</section>
 
 				<section>
@@ -623,13 +622,30 @@ migration.down = function(db) {
 				</section>
 
 				<section>
-					<h2 style="" class="l_migrnotes">Migrations</h2>
-					<ul style="width:80%;">
-						<li class="l_migrnotes1">Stored in app/migrations/ </li>
-						<li class="l_migrnotes3">File name: YYYYMMDDHHMMSS_model.js</br>&nbsp; &nbsp; &nbsp; e.g.  20120610049877_book.js.</li>
-						<li class="l_migrnotes2">You must have the same new columns/defaults in the model and migration file</li>
-					</ul>
-					<div class="slidenote"><div class="l_slidenote_migrnotes"></div></div>
+					<h2 style="" class="l_migrex2">Migration - Example 2</h2>
+					<pre style=""><code contenteditable>
+migration.up = function(migrator) {
+    var db = migrator.db; // our database connection object
+    var table = migrator.table;
+    db.execute('CREATE TEMPORARY TABLE book_backup(title,author,isbn,alloy_id);')
+    db.execute('INSERT INTO book_backup SELECT title,author,isbn,id FROM ' + table + ';');
+    migrator.dropTable();
+    migrator.createTable({
+        columns: {
+            title:"TEXT",
+            author:"TEXT",
+            isbn:"INTEGER"
+        },
+    });
+    db.execute('INSERT INTO ' + table + ' SELECT title,author,isbn,alloy_id FROM book_backup;');
+    db.execute('DROP TABLE book_backup;');
+};
+
+migration.down = function(migrator) {
+
+}
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_migrex2">This example demonstrates two things: 1) prior to Alloy 1.0GA, the primary key on tables was named id. It's now named alloy_id. So this could would let you migrate an old Alloy-generated table to work with the GA version. 2) The other technique shown here is using a custom SQL query as part of a migration.</div></div>
 				</section>
 
 
@@ -670,7 +686,7 @@ Ti.App.Properties.setString('foo', foo);
 					<pre style="width:560px;float:right;"><code contenteditable>
 var conn = Ti.Database.open('todos');
 var data = [];
-var rows = db.execute('SELECT * FROM todoitems');
+var rows = conn.execute('SELECT * FROM todoitems');
 while(rows.isValidRow()) {
   data.push({
 	title: rows.fieldByName('todo'),
