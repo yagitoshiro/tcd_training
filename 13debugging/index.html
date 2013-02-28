@@ -101,16 +101,39 @@
 				</section>
 
 				<section>
-					<h2 style="" class="l_demo">Demo</h2>
-					<ul style="width:80%;">
-						<li class="l_demo1">Set a breakpoint in an app</li>
-						<li class="l_demo2">Run the app in the simulator/emulator</li>
-						<li class="l_demo3">Examine the variable stack and alter live values</li>
-						<li class="l_demo4">Step through, into, and over breakpoints</li>
+					<h2 style="" class="l_debughowto">Setting Breakpoints</h2>
+				    <img src="images/debugbuild.png" style="width:300px;float:right;"/>
+					<ul style="width:40%;">
+						<li class="l_debughowto1">With 'traditional' apps:<br/><ul style="margin:5px 0 10px 60px;"><li>Double-click margin</li><li>Do debug build</li></ul></li>
+						<li class="l_debughowto2">With Alloy apps:<br/><ul style="margin:5px 0 10px 60px;"><li>Add <code>debugger</code> statement</li><li>Do debug build</li></ul></li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_demo">Demo a breakpoint on the Persistence app (https://github.com/appcelerator-training/Persistence) which is a traditional app.</div></div>
+					<div class="slidenote"><div class="l_slidenote_debughowto"></div></div>
 				</section>
 
+				<section>
+					<h2 style="" class="l_stepping">Step-through Debugging</h2>
+					<p class="l_stepimg"><img src="images/debugbuttons.png" style="width:300px;"/></p>
+
+					<ul style="width:50%;">
+						<li class="l_stepping1">Step Into, Over, &amp; Return buttons</li>
+						<li class="l_stepping2">Resume &amp; Terminate buttons</li>
+					</ul>
+					<p class="l_steppara" style="font-size: 0.8em;margin-top:40px;">http://docs.appcelerator.com/titanium/latest/#!/guide/Debugging_in_Titanium_Studio</p>
+					<div class="slidenote"><div class="l_slidenote_stepping"></div></div>
+				</section>
+
+				<!-- - - - - - - - - - - - - - - - - TRY IT SLIDE - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic" style="margin-top: 10px;"><img src="../images/laptop.png"/>Try it</h1>
+					<h5 style="clear:both;margin-bottom:30px;width:80%;" class="l_trydebug">Debugging AlloyHunter</h5>
+					<ol style="width:80%;">
+						<li class="l_trydebug1">Add a <code>debugger;</code> statement to the Fugitives.js controller as the first statement in the table event listener.</li>
+						<li class="l_trydebug2">Do a debug build of the app to the simulator/emulator.</li>
+						<li class="l_trydebug3">Click a row in the fugitives table.</li>
+						<li class="l_trydebug4">Examine the variables in memory, then step through a few lines of code.</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_trydebug">Students should do this, and you should demo or talk through the steps as they go.</div></div>
+				</section>
 
 				<section>
 					<h2 class="l_titanium_studio">Titanium Studio and the SDKs</h2>
