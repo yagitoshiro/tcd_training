@@ -331,6 +331,17 @@ exports.definition = {
 					<div class="slidenote"><div class="l_slidenote_modelevents"></div></div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - TRY IT SLIDE - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic" style="margin-top: 10px;"><img src="../images/laptop.png"/>Try it</h1>
+					<h5 style="clear:both;margin-bottom:30px;width:80%;" class="l_trymodel">Examine AlloyHunter's Model</h5>
+					<ol style="width:80%;">
+						<li class="l_trymodel1">Examine the models/Fugitive.js model</li>
+						<li class="l_trymodel2">Identify the columns and default values</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_trymodel">Students should do this, and you should demo or talk through the steps as they go.</div></div>
+				</section>
+
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
@@ -476,7 +487,7 @@ books.fetch();
 $.index.open();
 
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_bindexample1"></div></div>
+					<div class="slidenote"><div class="l_slidenote_bindexample1">The &lt;Collection> tag instantiates the collection and stores it in an app global. Thus, it wouldn't have to be in the same view file where it's bound. The dataCollection property defines which collection you're binding to the view (there could be multiple).</div></div>
 				</section>
 
 				<section>
@@ -493,7 +504,7 @@ $.index.open();
 &lt;/Alloy>
 
 // in the controller
-$.moviesWin.on('close', function() {
+$.moviesWin.addEventListener('close', function() {
   // make sure to call $.destroy() when you are done with the 
   // controller/window. This will ensure that no memory is 
   // leaked and that the bindings are properly released.
@@ -504,6 +515,19 @@ Alloy.Collections.movies.fetch();
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_release">When using Alloy's model-view binding in a view-controller, you MUST call the $.destroy() function when closing a controller to prevent potential memory leaks. The destroy function unbinds the callbacks created by Alloy when the model-view syntax is used. </div></div>
 				</section>
+
+				<!-- - - - - - - - - - - - - - - - - TRY IT SLIDE - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic" style="margin-top: 10px;"><img src="../images/laptop.png"/>Try it</h1>
+					<h5 style="clear:both;margin-bottom:30px;width:80%;" class="l_trybinding">Examine the view/model binding in AlloyHunter</h5>
+					<ol style="width:80%;">
+						<li class="l_trybinding1">Examine Fugitives.xml to identify the collection being bound</li>
+						<li class="l_trybinding2">Examine FugitiveRow.xml to see the fields being output</li>
+						<li class="l_trybinding3">Examine the table event listener in Fugitives.js. Identify what _e.rowData.model refers to and where that value is defined.</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_trybinding">Make sure that students understand how the model data is added to the row, so that the primary key (_e.rowData.model == alloy_id) can be accessed and used later.</div></div>
+				</section>
+
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
@@ -648,6 +672,18 @@ migration.down = function(migrator) {
 					<div class="slidenote"><div class="l_slidenote_migrex2">This example demonstrates two things: 1) prior to Alloy 1.0GA, the primary key on tables was named id. It's now named alloy_id. So this could would let you migrate an old Alloy-generated table to work with the GA version. 2) The other technique shown here is using a custom SQL query as part of a migration.</div></div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - TRY IT SLIDE - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic" style="margin-top: 10px;"><img src="../images/laptop.png"/>Try it</h1>
+					<h5 style="clear:both;margin-bottom:30px;width:80%;" class="l_trymig">Examine AlloyHunter's migrations</h5>
+					<ol style="width:80%;">
+						<li class="l_trymig1">Examine the contents of the migrations file</li>
+						<li class="l_trymig2">Compare it to the current model (they should match!)</li>
+						<li class="l_trymig3">How does the app 'know' to perform the migration?</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_trymig">Students should do this, and you should demo or talk through the steps as they go.</div></div>
+				</section>
+
 
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
@@ -703,10 +739,11 @@ conn.close();
 				<section>
 					<h2 style="" class="l_modellimits">API access benefits</h2>
 					<ul style="width:80%;">
-						<li class="l_modellimits2">Use existing DB libraries</li>
-						<li class="l_modellimits1">Prior to Alloy 0.3.5: SQL adapter limitations: no joins, group by, or other "advanced" query support</li>
+						<li class="l_modellimits1">Use existing DB libraries</li>
+						<li class="l_modellimits2">Avoid globals associated with built-in View/Model binding system</li>
+						<li class="l_modellimits3">Limit overhead of Backbone &amp; Underscore when your data needs are light or the app is intensive</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_modellimits">Prior to version 0.3.5, the SQL adapter supplied with Alloy does not support any 'advanced' queries. For example, you cannot do joins between tables via Alloy models and collections. If your app is using an older version, the direct API access method would be your best solution for implementing such queries.<br/><br/>If you have an existing app that uses a library of database access functions, you can still use that library with an Alloy app. You would simply use it as a CommonJS module within your project and not use Models to represent your data.</div></div>
+					<div class="slidenote"><div class="l_slidenote_modellimits">If you have an existing app that uses a library of database access functions, you can still use that library with an Alloy app. You would simply use it as a CommonJS module within your project and not use Models to represent your data.</div></div>
 				</section>
 				
 <!-- EVERY LESSON MUST HAVE A SUMMARY, LISTING THE OBJECTIVES THAT WERE LEARNED BY THE STUDENT -->

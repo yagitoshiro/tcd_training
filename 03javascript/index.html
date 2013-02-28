@@ -82,16 +82,13 @@
 			    		<li class="l_agenda5">Write CommonJS modules</li>
 			    		<li class="l_agenda6">Write code that implements JavaScript best practices</li>
 			    	</ul>
-					<div class="slidenote">
-						<div class="l_slidenote_agenda"></div>
-					</div>
-					<div class="slidenote"><div class="l_slidenote_agenda">&nbsp;</div></div>
+					<div class="slidenote"><div class="l_slidenote_agenda">Please use your best judgment as an instructor &mdash; set the pace of this lesson according to your students' JavaScript skills. You might consider skipping some slides for advanced audiences or spending extra time with a more novice group of students.</div></div>
 				</section>
 
 				<section>
-					<h2 style="" class="l_tryit">Try it</h2>
+					<h2 style="" class="l_tryit">Try it as we go</h2>
 					<ul style="width:80%;">
-						<li class="l_tryit1">Use your browser's console</li>
+						<li class="l_tryit1">Use your browser's console, or</li>
 						<li class="l_tryit2">Visit <a href="http://jsbin.com/">jsbin.com</a> (turn off HTML pane, turn on JavaScript, Console, &amp; Output)</li>
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_tryit">We encourage students to try out the code as they go. This is especially the case later in the lesson where we start showing off some of JavaScript's more confusing or subtle features (hoisting, inheritance, implicit/explicit returns, etc.).</div></div>
@@ -495,7 +492,9 @@ console.log(String(one) * 2); // = 2
 
 isNaN(parseInt(three)); // == true
 					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_typeconversions">For a humorous look at what automatic type conversions can do, check out http://www.youtube.com/watch?v=_yZHbh396rc  (JavaScript coverage begins about 1:20 but the whole video is just 4 mins long).</div></div>
+					<p style="clear:both;text-align:right;padding-top:20px;"><img src="../images/arrowup.png" style="position:relative;left: 90px;top:-45px;z-index:1;" class="noborder"/><img src="../images/laptop.png" style="position:relative;z-index:2;vertical-align:middle;" class="noborder"/> Try it!</p>
+					
+					<div class="slidenote"><div class="l_slidenote_typeconversions">These "try it" indicators are to remind students to input the code at JSBin or in their browser console. They're meant to reinforce the concepts being taught and also to get the students involved in the materials. Not only should students input the code shown on the slide, but they should spend a minute testing their understanding by tweaking the code to see what happens.<br/><br/>For a humorous look at what automatic type conversions can do, check out http://www.youtube.com/watch?v=_yZHbh396rc  (JavaScript coverage begins about 1:20 but the whole video is just 4 mins long).</div></div>
 				</section>
 
 				<section>
@@ -518,6 +517,8 @@ fn();  // run function, outputs 'bar'
 console.log(oops); // outputs 'global'
 console.log(one); // throws error
 					</code></pre>
+					<p style="clear:both;text-align:right;padding-top:20px;"><img src="../images/arrowup.png" style="position:relative;left: 90px;top:-45px;z-index:1;" class="noborder"/><img src="../images/laptop.png" style="position:relative;z-index:2;vertical-align:middle;" class="noborder"/> Try it!</p>
+					
 					<div class="slidenote"><div class="l_slidenote_scope">Default scope is global. Variables defined with 'var' in a function are local to that function; those without 'var' become globals. Functions have access to the scope of their parents, but parents don't have access to variables within sub-functions. ECMAScript 6 will support block scope with 'let' so you can define variables that are valid only within an if block, for example. Titanium doesn't support this yet.</div></div>
 				</section>
 
@@ -731,13 +732,12 @@ var Counter = (function() {
     }
   }   
 })();
-// Counter fn is done, object returned
-// but 'privateCounter' still valid
 Counter.increment();
 console.log(Counter.value()); // outputs 1
 Counter.decrement();
 console.log(Counter.value()); // outputs 0
 					</code></pre>
+					<p style="clear:both;text-align:right;padding-top:20px;"><img src="../images/arrowup.png" style="position:relative;left: 90px;top:-45px;z-index:1;" class="noborder"/><img src="../images/laptop.png" style="position:relative;z-index:2;vertical-align:middle;" class="noborder"/> Try it!</p>
 
 					<div class="slidenote"><div class="l_slidenote_closures">Variables are local to functions, and go out of scope when the function ends. But if the function remains valid, its variables remain valid. So in the example, the outer function ends, thus you might think privateCounter would go out of scope. Yet the returned object's methods retain references to that variable, so it must remain valid.</div></div>
 				</section>
@@ -829,6 +829,7 @@ console.log(data.name);  // => Cmdr Data
 var lore = Android('Lore');
 console.log(lore.name); // => Lore
 					</code></pre>
+					<p style="clear:both;text-align:right;padding-top:20px;"><img src="../images/arrowup.png" style="position:relative;left: 90px;top:-45px;z-index:1;" class="noborder"/><img src="../images/laptop.png" style="position:relative;z-index:2;vertical-align:middle;" class="noborder"/> Try it!</p>
 					<div class="slidenote"><div class="l_slidenote_implicit">An object is implicitly returned if you don't include an <code>return</code> statement in your function. Thus,  Person() and Android() both return an object with a name property.<br/><br/>However, problems arise with implicit returns if you forget the <code>new</code> keyword when instantiate an object. If you omit <code>new</code>, you still get an object but its properties will be associated with the global object (shown here as window). As shown, explicit returns eliminate this problem.</div></div>
 				</section>
 
@@ -983,6 +984,7 @@ var Employee = function(name, age, group) {
 var alex = new Employee('Alejandro', 25, 'Developer');
 					</code></pre>
 					<p class="l_parasiticexplanation">(Works with <code>__proto__</code> so you don't have to!)</p>
+					<p style="clear:both;text-align:right;padding-top:20px;"><img src="../images/arrowup.png" style="position:relative;left: 90px;top:-45px;z-index:1;" class="noborder"/><img src="../images/laptop.png" style="position:relative;z-index:2;vertical-align:middle;" class="noborder"/> Try it!</p>
 					<div class="slidenote"><div class="l_slidenote_parasitic">This syntax is perhaps the more typical way that developers will subclass or extend objects. Here we see two constructors. The second instantiates a Person object, adds properties, then returns it. This is simpler code than working directly with __proto__ and prototype, and thus eliminates a bunch of confusion. Ref: http://daniel.carrera.name/2008/02/parasitic-inheritance-in-javascript/</div></div>
 				</section>
 

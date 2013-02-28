@@ -101,7 +101,7 @@
 						<li class="l_controls5">Navigation controls -- tabs, split windows, etc.</li>
 						<li class="l_controls6">Media-related (video or audio players)</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_controls">These are the controls available to you. We won't go deep with these now, but we will cover them in more detail in the next lesson.</div></div>
+					<div class="slidenote"><div class="l_slidenote_controls">These are the controls available to you. We won't go deep with these now, but we will cover them in more detail as we work through the course.</div></div>
 				</section>
 
 				<section>
@@ -109,11 +109,61 @@
 					<ul style="width:80%;">
 						<li class="l_winview1">'Containers' to hold other components</li>
 						<li class="l_winview2">Windows = full screen (usually)</li>
-						<li class="l_winview3">Views = portion of the screen</li>
+						<li class="l_winview3">Views = portion of the screen (like a <code>&lt;div></code>)</li>
 						<li class="l_winview4">Every app has at least one window</li>
 					</ul>
 
 					<div class="slidenote"><div class="l_slidenote_winview"></div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_winlayout">View Hierarchy - Window-based apps</h2>
+					<ul style="width:60%;float:left;margin-top:50px;">
+						<li class="l_winlayout1">Single window (no tabs)</li>
+						<li class="l_winlayout2">Views inside window or other views</li>
+					</ul>
+				    <img src="images/win-based-layout.png" style="width:300px;float:right;"/>
+					<pre style="width:60%;float:left;clear:left;"><code contenteditable>
+var win = Ti.UI.createWindow();
+var view = Ti.UI.createView();
+win.add(view);
+					</code></pre>
+					<pre style="width:60%;float:left;clear:left;"><code contenteditable>
+&lt;Alloy>
+  &lt;Window>
+     &lt;View>&lt;/View>
+  &lt;/Window>
+&lt;/Alloy>
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_winlayout">This is your opportunity to describe the containers in an app. This slide covers a single-window app; the next slide covers tab-based apps. Make sure students understand that one of these two will be the basic component architecture of all apps.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_tablayout">View Hierarchy - Tab-based apps</h2>
+					<ul style="width:60%;float:left;margin-top:50px;">
+						<li class="l_layout4">Tab group with 1+ tabs</li>
+						<li class="l_layout1">Each tab has one window</li>
+						<li class="l_layout2">Views inside window or other views</li>
+					</ul>
+				    <img src="images/tab-based-layout.png" style="width:300px;float:right;"/>
+					<pre style="width:60%;float:left;clear:left;"><code contenteditable>
+var tabgroup = Ti.UI.createTabGroup();
+var window = Ti.UI.createWindow();
+var tab = Ti.UI.createTab({
+  win: window
+});
+tabgroup.addTab(tab);
+					</code></pre>
+					<pre style="width:60%;float:left;clear:left;"><code contenteditable>
+&lt;Alloy>
+  &lt;TabGroup>
+    &lt;Tab>
+      &lt;Window>&lt;View>&lt;/View>&lt;/Window>
+    &lt;/Tab>
+  &lt;/TabGroup>
+&lt;/Alloy>
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_layout"></div></div>
 				</section>
 
 				<section>
@@ -134,33 +184,23 @@
 					<div class="slidenote"><div class="l_slidenote_android_components">Android 4 introduces and renames many of the UI components. Go over each of these, as they might not be familiar to even Android users.</div></div>
 				</section>
 
+				<!-- - - - - - - - - - - - - - - - - TRY IT SLIDE - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic" style="margin-top: 10px;"><img src="../images/laptop.png"/>Try it</h1>
+					<h5 style="clear:both;margin-bottom:30px;width:80%;" class="l_tryappstructure">Examine an app's structure</h5>
+					<ol style="width:80%;">
+						<li class="l_tryappstructure1">In Studio, create a new Titanium Mobile project. Use either the Alloy or "Classic" style.</li>
+						<li class="l_tryappstructure2">If using Alloy, examine the view hierarchy in app/views/index.xml</li>
+						<li class="l_tryappstructure3">If using "classic" examine the code in Resources/app.js</li>
+						<li class="l_tryappstructure4">Identify the containers in the view hierarchy of this app</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_tryappstructure">You could do this as a demo or group project. Don't spend more than 5 minutes or so. This is meant to be a brief activity to reinforce the slides you just presented.</div></div>
+				</section>
+
 				<section>
 					<h1 class="topicH1 l_topic"><img src="../images/topic.png"/>Topic</h1>
 					<h5 style="clear:both;" class="l_units">Units, Positioning, and More</h5>
 					<div class="slidenote"><div class="l_slidenote_units"></div></div>
-				</section>
-
-				<section>
-					<h2 style="" class="l_layout">View Hierarchy</h2>
-					<ul style="width:40%;float:left;margin-top:50px;">
-						<li class="l_layout4">Tabs or Single Window</li>
-						<li class="l_layout1">App has at least one window</li>
-						<li class="l_layout2">Views inside window or other views</li>
-					</ul>
-				    <img src="images/basic-app-structure.png" style="width:500px;float:right;"/>
-					<pre style="width:430px;float:left;clear:left;"><code contenteditable>
-var win = Ti.UI.createWindow();
-var view = Ti.UI.createView();
-win.add(view);
-					</code></pre>
-					<pre style="width:430px;float:left;clear:left;"><code contenteditable>
-&lt;Alloy>
-  &lt;Window>
-     &lt;View>&lt;/View>
-  &lt;/Window>
-&lt;/Alloy>
-					</code></pre>
-					<div class="slidenote"><div class="l_slidenote_layout"></div></div>
 				</section>
 
 				<section>
@@ -249,6 +289,21 @@ var view = Ti.UI.createView({
 					<p><img src="images/vertical-layout.png" style="margin-top:0px;height:420px;align:left"></p>
 					<div class="slidenote"><div class="l_slidenote_vertical_layout">Parent object has the Vertical layout<br>Child object's positions are then in relation to each other within the parent</div></div>
 				</section>
+
+				<!-- - - - - - - - - - - - - - - - - TRY IT SLIDE - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic" style="margin-top: 10px;"><img src="../images/laptop.png"/>Try it</h1>
+					<h5 style="clear:both;margin-bottom:30px;width:80%;" class="l_tryitunits">Positioning views</h5>
+					<ol style="width:80%;">
+						<li class="l_tryitunits1">To the sample project you began earlier, change the Window to vertical layout.</li>
+						<li class="l_tryitunits2">Create a view and add it to the window. Make the view 120 units tall and 50 units from the top. Set its background to be green.</li>
+						<li class="l_tryitunits3">Create a second view with the same properties, though with a red background. Add it to the window.</li>
+						<li class="l_tryitunits4">Build your project. Does the screen roughly match the preceding slide?</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_tryitunits">Again, this should be a brief 5-minute activity. Do as a group or help students as needed.</div></div>
+				</section>
+
+
 
 				<!-- - - - - - - - - - - - - - - - - NEW TOPIC - - - - - - - - - - - - - - - - -->
 				<section>
@@ -386,6 +441,18 @@ Ti.App.addEventListener('databaseUpdated', function() {
 
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_appex"></div></div>
+				</section>
+
+				<!-- - - - - - - - - - - - - - - - - TRY IT SLIDE - - - - - - - - - - - - - - - - -->
+				<section>
+					<h1 class="topicH1 l_topic" style="margin-top: 10px;"><img src="../images/laptop.png"/>Try it</h1>
+					<h5 style="clear:both;margin-bottom:30px;width:80%;" class="l_tryitevents">Add an event listener</h5>
+					<ol style="width:80%;">
+						<li class="l_tryitevents1">Add a click event listener to the first view.</li>
+						<li class="l_tryitevents2">When the user clicks on the view, display an alert message using <code>alert()</code></li>
+						<li class="l_tryitevents3">Build your project to test your work.</li>
+					</ol>
+					<div class="slidenote"><div class="l_slidenote_tryitevents">Help students find the right place to add this code (either in the app.js or in the associated controller).</div></div>
 				</section>
 
 
