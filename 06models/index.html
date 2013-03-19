@@ -95,6 +95,17 @@
 				</section>
 
 				<section>
+					<h2 style="" class="l_backbone">Models/Collections based on Backbone</h2>
+					<ul style="width:80%;">
+						<li class="l_backbone1">Backbone.js is an MVC framework for web development</li>
+						<li class="l_backbone2">Alloy's models/collections based on the Backbone's classes</li>
+						<li class="l_backbone3">Requires Underscore.js (so it's included in Alloy projects)</li>
+					</ul>
+					<p class="l_backbonepara" style="text-align:center;"><img src='images/backbonejs.png'></p>
+					<div class="slidenote"><div class="l_slidenote_backbone"></div></div>
+				</section>
+
+				<section>
 					<h2 style="" class="l_model">Models</h2>
 					<ul style="width:40%;float:left;">
 						<li class="l_model1">Encapsulate the data and state of your app</li>
@@ -252,17 +263,6 @@ exports.definition = {
 }
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_extending"></div></div>
-				</section>
-
-				<section>
-					<h2 style="" class="l_backbone">Models/Collections based on Backbone</h2>
-					<ul style="width:80%;">
-						<li class="l_backbone1">Backbone.js is an MVC framework for web development</li>
-						<li class="l_backbone2">Alloy's models/collections based on the Backbone's classes</li>
-						<li class="l_backbone3">Requires Underscore.js (so it's included in Alloy projects)</li>
-					</ul>
-					<p class="l_backbonepara" style="text-align:center;"><img src='images/backbonejs.png'></p>
-					<div class="slidenote"><div class="l_slidenote_backbone"></div></div>
 				</section>
 
 				<section>
@@ -481,11 +481,6 @@ exports.definition = {
   &lt;/Window>
 &lt;/Alloy>
 
-// in the associated controller
-var books = Alloy.Collections.book;
-books.fetch();
-$.index.open();
-
 					</code></pre>
 					<div class="slidenote"><div class="l_slidenote_bindexample1">The &lt;Collection> tag instantiates the collection and stores it in an app global. Thus, it wouldn't have to be in the same view file where it's bound. The dataCollection property defines which collection you're binding to the view (there could be multiple).</div></div>
 				</section>
@@ -647,7 +642,7 @@ migration.down = function(db) {
 
 				<section>
 					<h2 style="" class="l_migrex2">Migration - Example 2</h2>
-					<pre style=""><code contenteditable>
+					<pre style="width:100%;"><code contenteditable>
 migration.up = function(migrator) {
     var db = migrator.db; // our database connection object
     var table = migrator.table;
@@ -719,7 +714,7 @@ Ti.App.Properties.setString('foo', foo);
 						<li class="l_apidb5">Not available on Mobile Web</li>
 						<li class="l_apidb6">You can use direct DB access with Alloy (just not with models)</li>
 					</ul>
-					<pre style="width:560px;float:right;"><code contenteditable>
+					<pre style="width:580px;float:right;"><code contenteditable>
 var conn = Ti.Database.open('todos');
 var data = [];
 var rows = conn.execute('SELECT * FROM todoitems');

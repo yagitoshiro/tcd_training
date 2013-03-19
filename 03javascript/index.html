@@ -936,7 +936,7 @@ alert(fred.arms); // undefined
 				</section>
 
 				<section>
-					<h2 class="l_proto" style="font-variant:normal !important;">__proto__ vs obj.prototype</h2>
+					<h2 class="l_proto" style="font-variant:normal !important;">__proto__ vs prototype</h2>
 					<ul style="width:40%;float:left;">
 						<li class="l_proto1">Every function has a <code>prototype</code> property</li>
 						<li class="l_proto2">It refers to the object that will be assigned as the prototype of the resulting object</li>
@@ -1000,7 +1000,7 @@ var alex = new Employee('Alejandro', 25, 'Developer');
 						<li class="l_commonjs1">Standard way to create self-contained, exportable functionality. See commonjs.org for the spec.</li>
 						<li class="l_commonjs2">Goals:<br/><ul style="margin:5px 0 10px 60px;"><li>Private scope within the module</li><li>Explicitly exported API</li><li>Decoupling and reusability</li></ul></li>
 						<li class="l_commonjs3">Inside a module, <code>exports</code> is an object to which you can attach properties</li>
-						<li class="l_commonjs4">You can replace that property by setting <code>module.exports</code></li>
+						<li class="l_commonjs4">You can replace that object by setting <code>module.exports</code></li>
 						<li class="l_commonjs5">Modules "imported" with the <code>require()</code> global function</li>
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_commonjs">Modules are meant to solve JavaScript's limited notion of scope. Each module has its own scope (or is supposed to) and must explicitly export variables to make them available to the calling context. </div></div>
