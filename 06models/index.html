@@ -118,9 +118,9 @@
 exports.definition = {
   config: {
     "columns": {
-      "title":"string",
-      "author":"string",
-      "isbn":"string"
+      "title":"text",
+      "author":"text",
+      "isbn":"text"
     },
     "adapter": {
       "type": "sql",
@@ -354,11 +354,11 @@ exports.definition = {
 					<h2 style="" class="l_dbdatatypes">Data types</h2>
 					<ul style="width:80%;">
 						<li class="l_dbdatatypes1">SQLite: TEXT, INTEGER, REAL, BLOB</li>
-						<li class="l_dbdatatypes2">Alloy: string, varchar, int, tinyint, smallint, bigint, double, float, decimal, number, date, datetime and boolean</li>
+						<li class="l_dbdatatypes2">Alloy: text, string, varchar, int, tinyint, smallint, bigint, double, float, decimal, number, date, datetime and boolean</li>
 						<li class="l_dbdatatypes3">Map logically (int, tinyint, etc. &rarr; INTEGER)</li>
 						<li class="l_dbdatatypes4">Unknown types map to TEXT</li>
 					</ul>
-					<div class="slidenote"><div class="l_slidenote_dbdatatypes">Under the covers, SQLite supports only the four data types listed here, plus NULL values. Alloy supports a richer set familiar to those who've worked with MySQL or other web databases. These are mapped to logical counterparts automatically. Unknow types map to TEXT. You use the type names shown here in the model definition file.</div></div>
+					<div class="slidenote"><div class="l_slidenote_dbdatatypes">Under the covers, SQLite supports only the four data types listed here, plus NULL values. Alloy supports a richer set familiar to those who've worked with MySQL or other web databases. These are mapped to logical counterparts automatically. Unknown types map to TEXT. You use the type names shown here in the model definition file.</div></div>
 				</section>
 
 				<section>
@@ -368,9 +368,9 @@ exports.definition = {
 exports.definition = {
   config: {
     "columns": {
-      "title":"string",
-      "author":"varchar",
-      "isbn":"string",
+      "title":"text",
+      "author":"text",
+      "isbn":"text",
       "price": "float",
       "publishDate": "date"
     },
@@ -570,9 +570,9 @@ function addItem(itemname) {
 exports.definition = {
   config: {
     "columns": {
-      "title":"string",
-      "author":"string",
-      "isbn":"string"
+      "title":"text",
+      "author":"text",
+      "isbn":"text"
     },
     "adapter": {
       "type": "sql",
@@ -619,8 +619,8 @@ exports.definition = {
 migration.up = function(db) {
     db.createTable({
         "columns": {
-            "book": "string",
-            "author": "string",
+            "book": "text",
+            "author": "text",
             "isbn": "integer"  /* our new field */
         },
         "defaults": {

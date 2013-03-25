@@ -7,9 +7,7 @@ var args = arguments[0] || {};
 //$.thumbnail.image = args.image;
 $.parentController = args.parentTab;
 
-// add the datatransformation, Tony's busy!!
-// dataTransform is not wired up yet, but i
-// hacked it into my code
+// add the datatransformation
 $.fugitiveDetail = _.extend({}, $.fugitiveDetail, {
     transform : function() {
         return dataTransformation(this);
@@ -52,7 +50,7 @@ $.photo_button.addEventListener('click', function(_e) {
             $.image.image = image;
 
             //save for future use
-            var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'photo' + args.data.get("id") + '.png');
+            var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'photo' + args.data.get("alloy_id") + '.png');
             f.write(image);
 
             // update the model and save

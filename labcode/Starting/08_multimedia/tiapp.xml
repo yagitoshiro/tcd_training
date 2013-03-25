@@ -37,9 +37,7 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules>
-        <module platform="android" version="1.0">ti.physicalSizeCategory</module>
-    </modules>
+    <modules/>
     <deployment-targets>
         <target device="blackberry">false</target>
         <target device="android">true</target>

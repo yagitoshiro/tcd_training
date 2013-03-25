@@ -272,7 +272,7 @@ exports.definition = {
 					<pre style="width:450px;float:right;margin-top:40px;"><code contenteditable>
 // view file
 &lt;Alloy>
-  &lt;ImageView id='foo' src='foo.png'/>
+  &lt;ImageView id='foo' image='foo.png'/>
 &lt;/Alloy>
 
 // style file
@@ -372,6 +372,35 @@ exports.definition = {
 						<li class="l_ctrllrs4">Access components via their id attribute: <code>$.idstring</code></li>
 					</ul>
 					<div class="slidenote"><div class="l_slidenote_ctrllrs">Every app needs at least the index.js controller with the open() call on the app's primary UI component (ie. window or tabgroup). You technically don't need a controller for every view, though you will typically have one.</div></div>
+				</section>
+
+				<section>
+					<h2 style="" class="l_ctrlwoid">Views without IDs</h2>
+					<pre style=""><code contenteditable>
+// index.xml
+&lt;Alloy>
+  &lt;Window class="container">
+    &lt;Label id="label" onClick="doClick">Hello, World&lt;/Label>
+  &lt;/Window>
+&lt;/Alloy>
+
+// in index.js
+// Window tag has no id, so access by file name
+$.index.open();
+					</code></pre>
+					<pre style="position:relative; top: -290px;" class="fragment"><code contenteditable>
+// index.xml
+&lt;Alloy>
+  &lt;Window class="container" id="mainwin">
+    &lt;Label id="label" onClick="doClick">Hello, World&lt;/Label>
+  &lt;/Window>
+&lt;/Alloy>
+
+// in index.js
+// Window tag has an id, so $.index.open() would fail!
+$.mainwin.open();
+					</code></pre>
+					<div class="slidenote"><div class="l_slidenote_ctrlwoid">For views, you can omit the ID from the top-level container and access it via the file name. We recommend you do this for only the index view or only with openable containers, such as windows or tab groups.</div></div>
 				</section>
 
 				<section>
@@ -561,10 +590,10 @@ if (ENV_DEV && OS_IOS) {
 "#mybutton[platform=ios]" : {
 	height:50,
 },
-"#osLabel[platform=ios size=tablet]": {
+"#osLabel[platform=ios formFactor=tablet]": {
 text: "iPad"
 },
-"#osLabel[platform=ios size=handheld]": {
+"#osLabel[platform=ios formFactor=handheld]": {
 text: "iPhone"
 },
 
